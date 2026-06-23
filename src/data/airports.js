@@ -755,10 +755,10 @@ const AIRPORTS = [
     lat_dms: "65°04'31\"N", lng_dms: "021°48'01\"W",
     description: "Búðardalur airport in Vesturland, Iceland. IFR/VFR operations.",
     runways: [
-      { id: "06/24", length_m: 795, width_m: 24, surface: "Gravel", pcn: null, notes: "" }
+      { id: "06/24", length_m: 795, width_m: 24, surface: "Gravel", pcn: null, notes: null }
     ],
     frequencies: [
-      { role: "mf", freq: "118.100" }
+      { role: "MF", freq: "118.100" }
     ],
     nav: [],
     hours: { service: "MF", schedule: "PPR", notes: "Contact pilot service for PPR. Check NOTAMs." },
@@ -776,10 +776,10 @@ const AIRPORTS = [
     lat_dms: "64°38'39\"N", lng_dms: "014°16'58\"W",
     description: "Djúpivogur airport in Austurland, Iceland. IFR/VFR operations.",
     runways: [
-      { id: "17/35", length_m: 745, width_m: 24, surface: "Gravel", pcn: null, notes: "" }
+      { id: "17/35", length_m: 745, width_m: 24, surface: "Gravel", pcn: null, notes: null }
     ],
     frequencies: [
-      { role: "mf", freq: "118.400" }
+      { role: "MF", freq: "118.400" }
     ],
     nav: [],
     hours: { service: "MF", schedule: "PPR", notes: "Contact pilot service for PPR. Check NOTAMs." },
@@ -803,10 +803,10 @@ const AIRPORTS = [
     lat_dms: "63°52'29\"N", lng_dms: "016°38'28\"W",
     description: "Fagurhólsmýri airport in Suðurland, Iceland. IFR/VFR operations.",
     runways: [
-      { id: "09/27", length_m: 794, width_m: 28, surface: "Gravel", pcn: null, notes: "" }
+      { id: "09/27", length_m: 794, width_m: 28, surface: "Gravel", pcn: null, notes: null }
     ],
     frequencies: [
-      { role: "mf", freq: "118.400" }
+      { role: "MF", freq: "118.400" }
     ],
     nav: [],
     hours: { service: "MF", schedule: "PPR", notes: "Contact pilot service for PPR. Check NOTAMs." },
@@ -824,10 +824,10 @@ const AIRPORTS = [
     lat_dms: "64°08'34\"N", lng_dms: "020°19'34\"W",
     description: "Flúðir airport in Suðurland, Iceland. IFR/VFR operations.",
     runways: [
-      { id: "04/22", length_m: 670, width_m: 18, surface: "Grass", pcn: null, notes: "" }
+      { id: "04/22", length_m: 670, width_m: 18, surface: "Grass", pcn: null, notes: null }
     ],
     frequencies: [
-      { role: "mf", freq: "118.100" }
+      { role: "MF", freq: "118.100" }
     ],
     nav: [],
     hours: { service: "MF", schedule: "PPR", notes: "Contact pilot service for PPR. Check NOTAMs." },
@@ -845,10 +845,10 @@ const AIRPORTS = [
     lat_dms: "65°37'57\"N", lng_dms: "016°08'54\"W",
     description: "Grímsstaðir airport in Norðurland eystra, Iceland. Highland airport. IFR/VFR operations.",
     runways: [
-      { id: "01/19", length_m: 635, width_m: 35, surface: "Gravel", pcn: null, notes: "" }
+      { id: "01/19", length_m: 635, width_m: 35, surface: "Gravel", pcn: null, notes: null }
     ],
     frequencies: [
-      { role: "mf", freq: "118.100" }
+      { role: "MF", freq: "118.100" }
     ],
     nav: [],
     hours: { service: "MF", schedule: "PPR", notes: "Contact pilot service for PPR. Check NOTAMs." },
@@ -866,10 +866,10 @@ const AIRPORTS = [
     lat_dms: "64°59'35\"N", lng_dms: "023°13'13\"W",
     description: "Grundarfjörður airport in Vesturland, Iceland. IFR/VFR operations.",
     runways: [
-      { id: "04/22", length_m: 799, width_m: 30, surface: "Grass", pcn: null, notes: "" }
+      { id: "04/22", length_m: 799, width_m: 30, surface: "Grass", pcn: null, notes: null }
     ],
     frequencies: [
-      { role: "mf", freq: "118.100" }
+      { role: "MF", freq: "118.100" }
     ],
     nav: [],
     hours: { service: "MF", schedule: "PPR", notes: "Contact pilot service for PPR. Check NOTAMs." },
@@ -887,11 +887,11 @@ const AIRPORTS = [
     lat_dms: "63°50'09\"N", lng_dms: "020°22'39\"W",
     description: "Hella airport in Suðurland, Iceland. IFR/VFR operations.",
     runways: [
-      { id: "04/22", length_m: 1028, width_m: 58, surface: "Grass", pcn: null, notes: "" },
-      { id: "10/28", length_m: 555, width_m: 52, surface: "Grass", pcn: null, notes: "" }
+      { id: "04/22", length_m: 1028, width_m: 58, surface: "Grass", pcn: null, notes: null },
+      { id: "10/28", length_m: 555, width_m: 52, surface: "Grass", pcn: null, notes: null }
     ],
     frequencies: [
-      { role: "mf", freq: "118.400" }
+      { role: "MF", freq: "118.400" }
     ],
     nav: [],
     hours: { service: "MF", schedule: "PPR", notes: "Contact pilot service for PPR. Check NOTAMs." },
@@ -916,10 +916,10 @@ const AIRPORTS = [
     lat_dms: "65°11'28\"N", lng_dms: "016°12'18\"W",
     description: "Herðubreiðarlindir airport in Norðurland eystra, Iceland. Highland airport. IFR/VFR operations.",
     runways: [
-      { id: "01/19", length_m: 799, width_m: 19, surface: "Gravel", pcn: null, notes: "" }
+      { id: "01/19", length_m: 799, width_m: 19, surface: "Gravel", pcn: null, notes: null }
     ],
     frequencies: [
-      { role: "mf", freq: "118.100" }
+      { role: "MF", freq: "118.100" }
     ],
     nav: [],
     hours: { service: "MF", schedule: "PPR", notes: "Contact pilot service for PPR. Check NOTAMs." },
@@ -937,10 +937,10 @@ const AIRPORTS = [
     lat_dms: "65°42'17\"N", lng_dms: "021°41'47\"W",
     description: "Hólmavík airport in Norðurland vestra, Iceland. IFR/VFR operations.",
     runways: [
-      { id: "02/20", length_m: 1000, width_m: 30, surface: "Gravel", pcn: null, notes: "" }
+      { id: "02/20", length_m: 1000, width_m: 30, surface: "Gravel", pcn: null, notes: null }
     ],
     frequencies: [
-      { role: "mf", freq: "118.600" }
+      { role: "MF", freq: "118.600" }
     ],
     nav: [],
     hours: { service: "MF", schedule: "PPR", notes: "Contact pilot service for PPR. Check NOTAMs." },
@@ -958,10 +958,10 @@ const AIRPORTS = [
     lat_dms: "64°41'59\"N", lng_dms: "020°53'01\"W",
     description: "Húsafell airport in Vesturland, Iceland. IFR/VFR operations.",
     runways: [
-      { id: "10/28", length_m: 740, width_m: 18, surface: "Gravel", pcn: null, notes: "" }
+      { id: "10/28", length_m: 740, width_m: 18, surface: "Gravel", pcn: null, notes: null }
     ],
     frequencies: [
-      { role: "mf", freq: "118.100" }
+      { role: "MF", freq: "118.100" }
     ],
     nav: [],
     hours: { service: "MF", schedule: "PPR", notes: "Contact pilot service for PPR. Check NOTAMs." },
@@ -979,10 +979,10 @@ const AIRPORTS = [
     lat_dms: "64°53'10\"N", lng_dms: "019°29'33\"W",
     description: "Hveravellir airport in Norðurland vestra, Iceland. Highland airport. IFR/VFR operations.",
     runways: [
-      { id: "17/35", length_m: 820, width_m: 38, surface: "Gravel", pcn: null, notes: "" }
+      { id: "17/35", length_m: 820, width_m: 38, surface: "Gravel", pcn: null, notes: null }
     ],
     frequencies: [
-      { role: "mf", freq: "118.100" }
+      { role: "MF", freq: "118.100" }
     ],
     nav: [],
     hours: { service: "MF", schedule: "PPR", notes: "Contact pilot service for PPR. Check NOTAMs." },
@@ -1000,10 +1000,10 @@ const AIRPORTS = [
     lat_dms: "64°46'44\"N", lng_dms: "022°15'25\"W",
     description: "Kaldármelar airport in Vesturland, Iceland. IFR/VFR operations.",
     runways: [
-      { id: "03/21", length_m: 653, width_m: 26, surface: "Grass", pcn: null, notes: "" }
+      { id: "03/21", length_m: 653, width_m: 26, surface: "Grass", pcn: null, notes: null }
     ],
     frequencies: [
-      { role: "mf", freq: "118.100" }
+      { role: "MF", freq: "118.100" }
     ],
     nav: [],
     hours: { service: "MF", schedule: "PPR", notes: "Contact pilot service for PPR. Check NOTAMs." },
@@ -1021,10 +1021,10 @@ const AIRPORTS = [
     lat_dms: "64°42'18\"N", lng_dms: "019°24'38\"W",
     description: "Kerlingarfjöll airport in Vesturland, Iceland. Highland airport. IFR/VFR operations.",
     runways: [
-      { id: "10/28", length_m: 704, width_m: 36, surface: "Gravel", pcn: null, notes: "" }
+      { id: "10/28", length_m: 704, width_m: 36, surface: "Gravel", pcn: null, notes: null }
     ],
     frequencies: [
-      { role: "mf", freq: "118.100" }
+      { role: "MF", freq: "118.100" }
     ],
     nav: [],
     hours: { service: "MF", schedule: "PPR", notes: "Contact pilot service for PPR. Check NOTAMs." },
@@ -1042,10 +1042,10 @@ const AIRPORTS = [
     lat_dms: "63°47'34\"N", lng_dms: "018°00'14\"W",
     description: "Kirkjubæjarklaustur airport in Suðurland, Iceland. IFR/VFR operations.",
     runways: [
-      { id: "08/26", length_m: 799, width_m: 26, surface: "Gravel", pcn: null, notes: "" }
+      { id: "08/26", length_m: 799, width_m: 26, surface: "Gravel", pcn: null, notes: null }
     ],
     frequencies: [
-      { role: "mf", freq: "118.400" }
+      { role: "MF", freq: "118.400" }
     ],
     nav: [],
     hours: { service: "MF", schedule: "PPR", notes: "Contact pilot service for PPR. Check NOTAMs." },
@@ -1063,10 +1063,10 @@ const AIRPORTS = [
     lat_dms: "66°18'39\"N", lng_dms: "016°28'00\"W",
     description: "Kópasker airport in Norðurland eystra, Iceland. IFR/VFR operations.",
     runways: [
-      { id: "12/30", length_m: 799, width_m: 24, surface: "Gravel", pcn: null, notes: "" }
+      { id: "12/30", length_m: 799, width_m: 24, surface: "Gravel", pcn: null, notes: null }
     ],
     frequencies: [
-      { role: "mf", freq: "118.100" }
+      { role: "MF", freq: "118.100" }
     ],
     nav: [],
     hours: { service: "MF", schedule: "PPR", notes: "Contact pilot service for PPR. Check NOTAMs." },
@@ -1084,7 +1084,7 @@ const AIRPORTS = [
     lat_dms: "65°29'00\"N", lng_dms: "018°10'00\"W",
     description: "Melgerðismelar airport in Norðurland vestra, Iceland. IFR/VFR operations.",
     runways: [
-      { id: "04/22", length_m: 671, width_m: 22, surface: "Grass", pcn: null, notes: "" }
+      { id: "04/22", length_m: 671, width_m: 22, surface: "Grass", pcn: null, notes: null }
     ],
     frequencies: [],
     nav: [],
@@ -1110,10 +1110,10 @@ const AIRPORTS = [
     lat_dms: "63°42'51\"N", lng_dms: "019°52'45\"W",
     description: "Múlakot airport in Suðurland, Iceland. IFR/VFR operations.",
     runways: [
-      { id: "11/29", length_m: 799, width_m: 39, surface: "Grass", pcn: null, notes: "" }
+      { id: "11/29", length_m: 799, width_m: 39, surface: "Grass", pcn: null, notes: null }
     ],
     frequencies: [
-      { role: "mf", freq: "118.400" }
+      { role: "MF", freq: "118.400" }
     ],
     nav: [],
     hours: { service: "MF", schedule: "PPR", notes: "Contact pilot service for PPR. Check NOTAMs." },
@@ -1131,10 +1131,10 @@ const AIRPORTS = [
     lat_dms: "65°07'54\"N", lng_dms: "013°44'51\"W",
     description: "Norðfjörður airport in Austurland, Iceland. IFR/VFR operations.",
     runways: [
-      { id: "08/26", length_m: 970, width_m: 23, surface: "Asphalt-stabilized gravel", pcn: null, notes: "" }
+      { id: "08/26", length_m: 970, width_m: 23, surface: "Asphalt-stabilized gravel", pcn: null, notes: null }
     ],
     frequencies: [
-      { role: "mf", freq: "118.100" }
+      { role: "MF", freq: "118.100" }
     ],
     nav: [],
     hours: { service: "MF", schedule: "PPR", notes: "Contact pilot service for PPR. Check NOTAMs." },
@@ -1152,10 +1152,10 @@ const AIRPORTS = [
     lat_dms: "64°43'14\"N", lng_dms: "018°04'00\"W",
     description: "Nýidalur airport in Suðurland, Iceland. Highland airport. IFR/VFR operations.",
     runways: [
-      { id: "05/23", length_m: 830, width_m: 45, surface: "Gravel", pcn: null, notes: "" }
+      { id: "05/23", length_m: 830, width_m: 45, surface: "Gravel", pcn: null, notes: null }
     ],
     frequencies: [
-      { role: "mf", freq: "118.100" }
+      { role: "MF", freq: "118.100" }
     ],
     nav: [],
     hours: { service: "MF", schedule: "PPR", notes: "Contact pilot service for PPR. Check NOTAMs." },
@@ -1173,10 +1173,10 @@ const AIRPORTS = [
     lat_dms: "66°24'23\"N", lng_dms: "015°55'06\"W",
     description: "Raufarhöfn airport in Norðurland eystra, Iceland. IFR/VFR operations.",
     runways: [
-      { id: "06/24", length_m: 1077, width_m: 33, surface: "Gravel", pcn: null, notes: "" }
+      { id: "06/24", length_m: 1077, width_m: 33, surface: "Gravel", pcn: null, notes: null }
     ],
     frequencies: [
-      { role: "mf", freq: "118.100" }
+      { role: "MF", freq: "118.100" }
     ],
     nav: [],
     hours: { service: "MF", schedule: "PPR", notes: "Contact pilot service for PPR. Check NOTAMs." },
@@ -1194,10 +1194,10 @@ const AIRPORTS = [
     lat_dms: "65°27'06\"N", lng_dms: "022°12'35\"W",
     description: "Reykhólar airport in Vestfirðir, Iceland. IFR/VFR operations.",
     runways: [
-      { id: "08/26", length_m: 720, width_m: 27, surface: "Gravel", pcn: null, notes: "" }
+      { id: "08/26", length_m: 720, width_m: 27, surface: "Gravel", pcn: null, notes: null }
     ],
     frequencies: [
-      { role: "mf", freq: "118.100" }
+      { role: "MF", freq: "118.100" }
     ],
     nav: [],
     hours: { service: "MF", schedule: "PPR", notes: "Contact pilot service for PPR. Check NOTAMs." },
@@ -1215,10 +1215,10 @@ const AIRPORTS = [
     lat_dms: "65°39'21\"N", lng_dms: "016°55'05\"W",
     description: "Reykjahlíð airport in Norðurland eystra, Iceland. IFR/VFR operations.",
     runways: [
-      { id: "01/19", length_m: 799, width_m: 20, surface: "Asphalt-stabilized gravel", pcn: null, notes: "" }
+      { id: "01/19", length_m: 799, width_m: 20, surface: "Asphalt-stabilized gravel", pcn: null, notes: null }
     ],
     frequencies: [
-      { role: "mf", freq: "118.100" }
+      { role: "MF", freq: "118.100" }
     ],
     nav: [],
     hours: { service: "MF", schedule: "PPR", notes: "Contact pilot service for PPR. Check NOTAMs." },
@@ -1236,10 +1236,10 @@ const AIRPORTS = [
     lat_dms: "65°54'51\"N", lng_dms: "022°25'17\"W",
     description: "Reykjanes airport in Vestfirðir, Iceland. IFR/VFR operations.",
     runways: [
-      { id: "01/19", length_m: 780, width_m: 18, surface: "Gravel", pcn: null, notes: "" }
+      { id: "01/19", length_m: 780, width_m: 18, surface: "Gravel", pcn: null, notes: null }
     ],
     frequencies: [
-      { role: "mf", freq: "118.100" }
+      { role: "MF", freq: "118.100" }
     ],
     nav: [],
     hours: { service: "MF", schedule: "PPR", notes: "Contact pilot service for PPR. Check NOTAMs." },
@@ -1257,10 +1257,10 @@ const AIRPORTS = [
     lat_dms: "64°54'41\"N", lng_dms: "023°49'23\"W",
     description: "Rif airport in Vesturland, Iceland. IFR/VFR operations.",
     runways: [
-      { id: "05/23", length_m: 983, width_m: 27, surface: "Asphalt-stabilized gravel", pcn: null, notes: "" }
+      { id: "05/23", length_m: 983, width_m: 27, surface: "Asphalt-stabilized gravel", pcn: null, notes: null }
     ],
     frequencies: [
-      { role: "mf", freq: "118.100" }
+      { role: "MF", freq: "118.100" }
     ],
     nav: [],
     hours: { service: "MF", schedule: "PPR", notes: "Contact pilot service for PPR. Check NOTAMs." },
@@ -1278,7 +1278,7 @@ const AIRPORTS = [
     lat_dms: "64°03'39\"N", lng_dms: "021°34'29\"W",
     description: "Sandskeið airport in Höfuðborgarsvæðið, Iceland. IFR/VFR operations.",
     runways: [
-      { id: "13/31", length_m: 799, width_m: 18, surface: "Asphalt-stabilized gravel", pcn: null, notes: "" }
+      { id: "13/31", length_m: 799, width_m: 18, surface: "Asphalt-stabilized gravel", pcn: null, notes: null }
     ],
     frequencies: [],
     nav: [],
@@ -1287,9 +1287,9 @@ const AIRPORTS = [
     services: { ppr: true, customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
-      circuit_note: "Power aircraft circuit north of runway 15/33 at 1,300 ft MSL (700 ft AGL). Glider circuit south of runway.",
+      circuit_note: "Power aircraft circuit north of runway 13/31 at 1,300 ft MSL (700 ft AGL). Glider circuit south of runway.",
       tips: [
-        "Power aircraft must fly the circuit north of runway 15/33, at 1,300 ft MSL / 700 ft AGL.",
+        "Power aircraft must fly the circuit north of runway 13/31, at 1,300 ft MSL / 700 ft AGL.",
         "Glider operations use the circuit south of the runway. Announce your position and watch for gliders on base and final.",
         "Uncontrolled airfield — listen out on the MF frequency."
       ]
@@ -1305,14 +1305,14 @@ const AIRPORTS = [
     lat_dms: "64°50'32\"N", lng_dms: "016°02'11\"W",
     description: "Sauðárflugvöllur airport in Suðurland, Iceland. Highland airport. IFR/VFR operations.",
     runways: [
-      { id: "03/21", length_m: 740, width_m: 20, surface: "Gravel", pcn: null, notes: "" },
-      { id: "06/24", length_m: 1180, width_m: 30, surface: "Gravel", pcn: null, notes: "" },
-      { id: "10/28", length_m: 880, width_m: 30, surface: "Gravel", pcn: null, notes: "" },
-      { id: "13/31", length_m: 660, width_m: 20, surface: "Gravel", pcn: null, notes: "" },
-      { id: "18/36", length_m: 640, width_m: 20, surface: "Gravel", pcn: null, notes: "" }
+      { id: "03/21", length_m: 740, width_m: 20, surface: "Gravel", pcn: null, notes: null },
+      { id: "06/24", length_m: 1180, width_m: 30, surface: "Gravel", pcn: null, notes: null },
+      { id: "10/28", length_m: 880, width_m: 30, surface: "Gravel", pcn: null, notes: null },
+      { id: "13/31", length_m: 660, width_m: 20, surface: "Gravel", pcn: null, notes: null },
+      { id: "18/36", length_m: 640, width_m: 20, surface: "Gravel", pcn: null, notes: null }
     ],
     frequencies: [
-      { role: "mf", freq: "118.100" }
+      { role: "MF", freq: "118.100" }
     ],
     nav: [],
     hours: { service: "MF", schedule: "PPR", notes: "Contact pilot service for PPR. Check NOTAMs." },
@@ -1330,11 +1330,11 @@ const AIRPORTS = [
     lat_dms: "63°55'45\"N", lng_dms: "021°02'16\"W",
     description: "Selfoss airport in Suðurland, Iceland. IFR/VFR operations.",
     runways: [
-      { id: "05/23", length_m: 798, width_m: 30, surface: "Grass", pcn: null, notes: "" },
-      { id: "14/32", length_m: 794, width_m: 30, surface: "Grass", pcn: null, notes: "" }
+      { id: "05/23", length_m: 798, width_m: 30, surface: "Grass", pcn: null, notes: null },
+      { id: "14/32", length_m: 794, width_m: 30, surface: "Grass", pcn: null, notes: null }
     ],
     frequencies: [
-      { role: "mf", freq: "118.100" }
+      { role: "MF", freq: "118.100" }
     ],
     nav: [],
     hours: { service: "MF", schedule: "PPR", notes: "Contact pilot service for PPR. Check NOTAMs." },
@@ -1359,10 +1359,10 @@ const AIRPORTS = [
     lat_dms: "66°08'18\"N", lng_dms: "018°54'25\"W",
     description: "Siglufjörður airport in Norðurland vestra, Iceland. IFR/VFR operations.",
     runways: [
-      { id: "05/23", length_m: 799, width_m: 23, surface: "Asphalt-stabilized gravel", pcn: null, notes: "" }
+      { id: "05/23", length_m: 799, width_m: 23, surface: "Asphalt-stabilized gravel", pcn: null, notes: null }
     ],
     frequencies: [
-      { role: "mf", freq: "118.100" }
+      { role: "MF", freq: "118.100" }
     ],
     nav: [],
     hours: { service: "MF", schedule: "PPR", notes: "Contact pilot service for PPR. Check NOTAMs." },
@@ -1380,11 +1380,11 @@ const AIRPORTS = [
     lat_dms: "64°00'00\"N", lng_dms: "016°56'27\"W",
     description: "Skaftafell airport in Suðurland, Iceland. IFR/VFR operations.",
     runways: [
-      { id: "15/33", length_m: 610, width_m: 20, surface: "Gravel", pcn: null, notes: "" },
-      { id: "16/34", length_m: 1020, width_m: 25, surface: "Gravel", pcn: null, notes: "" }
+      { id: "15/33", length_m: 610, width_m: 20, surface: "Gravel", pcn: null, notes: null },
+      { id: "16/34", length_m: 1020, width_m: 25, surface: "Gravel", pcn: null, notes: null }
     ],
     frequencies: [
-      { role: "mf", freq: "118.400" }
+      { role: "MF", freq: "118.400" }
     ],
     nav: [],
     hours: { service: "MF", schedule: "PPR", notes: "Contact pilot service for PPR. Check NOTAMs." },
@@ -1402,10 +1402,10 @@ const AIRPORTS = [
     lat_dms: "64°06'57\"N", lng_dms: "018°47'00\"W",
     description: "Skálavatn airport in Suðurland, Iceland. Highland airport. IFR/VFR operations.",
     runways: [
-      { id: "06/24", length_m: 700, width_m: 35, surface: "Gravel", pcn: null, notes: "" }
+      { id: "06/24", length_m: 700, width_m: 35, surface: "Gravel", pcn: null, notes: null }
     ],
     frequencies: [
-      { role: "mf", freq: "118.400" }
+      { role: "MF", freq: "118.400" }
     ],
     nav: [],
     hours: { service: "MF", schedule: "PPR", notes: "Contact pilot service for PPR. Check NOTAMs." },
@@ -1423,10 +1423,10 @@ const AIRPORTS = [
     lat_dms: "63°31'02\"N", lng_dms: "019°29'21\"W",
     description: "Skógasandur airport in Suðurland, Iceland. IFR/VFR operations.",
     runways: [
-      { id: "12/30", length_m: 1165, width_m: 27, surface: "Gravel", pcn: null, notes: "" }
+      { id: "12/30", length_m: 1165, width_m: 27, surface: "Gravel", pcn: null, notes: null }
     ],
     frequencies: [
-      { role: "mf", freq: "118.400" }
+      { role: "MF", freq: "118.400" }
     ],
     nav: [],
     hours: { service: "MF", schedule: "PPR", notes: "Contact pilot service for PPR. Check NOTAMs." },
@@ -1444,10 +1444,10 @@ const AIRPORTS = [
     lat_dms: "64°38'04\"N", lng_dms: "021°29'15\"W",
     description: "Stórikroppur airport in Höfuðborgarsvæðið, Iceland. IFR/VFR operations.",
     runways: [
-      { id: "05/23", length_m: 700, width_m: 18, surface: "Asphalt-stabilized gravel", pcn: null, notes: "" }
+      { id: "05/23", length_m: 700, width_m: 18, surface: "Asphalt-stabilized gravel", pcn: null, notes: null }
     ],
     frequencies: [
-      { role: "mf", freq: "118.100" }
+      { role: "MF", freq: "118.100" }
     ],
     nav: [],
     hours: { service: "MF", schedule: "PPR", notes: "Contact pilot service for PPR. Check NOTAMs." },
@@ -1465,10 +1465,10 @@ const AIRPORTS = [
     lat_dms: "65°03'31\"N", lng_dms: "022°45'56\"W",
     description: "Stykkishólmur airport in Vesturland, Iceland. IFR/VFR operations.",
     runways: [
-      { id: "07/25", length_m: 1117, width_m: 33, surface: "Gravel", pcn: null, notes: "" }
+      { id: "07/25", length_m: 1117, width_m: 33, surface: "Gravel", pcn: null, notes: null }
     ],
     frequencies: [
-      { role: "mf", freq: "118.100" }
+      { role: "MF", freq: "118.100" }
     ],
     nav: [],
     hours: { service: "MF", schedule: "PPR", notes: "Contact pilot service for PPR. Check NOTAMs." },
@@ -1492,10 +1492,10 @@ const AIRPORTS = [
     lat_dms: "64°10'52\"N", lng_dms: "021°42'28\"W",
     description: "Tungubakkar Mosfellsbæ airport in Höfuðborgarsvæðið, Iceland. IFR/VFR operations.",
     runways: [
-      { id: "07/25", length_m: 540, width_m: 45, surface: "Grass", pcn: null, notes: "" }
+      { id: "07/25", length_m: 540, width_m: 45, surface: "Grass", pcn: null, notes: null }
     ],
     frequencies: [
-      { role: "mf", freq: "118.200" }
+      { role: "MF", freq: "118.200" }
     ],
     nav: [],
     hours: { service: "MF", schedule: "PPR", notes: "Contact pilot service for PPR. Check NOTAMs." },
@@ -1524,10 +1524,10 @@ const AIRPORTS = [
     lat_dms: "63°25'18\"N", lng_dms: "018°53'18\"W",
     description: "Vík airport in Suðurland, Iceland. IFR/VFR operations.",
     runways: [
-      { id: "07/25", length_m: 712, width_m: 25, surface: "Gravel", pcn: null, notes: "" }
+      { id: "07/25", length_m: 712, width_m: 25, surface: "Gravel", pcn: null, notes: null }
     ],
     frequencies: [
-      { role: "mf", freq: "118.400" }
+      { role: "MF", freq: "118.400" }
     ],
     nav: [],
     hours: { service: "MF", schedule: "PPR", notes: "Contact pilot service for PPR. Check NOTAMs." },
@@ -1545,10 +1545,10 @@ const AIRPORTS = [
     lat_dms: "65°52'13\"N", lng_dms: "023°33'35\"W",
     description: "Þingeyri airport in Vestfirðir, Iceland. IFR/VFR operations.",
     runways: [
-      { id: "13/31", length_m: 799, width_m: 24, surface: "Asphalt-stabilized gravel", pcn: null, notes: "" }
+      { id: "13/31", length_m: 799, width_m: 24, surface: "Asphalt-stabilized gravel", pcn: null, notes: null }
     ],
     frequencies: [
-      { role: "mf", freq: "118.100" }
+      { role: "MF", freq: "118.100" }
     ],
     nav: [],
     hours: { service: "MF", schedule: "PPR", notes: "Contact pilot service for PPR. Check NOTAMs." },
@@ -1566,10 +1566,10 @@ const AIRPORTS = [
     lat_dms: "63°41'24\"N", lng_dms: "019°33'47\"W",
     description: "Þórsmörk airport in Suðurland, Iceland. Highland airport. IFR/VFR operations.",
     runways: [
-      { id: "09/27", length_m: 770, width_m: 28, surface: "Gravel", pcn: null, notes: "" }
+      { id: "09/27", length_m: 770, width_m: 28, surface: "Gravel", pcn: null, notes: null }
     ],
     frequencies: [
-      { role: "mf", freq: "118.400" }
+      { role: "MF", freq: "118.400" }
     ],
     nav: [],
     hours: { service: "MF", schedule: "PPR", notes: "Contact pilot service for PPR. Check NOTAMs." },
@@ -1587,10 +1587,10 @@ const AIRPORTS = [
     lat_dms: "65°38'29\"N", lng_dms: "023°32'46\"W",
     description: "Bíldudalur airport in Vestfirðir, Iceland. IFR/VFR operations.",
     runways: [
-      { id: "04/22", length_m: 940, width_m: 30, surface: "Asphalt-stabilized gravel", pcn: null, notes: "" }
+      { id: "04/22", length_m: 940, width_m: 30, surface: "Asphalt-stabilized gravel", pcn: null, notes: null }
     ],
     frequencies: [
-      { role: "afis", freq: "119.100" }
+      { role: "AFIS", freq: "119.100" }
     ],
     nav: [],
     hours: { service: "AFIS", schedule: "PPR", notes: "Contact pilot service for PPR. Check NOTAMs." },
@@ -1608,10 +1608,10 @@ const AIRPORTS = [
     lat_dms: "65°59'43\"N", lng_dms: "021°19'37\"W",
     description: "Gjögur airport in Vestfirðir, Iceland. IFR/VFR operations.",
     runways: [
-      { id: "04/22", length_m: 960, width_m: 23, surface: "Asphalt-stabilized gravel", pcn: null, notes: "" }
+      { id: "04/22", length_m: 960, width_m: 23, surface: "Asphalt-stabilized gravel", pcn: null, notes: null }
     ],
     frequencies: [
-      { role: "afis", freq: "118.600" }
+      { role: "AFIS", freq: "118.600" }
     ],
     nav: [],
     hours: { service: "AFIS", schedule: "PPR", notes: "Contact pilot service for PPR. Check NOTAMs." },
@@ -1621,8 +1621,6 @@ const AIRPORTS = [
     pilot_notes: {
       tips: [
         "Minimal bird activity at the airfield — no nesting recorded.",
-        "BIGJ RNP A: lægra lágmark fyrir CAT B krefst 25° beygjuhalla í hringaðflugi.",
-        "BIGJ NDB A: lægra lágmark fyrir CAT B krefst 25° beygjuhalla í hringaðflugi.",
         "AFIS service — contact on published frequency. Separation is the pilot's responsibility."
       ]
     },
@@ -1637,10 +1635,10 @@ const AIRPORTS = [
     lat_dms: "66°32'46\"N", lng_dms: "018°01'02\"W",
     description: "Grímsey airport in Norðurland eystra, Iceland. IFR/VFR operations.",
     runways: [
-      { id: "17/35", length_m: 1030, width_m: 23, surface: "Asphalt-stabilized gravel", pcn: null, notes: "" }
+      { id: "17/35", length_m: 1030, width_m: 23, surface: "Asphalt-stabilized gravel", pcn: null, notes: null }
     ],
     frequencies: [
-      { role: "afis", freq: "118.100" }
+      { role: "AFIS", freq: "118.100" }
     ],
     nav: [],
     hours: { service: "AFIS", schedule: "PPR", notes: "Contact pilot service for PPR. Check NOTAMs." },
@@ -1665,10 +1663,10 @@ const AIRPORTS = [
     lat_dms: "65°43'54\"N", lng_dms: "019°34'22\"W",
     description: "Sauðárkrókur airport in Norðurland vestra, Iceland. IFR/VFR operations.",
     runways: [
-      { id: "18/36", length_m: 1887, width_m: 30, surface: "Asphalt-stabilized gravel", pcn: null, notes: "" }
+      { id: "18/36", length_m: 1887, width_m: 30, surface: "Asphalt-stabilized gravel", pcn: null, notes: null }
     ],
     frequencies: [
-      { role: "afis", freq: "119.100" }
+      { role: "AFIS", freq: "119.100" }
     ],
     nav: [],
     hours: { service: "AFIS", schedule: "PPR", notes: "Contact pilot service for PPR. Check NOTAMs." },
@@ -1694,10 +1692,10 @@ const AIRPORTS = [
     lat_dms: "66°13'06\"N", lng_dms: "015°20'05\"W",
     description: "Þórshöfn airport in Norðurland eystra, Iceland. IFR/VFR operations.",
     runways: [
-      { id: "01/19", length_m: 1199, width_m: 30, surface: "Asphalt-stabilized gravel", pcn: null, notes: "" }
+      { id: "01/19", length_m: 1199, width_m: 30, surface: "Asphalt-stabilized gravel", pcn: null, notes: null }
     ],
     frequencies: [
-      { role: "afis", freq: "118.100" }
+      { role: "AFIS", freq: "118.100" }
     ],
     nav: [],
     hours: { service: "AFIS", schedule: "PPR", notes: "Contact pilot service for PPR. Check NOTAMs." },
