@@ -9,26 +9,6 @@ function buildVfrContent(a: Airport): string {
   const isAtc  = svc === 'atc'
   const isAfis = svc === 'afis'
 
-  const primaryFreq = (a.frequencies || []).find(f => !/^atis$/i.test(f.role))
-
-  // --- First Contact ---
-  let entryHtml = ''
-  if (p.entry) {
-    entryHtml = `<p class="vfr-text">${p.entry}</p>`
-  } else if (primaryFreq) {
-    const advice = isAtc
-      ? `Contact ${a.name} ${primaryFreq.role} on <strong>${primaryFreq.freq} MHz</strong> before entering controlled airspace.`
-      : isAfis
-        ? `Call ${a.name} AFIS on <strong>${primaryFreq.freq} MHz</strong> at least 10 minutes before arrival. AFIS provides information only — separation is the pilot's responsibility.`
-        : `Broadcast your position and intentions on <strong>${primaryFreq.freq} MHz</strong>. No controller — listen out and announce early and often.`
-    entryHtml = `<p class="vfr-text">${advice}</p>`
-  } else {
-    entryHtml = `<p class="vfr-text">No published radio frequency for this airfield. Check current AIP before flight.</p>`
-  }
-  if (p.sample_call) {
-    entryHtml += `<div class="vfr-callout"><span class="vfr-callout-lbl">Sample initial call</span>${p.sample_call}</div>`
-  }
-
   // --- Circuit ---
   let circuitHtml = ''
   if (p.circuit_note) {
@@ -62,6 +42,7 @@ function buildVfrContent(a: Airport): string {
     : ''
 
   // --- Quick-reference row ---
+  const primaryFreq = (a.frequencies || []).find(f => !/^atis$/i.test(f.role))
   const fuel = a.fuel
     ? [a.fuel.avgas && 'AVGAS', a.fuel.jet_a1 && 'JET A-1'].filter(Boolean).join(' · ') || 'None'
     : 'Unknown'
@@ -69,10 +50,6 @@ function buildVfrContent(a: Airport): string {
   const freqLabel = primaryFreq ? `${primaryFreq.role} ${primaryFreq.freq} MHz` : '—'
 
   return `
-    <div class="vfr-section">
-      <div class="vfr-section-title">First Contact</div>
-      ${entryHtml}
-    </div>
     <div class="vfr-section">
       <div class="vfr-section-title">Traffic Circuit</div>
       ${circuitHtml}
