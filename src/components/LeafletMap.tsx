@@ -8,9 +8,9 @@ const MAP_CENTER: [number, number] = [64.9, -18.5]
 const MAP_ZOOM = 6
 
 const MARKER_CONFIGS = {
-  international: { size: 30, color: '#c05040' },
-  regional:      { size: 22, color: '#2c6a82' },
-  small:         { size: 14, color: '#3e4a3a' },
+  international: { size: 30, color: '#bf3c2a' },
+  regional:      { size: 22, color: '#c8923a' },
+  small:         { size: 14, color: '#4a7a5a' },
 } as const
 
 function makeMarkerSvg(type: keyof typeof MARKER_CONFIGS, icao: string) {

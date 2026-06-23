@@ -12,7 +12,7 @@ const LeafletMap = dynamic(() => import('./LeafletMap'), {
 
 const TRANSLATIONS = {
   en: {
-    tagline:     'Íslenzkir flugvellir á einum stað',
+    tagline:     'Icelandic airports in one place',
     international: 'International',
     regional:    'Regional',
     airfield:    'Airfield',
