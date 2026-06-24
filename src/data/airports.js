@@ -5,7 +5,7 @@
 
 const AIRPORTS = [
 
-  // â”€â”€ INTERNATIONAL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // â"€â"€ INTERNATIONAL â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€
 
   {
     icao: "BIKF",
@@ -186,7 +186,7 @@ const AIRPORTS = [
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
   },
 
-  // â”€â”€ REGIONAL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // â"€â"€ REGIONAL â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€
 
   {
     icao: "BIAR",
@@ -509,7 +509,7 @@ const AIRPORTS = [
         width_m: 45,
         surface: "Asphalt stabilized gravel",
         pcn: null,
-        notes: "PAPI 3.0° both ends. Slope Â±0.2%."
+        notes: "PAPI 3.0° both ends. Slope ±0.2%."
       },
       {
         id: "12/30",
@@ -517,7 +517,7 @@ const AIRPORTS = [
         width_m: 45,
         surface: "Asphalt stabilized gravel",
         pcn: null,
-        notes: "PAPI 3.0°/3.5°. Slope Â±0.7%."
+        notes: "PAPI 3.0°/3.5°. Slope ±0.7%."
       }
     ],
     frequencies: [
@@ -553,10 +553,25 @@ const AIRPORTS = [
       "Puffin colony nearby — bird activity NOTAMs issued seasonally.",
       "Contact operator before departure."
     ],
+    pilot_notes: {
+      circuit_alt_ft: null,
+      circuit_note: "Circuit for RWY 03/21 to the east of the runway. Circuit for RWY 12/30 to the south of the runway. Join at 45°. Circling on final is not recommended except in emergencies — fly another circuit if separation is insufficient. No circuit altitude published in the AIP — check current AD charts.",
+      t_and_g: "AFIS may restrict training flights without notice to maintain safety.",
+      entry: "ATZ is Class G, SFC to 3,000 ft AMSL. Establish two-way radio contact with Vestmannaeyjar Radio on 118.500 before entering the ATZ. Outside AFIS hours, broadcast blind on 118.500 with your callsign, position, and intentions before entering.",
+      sample_call: "Vestmannaeyjar Radio, TF-ABC, Cessna 172, [position], VFR inbound, request information.",
+      tips: [
+        "No AVGAS — Jet A-1 only, available on request (+354 515-1100 or +354 840-1720). Confirm fuel availability before departure.",
+        "AFIS available outside normal hours on request — minimum 1 hr notice in summer, 2 hr in winter. Call +354 424 4099.",
+        "AIP minimum ceiling/visibility for takeoff (no ops manual): RWY 03: 700 ft · 4 km · RWY 12: 300 ft · 1.5 km · RWY 21: 100 ft · 1.5 km · RWY 30: 100 ft · 1.5 km. Expect significant turbulence on approach and departure if wind exceeds published windrose values.",
+        "Bird hazard: Puffins nest near the airfield from May through end of September. Seagulls present April–May and July–August.",
+        "Night operations: complex obstruction light requirements apply per runway — see AD 2.20.1 table. Landing on RWY 21 or 30 at night requires no precipitation.",
+        "Full-power run-ups prohibited 22:00–07:00 daily and until 12:00 on Sundays, except in exceptional circumstances."
+      ]
+    },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
   },
 
-  // â”€â”€ SMALL AIRFIELDS (eAIP verified) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // â"€â"€ SMALL AIRFIELDS (eAIP verified) â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€
 
   {
     icao: "BIVO",
