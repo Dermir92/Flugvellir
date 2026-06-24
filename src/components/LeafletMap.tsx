@@ -51,13 +51,16 @@ export default function LeafletMap({ onAirportClick }: Props) {
       if (radarOn) {
         const layer = L.imageOverlay(radarUrl(), RADAR_BOUNDS, { opacity: 0.75, zIndex: 200 })
         layer.addTo(mapRef.current)
-        // Clip the legend panel on the right side of the Vedur.is composite image
-        const applyClip = () => {
+        // Remove white/grey background; clip the legend panel on the right
+        const applyStyles = () => {
           const el = layer.getElement()
-          if (el) el.style.clipPath = 'inset(0 30% 0 0)'
+          if (el) {
+            el.style.mixBlendMode = 'multiply'
+            el.style.clipPath = 'inset(0 30% 0 0)'
+          }
         }
-        layer.on('load', applyClip)
-        applyClip()
+        layer.on('load', applyStyles)
+        applyStyles()
         radarLayerRef.current = layer
         // Refresh every 5 minutes to match Vedur.is update cycle
         radarTimerRef.current = setInterval(() => {
