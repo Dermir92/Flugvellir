@@ -13,6 +13,15 @@ const MARKER_CONFIGS = {
   small:         { size: 14, color: '#4a7a5a' },
 } as const
 
+// Approximate bounds for the Vedur.is Iceland radar composite image.
+// The image uses stereographic projection so this is a Mercator approximation —
+// accurate enough for a weather overlay at this scale.
+const RADAR_BOUNDS: [[number, number], [number, number]] = [[61.0, -29.0], [67.8, -11.0]]
+
+function radarUrl() {
+  return `https://brunnur.vedur.is/myndir/listi/radar_COMP_iceland-comp-cappi_dBZ.png?t=${Date.now()}`
+}
+
 function makeMarkerSvg(type: keyof typeof MARKER_CONFIGS, icao: string) {
   const cfg = MARKER_CONFIGS[type] || MARKER_CONFIGS.small
   const { size, color } = cfg
@@ -28,42 +37,36 @@ interface Props {
 }
 
 export default function LeafletMap({ onAirportClick }: Props) {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const mapRef       = useRef<import('leaflet').Map | null>(null)
-  const radarLayerRef = useRef<import('leaflet').TileLayer | null>(null)
-  const radarHostRef  = useRef<string>('')
-  const radarPathRef  = useRef<string>('')
-  const [radarOn, setRadarOn]     = useState(false)
-  const [radarReady, setRadarReady] = useState(false)
+  const containerRef   = useRef<HTMLDivElement>(null)
+  const mapRef         = useRef<import('leaflet').Map | null>(null)
+  const radarLayerRef  = useRef<import('leaflet').ImageOverlay | null>(null)
+  const radarTimerRef  = useRef<ReturnType<typeof setInterval> | null>(null)
+  const [radarOn, setRadarOn] = useState(false)
 
-  // Fetch latest RainViewer radar path once on mount
+  // Toggle radar overlay on/off
   useEffect(() => {
-    fetch('https://api.rainviewer.com/public/weather-maps.json')
-      .then(r => r.json())
-      .then(data => {
-        const past = data.radar?.past
-        if (past?.length) {
-          radarHostRef.current = data.host
-          radarPathRef.current = past[past.length - 1].path
-          setRadarReady(true)
-        }
-      })
-      .catch(() => {})
-  }, [])
-
-  // Add / remove radar overlay when toggled
-  useEffect(() => {
-    if (!mapRef.current || !radarHostRef.current || !radarPathRef.current) return
+    if (!mapRef.current) return
     import('leaflet').then(({ default: L }) => {
       if (!mapRef.current) return
       if (radarOn) {
-        const url = `${radarHostRef.current}${radarPathRef.current}/256/{z}/{x}/{y}/4/1_1.png`
-        const layer = L.tileLayer(url, { opacity: 0.65, zIndex: 200 })
+        const layer = L.imageOverlay(radarUrl(), RADAR_BOUNDS, { opacity: 0.75, zIndex: 200 })
         layer.addTo(mapRef.current)
+        // Clip the legend panel on the right side of the Vedur.is composite image
+        const applyClip = () => {
+          const el = layer.getElement()
+          if (el) el.style.clipPath = 'inset(0 30% 0 0)'
+        }
+        layer.on('load', applyClip)
+        applyClip()
         radarLayerRef.current = layer
+        // Refresh every 5 minutes to match Vedur.is update cycle
+        radarTimerRef.current = setInterval(() => {
+          radarLayerRef.current?.setUrl(radarUrl())
+        }, 5 * 60 * 1000)
       } else {
         radarLayerRef.current?.remove()
         radarLayerRef.current = null
+        if (radarTimerRef.current) { clearInterval(radarTimerRef.current); radarTimerRef.current = null }
       }
     })
   }, [radarOn])
@@ -121,6 +124,7 @@ export default function LeafletMap({ onAirportClick }: Props) {
     })
 
     return () => {
+      if (radarTimerRef.current) { clearInterval(radarTimerRef.current); radarTimerRef.current = null }
       mapRef.current?.remove()
       mapRef.current = null
     }
@@ -132,9 +136,8 @@ export default function LeafletMap({ onAirportClick }: Props) {
       <button
         className={`radar-toggle${radarOn ? ' is-active' : ''}`}
         onClick={() => setRadarOn(v => !v)}
-        disabled={!radarReady}
         aria-pressed={radarOn}
-        title={radarOn ? 'Hide precipitation radar' : 'Show precipitation radar'}
+        title={radarOn ? 'Hide radar' : 'Show precipitation radar (Veðurstofa Íslands)'}
       >
         <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
           <circle cx="6.5" cy="6.5" r="2" stroke="currentColor" strokeWidth="1.3"/>
