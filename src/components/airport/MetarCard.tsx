@@ -67,61 +67,58 @@ export default function MetarCard({ icao }: { icao: string }) {
   const [status, setStatus] = useState<'loading' | 'done' | 'none' | 'error'>('loading')
 
   useEffect(() => {
-    const proxy = (url: string) => 'https://corsproxy.io/?url=' + encodeURIComponent(url)
+    fetch(`/api/metar/${icao}`)
+      .then(async r => {
+        if (!r.ok) throw new Error('HTTP ' + r.status)
+        const { metar: metars, taf: tafs }: { metar: MetarData[], taf: TafData[] } = await r.json()
+        const metar = metars[0] ?? null
+        const taf   = tafs[0]   ?? null
 
-    Promise.all([
-      fetch(proxy(`https://aviationweather.gov/api/data/metar?ids=${icao}&format=json&hours=3`)),
-      fetch(proxy(`https://aviationweather.gov/api/data/taf?ids=${icao}&format=json`)),
-    ]).then(async ([mr, tr]) => {
-      const metars: MetarData[] = mr.ok ? await mr.json() : []
-      const tafs:   TafData[]   = tr.ok ? await tr.json() : []
-      const metar = metars[0] ?? null
-      const taf   = tafs[0]   ?? null
+        if (!metar && !taf) { setStatus('none'); return }
 
-      if (!metar && !taf) { setStatus('none'); return }
+        let out = ''
 
-      let out = ''
+        if (metar) {
+          const raw    = metar.rawOb ?? ''
+          const clouds = parseClouds(raw)
+          const vis    = parseVis(raw)
+          const wx     = parseWx(raw)
+          const temp   = metar.temp != null ? `${metar.temp}°C` : '—'
+          const dew    = metar.dewp != null ? `${metar.dewp}°C` : '—'
+          const qnh    = metar.altim ? `${Math.round(metar.altim)} hPa` : '—'
 
-      if (metar) {
-        const raw    = metar.rawOb ?? ''
-        const clouds = parseClouds(raw)
-        const vis    = parseVis(raw)
-        const wx     = parseWx(raw)
-        const temp   = metar.temp != null ? `${metar.temp}°C` : '—'
-        const dew    = metar.dewp != null ? `${metar.dewp}°C` : '—'
-        const qnh    = metar.altim ? `${Math.round(metar.altim)} hPa` : '—'
+          out += `<div class="metar-section">
+            <div class="metar-raw"><span class="metar-type-tag">METAR</span>${raw}</div>
+            <div class="metar-decoded">
+              <div class="metar-item"><span class="metar-lbl">Time</span>${fmtTime(metar.obsTime)}</div>
+              <div class="metar-item"><span class="metar-lbl">Wind</span>${windStr(metar)}</div>
+              ${vis    ? `<div class="metar-item"><span class="metar-lbl">Visibility</span>${vis}</div>` : ''}
+              ${wx     ? `<div class="metar-item"><span class="metar-lbl">Weather</span>${wx}</div>` : ''}
+              ${clouds ? `<div class="metar-item"><span class="metar-lbl">Cloud</span>${clouds}</div>` : ''}
+              <div class="metar-item"><span class="metar-lbl">Temp / Dew</span>${temp} / ${dew}</div>
+              <div class="metar-item"><span class="metar-lbl">QNH</span>${qnh}</div>
+            </div>
+          </div>`
+        }
 
-        out += `<div class="metar-section">
-          <div class="metar-raw"><span class="metar-type-tag">METAR</span>${raw}</div>
-          <div class="metar-decoded">
-            <div class="metar-item"><span class="metar-lbl">Time</span>${fmtTime(metar.obsTime)}</div>
-            <div class="metar-item"><span class="metar-lbl">Wind</span>${windStr(metar)}</div>
-            ${vis    ? `<div class="metar-item"><span class="metar-lbl">Visibility</span>${vis}</div>` : ''}
-            ${wx     ? `<div class="metar-item"><span class="metar-lbl">Weather</span>${wx}</div>` : ''}
-            ${clouds ? `<div class="metar-item"><span class="metar-lbl">Cloud</span>${clouds}</div>` : ''}
-            <div class="metar-item"><span class="metar-lbl">Temp / Dew</span>${temp} / ${dew}</div>
-            <div class="metar-item"><span class="metar-lbl">QNH</span>${qnh}</div>
-          </div>
-        </div>`
-      }
+        if (taf) {
+          const raw = (taf.rawTAF ?? '').replace(/\s{2,}/g, ' ').trim()
+          out += `<div class="metar-section metar-section--taf">
+            <div class="metar-raw"><span class="metar-type-tag metar-type-tag--taf">TAF</span>${raw}</div>
+          </div>`
+        }
 
-      if (taf) {
-        const raw = (taf.rawTAF ?? '').replace(/\s{2,}/g, ' ').trim()
-        out += `<div class="metar-section metar-section--taf">
-          <div class="metar-raw"><span class="metar-type-tag metar-type-tag--taf">TAF</span>${raw}</div>
-        </div>`
-      }
-
-      setHtml(out)
-      setStatus('done')
-    }).catch(() => setStatus('error'))
+        setHtml(out)
+        setStatus('done')
+      })
+      .catch(() => setStatus('error'))
   }, [icao])
 
   return (
     <div className="ap-card">
       <div className="ap-card-title">
         METAR / TAF
-        <span className="notam-src">vedur.is</span>
+        <span className="notam-src">aviationweather.gov</span>
       </div>
       {status === 'loading' && (
         <div className="metar-loading"><span className="notam-spinner" /> Loading METAR…</div>

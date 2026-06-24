@@ -22,8 +22,7 @@ export default function NotamCard({ icao }: { icao: string }) {
   const [open, setOpen]     = useState<Record<number, boolean>>({})
 
   useEffect(() => {
-    const rssUrl = 'https://www.avians.is/api/rss'
-    fetch('https://corsproxy.io/?url=' + encodeURIComponent(rssUrl))
+    fetch(`/api/notam?icao=${icao}`)
       .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.text() })
       .then(xml => {
         const doc   = new DOMParser().parseFromString(xml, 'text/xml')
