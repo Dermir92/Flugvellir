@@ -18,7 +18,7 @@ function buildVfrContent(a: Airport): string {
   } else if (p.circuit_alt_ft === null && p.circuit_dir === null) {
     circuitHtml = `<p class="vfr-text">No standard traffic circuit established at this airfield. Check AIP and NOTAMs before arrival.</p>`
   } else {
-    circuitHtml = `<p class="vfr-text">Standard left-hand pattern. Confirm circuit altitude in current AIP charts.</p>`
+    circuitHtml = `<p class="vfr-text">Circuit information not available in this record. Check current AIP charts before flight.</p>`
   }
 
   // --- Touch & Go ---
@@ -30,10 +30,14 @@ function buildVfrContent(a: Airport): string {
         ? 'Announce touch-and-go intentions on the AFIS frequency. AFIS will advise on known traffic.'
         : 'No ATC — announce all intentions on the MF. Touch and go is generally permitted for VFR flights at uncontrolled airfields.'
 
-  // --- PPR ---
-  const pprText = a.services?.ppr
-    ? `Required for <strong>handling services</strong> (fuel, ground support). You can land freely without PPR — only arrange in advance if you need handling.`
-    : 'No PPR needed. You can land without prior contact, though calling ahead is always good practice.'
+  // --- Runway surface notes ---
+  const rwyNotes = (a.runways || []).filter(r => r.notes)
+  const rwyNotesHtml = rwyNotes.length
+    ? `<div class="vfr-section">
+        <div class="vfr-section-title">Runway Surface Notes</div>
+        <ul class="vfr-tips">${rwyNotes.map(r => `<li><strong>RWY ${r.id}:</strong> ${r.notes}</li>`).join('')}</ul>
+       </div>`
+    : ''
 
   // --- Hazards / Tips ---
   const tips = (p.tips && p.tips.length) ? p.tips : (a.remarks || []).slice(0, 3)
@@ -58,10 +62,7 @@ function buildVfrContent(a: Airport): string {
       <div class="vfr-section-title">Touch &amp; Go</div>
       <p class="vfr-text">${tgText}</p>
     </div>
-    <div class="vfr-section">
-      <div class="vfr-section-title">PPR — Handling</div>
-      <p class="vfr-text">${pprText}</p>
-    </div>
+    ${rwyNotesHtml}
     ${tipsHtml ? `<div class="vfr-section"><div class="vfr-section-title">Local Hazards &amp; Tips</div>${tipsHtml}</div>` : ''}
     <div class="vfr-section vfr-section--meta">
       <div class="vfr-meta-row"><span class="vfr-meta-lbl">Primary freq</span><span>${freqLabel}</span></div>

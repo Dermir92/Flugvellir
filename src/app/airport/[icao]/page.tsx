@@ -240,7 +240,6 @@ export default async function AirportPage(props: PageProps<'/airport/[icao]'>) {
             <div className="services-body">
               <div className="services-grid">
                 {[
-                  ['PPR — Required for Handling', a.services.ppr],
                   ['Customs', a.services.customs],
                   ['De-icing', a.services.deicing],
                   [`Fire Cat. ${a.services.fire_cat || '—'}`, !!a.services.fire_cat],
