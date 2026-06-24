@@ -22,6 +22,9 @@ const TRANSLATIONS = {
     disclaimer:  'Verify with NOTAMs before flight',
     placeholder: 'BIKF, Akureyri…',
     search_label: 'Search airports',
+    link_eaip:   'eAIP',
+    link_weather: 'Weather',
+    link_notam:  'NOTAMs',
   },
   is: {
     tagline:     'Íslenzkir flugvellir á einum stað',
@@ -34,6 +37,9 @@ const TRANSLATIONS = {
     disclaimer:  'Staðfestu með NOTAMum fyrir flug',
     placeholder: 'BIKF, Akureyri…',
     search_label: 'Leita að flugvöllum',
+    link_eaip:   'eAIP',
+    link_weather: 'Veður',
+    link_notam:  'NOTAMs',
   },
 } as const
 
@@ -88,6 +94,13 @@ export default function MapPageClient() {
             <span className="brand-sep">—</span>
             <span className="brand-tagline">{t('tagline')}</span>
           </div>
+          <nav className="header-links" aria-label="External resources">
+            <a className="header-link" href="https://eaip.isavia.is/" target="_blank" rel="noopener noreferrer">{t('link_eaip')}</a>
+            <span className="header-link-dot" aria-hidden="true">·</span>
+            <a className="header-link" href="https://en.vedur.is/aviation/" target="_blank" rel="noopener noreferrer">{t('link_weather')}</a>
+            <span className="header-link-dot" aria-hidden="true">·</span>
+            <a className="header-link" href="https://notam.isavia.is/" target="_blank" rel="noopener noreferrer">{t('link_notam')}</a>
+          </nav>
           <div className="header-controls">
             <div className="search-wrap">
               <input
