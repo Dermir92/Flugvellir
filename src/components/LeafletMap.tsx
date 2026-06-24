@@ -10,7 +10,7 @@ const MAP_ZOOM = 6
 const MARKER_CONFIGS = {
   international: { size: 30, color: '#bf3c2a' },
   regional:      { size: 22, color: '#c8923a' },
-  small:         { size: 14, color: '#4a7a5a' },
+  small:         { size: 16, color: '#4a7a5a' },
 } as const
 
 function makeMarkerSvg(type: keyof typeof MARKER_CONFIGS, icao: string) {
@@ -18,7 +18,7 @@ function makeMarkerSvg(type: keyof typeof MARKER_CONFIGS, icao: string) {
   const { size, color } = cfg
   const r = size / 2
   const svg = `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="${r}" cy="${r}" r="${r - 1.5}" fill="${color}" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
+    <circle cx="${r}" cy="${r}" r="${r - 1.5}" fill="${color}" stroke="rgba(255,255,255,0.9)" stroke-width="2"/>
   </svg>`
   return { svg, size, r }
 }
