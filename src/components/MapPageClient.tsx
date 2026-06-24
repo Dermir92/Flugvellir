@@ -25,7 +25,7 @@ const TRANSLATIONS = {
     link_eaip:      'eAIP',
     link_weather:   'Weather',
     link_notam:     'NOTAMs',
-    link_ga_guides: 'GA Guides',
+    link_ga_guides: 'GA Iceland',
     link_training:  'Training',
   },
   is: {
@@ -42,7 +42,7 @@ const TRANSLATIONS = {
     link_eaip:      'eAIP',
     link_weather:   'Veður',
     link_notam:     'NOTAMs',
-    link_ga_guides: 'Einkaflug',
+    link_ga_guides: 'GA Ísland',
     link_training:  'Flugnám',
   },
 } as const
@@ -101,7 +101,7 @@ export default function MapPageClient() {
           <nav className="header-links" aria-label="External resources">
             <a className="header-link" href="https://eaip.isavia.is/" target="_blank" rel="noopener noreferrer">{t('link_eaip')}</a>
             <span className="header-link-dot" aria-hidden="true">·</span>
-            <a className="header-link" href="https://en.vedur.is/aviation/" target="_blank" rel="noopener noreferrer">{t('link_weather')}</a>
+            <a className="header-link" href="https://www.vedur.is/vedur/flugvedur/" target="_blank" rel="noopener noreferrer">{t('link_weather')}</a>
             <span className="header-link-dot" aria-hidden="true">·</span>
             <a className="header-link" href="https://www.avians.is/en/c-preflight-information/notam" target="_blank" rel="noopener noreferrer">{t('link_notam')}</a>
             <span className="header-link-dot" aria-hidden="true">·</span>
