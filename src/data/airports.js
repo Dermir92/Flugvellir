@@ -82,16 +82,17 @@ const AIRPORTS = [
       "Fire CAT 8 during 0500â€“1900, CAT 7 during 1900â€“0500."
     ],
     pilot_notes: {
-      circuit_alt_ft: null,
-      circuit_dir: null,
-      t_and_g: "Not normally available for visiting VFR traffic. Contact KeflavÃ­k APP for a specific clearance if required â€” expect it to be low priority against airline traffic.",
-      entry: "Contact KeflavÃ­k Approach on 119.300 before entering the CTR. The CTR extends to FL065 â€” you need explicit clearance to enter, even in VMC. Never enter without a readback clearance.",
-      sample_call: "KeflavÃ­k Approach, OY-ABC, Cessna 172, [position], VFR, request transit/approach clearance.",
+      circuit_alt_ft: 1200,
+      circuit_note: "Right-hand for RWY 10 and 19, unless directed otherwise by ATC. Circuit altitude 1,200 ft MSL. To join via overhead: 1,700 ft MSL.",
+      t_and_g: "Touch & go and low approaches for training flights are prohibited during the following periods. Winter (19 Sep–15 May): 06:00–09:00 and 14:30–17:30. Summer (16 May–18 Sep): 06:00–11:00, 14:30–18:00, and 23:30–00:30. ATC may restrict training flights at any time without notice.",
+      entry: "Contact Keflavík Tower on 118.300 for clearance before entering the CTR. The CTR extends to 3,000 ft AMSL. Obtain ATIS on 128.300 before calling. Private and training aircraft must be pre-registered in the VEOVO database — arrange through a ground handling agent before arrival.",
+      sample_call: "Keflavík Tower, TF-ABC, Cessna 172, [position], information [Alpha], VFR, request clearance to enter CTR.",
       tips: [
-        "The KeflavÃ­k CTR extends to FL065 â€” confirm lateral and vertical limits before departure.",
-        "Strong and gusty surface winds are common from WSW, routinely 20â€“35 kt and higher in autumn/winter.",
-        "This is a busy international airport â€” keep transmissions brief, professional, and expect holds.",
-        "Confirm you intend BIKF (KeflavÃ­k), not BIRK (ReykjavÃ­k city airport), when filing your flight plan."
+        "The CTR extends to 3,000 ft AMSL — not FL065. FL065 is the upper limit of the FAXI TMA.",
+        "Preferred runway 01/19 for noise abatement at all times — expect to use it unless operationally necessary.",
+        "Strong and gusty surface winds are common from WSW, routinely 20–35 kt and higher in autumn/winter.",
+        "This is a busy international airport — keep transmissions brief, professional, and expect holds.",
+        "Confirm you intend BIKF (Keflavík), not BIRK (Reykjavík city airport), when filing your flight plan."
       ]
     },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
@@ -170,15 +171,16 @@ const AIRPORTS = [
     ],
     pilot_notes: {
       circuit_alt_ft: 1000,
-      circuit_dir: "Left",
-      t_and_g: "Permitted with ATC clearance. Request touch-and-go at your initial radio call â€” ATC will advise based on traffic and noise abatement requirements.",
-      entry: "Contact ReykjavÃ­k Tower on 118.000 at or before the CTZ boundary. Check GND 121.700 for taxi clearance. ATIS not published â€” request information from Tower.",
-      sample_call: "ReykjavÃ­k Tower, OY-ABC, Cessna 172, [position], VFR inbound, request landing clearance.",
+      circuit_note: "Left-hand for RWY 01 and 31; right-hand for RWY 13 and 19. Circuit altitude 1,000 ft MSL. Climb on runway heading to at least runway end before turning crosswind.",
+      t_and_g: "Single-engine aircraft only, engine under 220 hp. Multi-engine touch & go prohibited. Simulated engine failures on takeoff/landing prohibited. Permitted times — Winter (16 Sep–15 Apr): Mon–Fri 10:00–17:00, weekends & public holidays 11:00–16:00. Summer (16 Apr–15 Sep): Mon–Fri 10:00–17:00 only — not permitted on weekends in summer, and not on any special public holidays. Minimum ceiling 2,000 ft MSL. Maximum 3 aircraft in circuit simultaneously. ATC may restrict at any time without notice. Instruction flights have priority.",
+      entry: "Obtain ATIS on 128.100 before calling. Contact Reykjavík Tower on 118.000 before entering the CTR — no later than 3 NM from CTR boundary. Follow published VFR routes (BIRK AD 8 charts). Report at inner VFR reporting points. Initial call must include callsign, position, intentions, and ATIS identifier.",
+      sample_call: "Reykjavík Tower, TF-ABC, Cessna 172, [position], information [Alpha], VFR inbound, request landing.",
       tips: [
-        "Noise abatement: avoid overflying the ReykjavÃ­k city centre â€” depart and arrive over water where possible.",
-        "Confirm you intend BIRK (city airport), not BIKF (KeflavÃ­k International) â€” they are 40 km apart.",
-        "Airport is closed Christmas Day, New Year's Day, Easter Sunday â€” verify AIP before filing.",
-        "Vegetation penetrates obstacle surfaces SE of RWY 13 â€” stay alert on base and final for RWY 31."
+        "Noise abatement: avoid overflying Reykjavík city centre — depart and arrive over water where possible.",
+        "Confirm you intend BIRK (city airport), not BIKF (Keflavík International) — they are 40 km apart.",
+        "Airport closed to all traffic outside ATC hours. No service Christmas Day, New Year's Day, Easter Sunday. Shortened hours on Christmas Eve and New Year's Eve (close 16:00).",
+        "Bird hazard: 200–300 Greylag Geese roost near the lake NW of the field year-round. Peak risk 1 Apr–15 May and 15 Aug–31 Oct.",
+        "Vegetation penetrates obstacle surfaces SE of RWY 13 — stay alert on base and final for RWY 31."
       ]
     },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
@@ -248,15 +250,16 @@ const AIRPORTS = [
     ],
     pilot_notes: {
       circuit_alt_ft: 1000,
-      circuit_dir: "Left",
-      t_and_g: "Permitted with ATC clearance. Request at first contact â€” Tower will advise based on IFR traffic and terrain.",
-      entry: "Contact Akureyri Tower on 118.200. ATIS available on 136.200 â€” always check ATIS before calling Tower.",
-      sample_call: "Akureyri Tower, OY-ABC, Cessna 172, [position], VFR inbound, information [ATIS ident], request landing clearance.",
+      circuit_note: "Left-hand for RWY 01 and 31; right-hand for RWY 13 and 19. Circuit altitude 1,000 ft MSL. Climb on runway heading to at least runway end before turning crosswind.",
+      t_and_g: "Single-engine aircraft only, engine under 220 hp. Multi-engine touch & go prohibited. Simulated engine failures on takeoff/landing prohibited. Permitted times — Winter (16 Sep–15 Apr): Mon–Fri 10:00–17:00, weekends & public holidays 11:00–16:00. Summer (16 Apr–15 Sep): Mon–Fri 10:00–17:00 only — not permitted on weekends in summer, and not on any special public holidays. Minimum ceiling 2,000 ft MSL. Maximum 3 aircraft in circuit simultaneously. ATC may restrict at any time without notice. Instruction flights have priority.",
+      entry: "Obtain ATIS on 128.100 before calling. Contact Reykjavík Tower on 118.000 before entering the CTR — no later than 3 NM from CTR boundary. Follow published VFR routes (BIRK AD 8 charts). Report at inner VFR reporting points. Initial call must include callsign, position, intentions, and ATIS identifier.",
+      sample_call: "Reykjavík Tower, TF-ABC, Cessna 172, [position], information [Alpha], VFR inbound, request landing.",
       tips: [
-        "Mountains rise steeply on both sides of EyjafjÃ¶rÃ°ur fjord â€” standard left circuit may be restricted depending on cloud base and terrain clearance.",
-        "Wind shear and turbulence on approach are common even at low surface winds â€” always check PIREPs.",
-        "ILS RWY 01 has a steep 5.3Â° glide path due to terrain â€” do not fly it as a standard 3Â° approach.",
-        "Airport is ATC except certain Icelandic public holidays â€” no unannounced arrivals."
+        "Noise abatement: avoid overflying Reykjavík city centre — depart and arrive over water where possible.",
+        "Confirm you intend BIRK (city airport), not BIKF (Keflavík International) — they are 40 km apart.",
+        "Airport closed to all traffic outside ATC hours. No service Christmas Day, New Year's Day, Easter Sunday. Shortened hours on Christmas Eve and New Year's Eve (close 16:00).",
+        "Bird hazard: 200–300 Greylag Geese roost near the lake NW of the field year-round. Peak risk 1 Apr–15 May and 15 Aug–31 Oct.",
+        "Vegetation penetrates obstacle surfaces SE of RWY 13 — stay alert on base and final for RWY 31."
       ]
     },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
@@ -322,14 +325,16 @@ const AIRPORTS = [
     ],
     pilot_notes: {
       circuit_alt_ft: 1000,
-      circuit_dir: "Left",
-      t_and_g: "Permitted â€” announce all intentions on AFIS frequency. AFIS will confirm traffic.",
-      entry: "Contact EgilsstaÃ°ir AFIS on 119.400 at least 10 minutes before arrival.",
-      sample_call: "EgilsstaÃ°ir Radio, OY-ABC, Cessna 172, [position], VFR inbound, request airfield information.",
+      circuit_note: "Left-hand for RWY 01 and 31; right-hand for RWY 13 and 19. Circuit altitude 1,000 ft MSL. Climb on runway heading to at least runway end before turning crosswind.",
+      t_and_g: "Single-engine aircraft only, engine under 220 hp. Multi-engine touch & go prohibited. Simulated engine failures on takeoff/landing prohibited. Permitted times — Winter (16 Sep–15 Apr): Mon–Fri 10:00–17:00, weekends & public holidays 11:00–16:00. Summer (16 Apr–15 Sep): Mon–Fri 10:00–17:00 only — not permitted on weekends in summer, and not on any special public holidays. Minimum ceiling 2,000 ft MSL. Maximum 3 aircraft in circuit simultaneously. ATC may restrict at any time without notice. Instruction flights have priority.",
+      entry: "Obtain ATIS on 128.100 before calling. Contact Reykjavík Tower on 118.000 before entering the CTR — no later than 3 NM from CTR boundary. Follow published VFR routes (BIRK AD 8 charts). Report at inner VFR reporting points. Initial call must include callsign, position, intentions, and ATIS identifier.",
+      sample_call: "Reykjavík Tower, TF-ABC, Cessna 172, [position], information [Alpha], VFR inbound, request landing.",
       tips: [
-        "Fog is frequent in the LagarfljÃ³t river valley, especially on autumn and early-morning arrivals.",
-        "AFIS provides information only â€” separation is the pilot's responsibility in uncontrolled airspace.",
-        "Airport is also used as a North Atlantic diversion alternate â€” expect possible heavy aircraft traffic at any time."
+        "Noise abatement: avoid overflying Reykjavík city centre — depart and arrive over water where possible.",
+        "Confirm you intend BIRK (city airport), not BIKF (Keflavík International) — they are 40 km apart.",
+        "Airport closed to all traffic outside ATC hours. No service Christmas Day, New Year's Day, Easter Sunday. Shortened hours on Christmas Eve and New Year's Eve (close 16:00).",
+        "Bird hazard: 200–300 Greylag Geese roost near the lake NW of the field year-round. Peak risk 1 Apr–15 May and 15 Aug–31 Oct.",
+        "Vegetation penetrates obstacle surfaces SE of RWY 13 — stay alert on base and final for RWY 31."
       ]
     },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
@@ -395,17 +400,17 @@ const AIRPORTS = [
       "In good VMC on a summer day, one of the most beautiful approaches in the world."
     ],
     pilot_notes: {
-      circuit_alt_ft: null,
-      circuit_dir: null,
-      t_and_g: "Not possible â€” no standard traffic circuit due to surrounding mountains on all sides. Single approach and departure only.",
-      entry: "Contact ÃsafjÃ¶rÃ°ur AFIS on 118.800 well before the approach. A thorough pre-flight study of the published curved approach procedure is mandatory â€” do not attempt without prior preparation.",
-      sample_call: "ÃsafjÃ¶rÃ°ur Radio, OY-ABC, Cessna 172, [position], VFR inbound, request airfield information.",
+      circuit_alt_ft: 1200,
+      circuit_note: "Right-hand for RWY 10 and 19, unless directed otherwise by ATC. Circuit altitude 1,200 ft MSL. To join via overhead: 1,700 ft MSL.",
+      t_and_g: "Touch & go and low approaches for training flights are prohibited during the following periods. Winter (19 Sep–15 May): 06:00–09:00 and 14:30–17:30. Summer (16 May–18 Sep): 06:00–11:00, 14:30–18:00, and 23:30–00:30. ATC may restrict training flights at any time without notice.",
+      entry: "Contact Keflavík Tower on 118.300 for clearance before entering the CTR. The CTR extends to 3,000 ft AMSL. Obtain ATIS on 128.300 before calling. Private and training aircraft must be pre-registered in the VEOVO database — arrange through a ground handling agent before arrival.",
+      sample_call: "Keflavík Tower, TF-ABC, Cessna 172, [position], information [Alpha], VFR, request clearance to enter CTR.",
       tips: [
-        "Mandatory pre-flight study: the curved visual approach procedure must be studied before flight â€” it cannot be improvised.",
-        "No traffic circuit is established due to terrain on all sides â€” approach and depart as per published procedure only.",
-        "Night operations are severely restricted â€” plan to arrive and depart in daylight.",
-        "Strong fjord winds can produce severe turbulence below ridge height, especially with strong NW flow.",
-        "Never attempt the approach in IMC â€” there is no IFR approach available."
+        "The CTR extends to 3,000 ft AMSL — not FL065. FL065 is the upper limit of the FAXI TMA.",
+        "Preferred runway 01/19 for noise abatement at all times — expect to use it unless operationally necessary.",
+        "Strong and gusty surface winds are common from WSW, routinely 20–35 kt and higher in autumn/winter.",
+        "This is a busy international airport — keep transmissions brief, professional, and expect holds.",
+        "Confirm you intend BIKF (Keflavík), not BIRK (Reykjavík city airport), when filing your flight plan."
       ]
     },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
