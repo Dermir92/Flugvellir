@@ -25,7 +25,7 @@ const TRANSLATIONS = {
     link_eaip:      'eAIP',
     link_weather:   'Weather',
     link_notam:     'NOTAMs',
-    link_ga_guides: 'GA Iceland',
+    link_ga_guides: 'Pilot Guides',
     link_training:  'Training',
   },
   is: {
@@ -42,7 +42,7 @@ const TRANSLATIONS = {
     link_eaip:      'eAIP',
     link_weather:   'Veður',
     link_notam:     'NOTAMs',
-    link_ga_guides: 'GA Ísland',
+    link_ga_guides: 'Leiðbeiningar',
     link_training:  'Flugnám',
   },
 } as const
