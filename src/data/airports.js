@@ -1,4 +1,4 @@
-﻿// Flugvellir â€” Icelandic Airport Data
+﻿﻿// Flugvellir â€” Icelandic Airport Data
 // Source: Isavia eAIP AIRAC A06/2026, effective 11 JUN 2026
 // Verified against: https://eaip.isavia.is/A_06-2026_2026_06_11/
 // NOTE: Always verify with current NOTAMs and official AIP before flight.
@@ -749,7 +749,7 @@ const AIRPORTS = [
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
   },
 
-ï»¿
+
   {
     icao: "BIBR", iata: null,
     name: "BÃºÃ°ardalur Airport", name_is: "BÃºÃ°ardalur",

@@ -22,9 +22,11 @@ const TRANSLATIONS = {
     disclaimer:  'Verify with NOTAMs before flight',
     placeholder: 'BIKF, Akureyri…',
     search_label: 'Search airports',
-    link_eaip:   'eAIP',
-    link_weather: 'Weather',
-    link_notam:  'NOTAMs',
+    link_eaip:      'eAIP',
+    link_weather:   'Weather',
+    link_notam:     'NOTAMs',
+    link_ga_guides: 'GA Guides',
+    link_training:  'Training',
   },
   is: {
     tagline:     'Íslenzkir flugvellir á einum stað',
@@ -37,9 +39,11 @@ const TRANSLATIONS = {
     disclaimer:  'Staðfestu með NOTAMum fyrir flug',
     placeholder: 'BIKF, Akureyri…',
     search_label: 'Leita að flugvöllum',
-    link_eaip:   'eAIP',
-    link_weather: 'Veður',
-    link_notam:  'NOTAMs',
+    link_eaip:      'eAIP',
+    link_weather:   'Veður',
+    link_notam:     'NOTAMs',
+    link_ga_guides: 'Einkaflug',
+    link_training:  'Flugnám',
   },
 } as const
 
@@ -100,6 +104,10 @@ export default function MapPageClient() {
             <a className="header-link" href="https://en.vedur.is/aviation/" target="_blank" rel="noopener noreferrer">{t('link_weather')}</a>
             <span className="header-link-dot" aria-hidden="true">·</span>
             <a className="header-link" href="https://www.avians.is/en/c-preflight-information/notam" target="_blank" rel="noopener noreferrer">{t('link_notam')}</a>
+            <span className="header-link-dot" aria-hidden="true">·</span>
+            <a className="header-link" href="https://island.is/leidbeiningarefni-fyrir-einkaflug" target="_blank" rel="noopener noreferrer">{t('link_ga_guides')}</a>
+            <span className="header-link-dot" aria-hidden="true">·</span>
+            <a className="header-link" href="https://island.is/s/samgongustofa/flugnam-og-skirteini" target="_blank" rel="noopener noreferrer">{t('link_training')}</a>
           </nav>
           <div className="header-controls">
             <div className="search-wrap">
