@@ -363,46 +363,6 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   margin-right: 7px;
 }
 
-/* === RADAR TOGGLE === */
-.radar-toggle {
-  position: absolute;
-  top: 14px;
-  right: 14px;
-  z-index: 400;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 7px 13px;
-  background: rgba(19,16,9,0.84);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255,255,255,0.09);
-  border-radius: var(--radius-md);
-  color: rgba(255,255,255,0.55);
-  font-family: var(--font-body);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: color 0.15s, border-color 0.15s, background 0.15s;
-}
-
-.radar-toggle:hover:not(:disabled) {
-  color: rgba(255,255,255,0.85);
-  border-color: rgba(255,255,255,0.18);
-}
-
-.radar-toggle.is-active {
-  color: var(--glacier-light);
-  border-color: rgba(200,146,58,0.4);
-  background: rgba(200,146,58,0.12);
-}
-
-.radar-toggle:disabled {
-  opacity: 0.35;
-  cursor: default;
-}
-
 /* === MAP LEGEND === */
 .map-legend {
   position: absolute;
