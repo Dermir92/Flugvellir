@@ -42,7 +42,7 @@ const TRANSLATIONS = {
     link_eaip:      'eAIP',
     link_weather:   'Veður',
     link_notam:     'NOTAMs',
-    link_ga_guides: 'Leiðbeiningar',
+    link_ga_guides: 'Leiðbeiningar fyrir einkaflugmenn',
     link_training:  'Flugnám',
   },
 } as const
