@@ -23,6 +23,10 @@ function makeMarkerSvg(type: keyof typeof MARKER_CONFIGS, icao: string) {
   return { svg, size, r }
 }
 
+function fixUtf8(str: string): string {
+  try { return decodeURIComponent(escape(str)) } catch { return str }
+}
+
 interface Props {
   onAirportClick: (icao: string) => void
 }
@@ -69,7 +73,7 @@ export default function LeafletMap({ onAirportClick }: Props) {
 
         const marker = L.marker([ap.lat, ap.lng], { icon })
 
-        const tooltipHtml = `<span class="tooltip-icao">${ap.icao}</span>${ap.name}`
+        const tooltipHtml = `<span class="tooltip-icao">${ap.icao}</span>${fixUtf8(ap.name)}`
         marker.bindTooltip(tooltipHtml, {
           direction: 'top',
           offset: [0, -(ap.type === 'international' ? 16 : ap.type === 'regional' ? 12 : 9)],
