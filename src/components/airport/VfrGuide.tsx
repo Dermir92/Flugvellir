@@ -79,6 +79,8 @@ function buildVfrContent(a: Airport): string {
 export function VfrButton({ airport, variant }: { airport: Airport; variant: 'header' | 'hero' }) {
   const [open, setOpen] = useState(false)
 
+  if (!airport.pilot_notes) return null
+
   useEffect(() => {
     if (!open) return
     const handler = (e: KeyboardEvent) => { if (e.key === 'Escape') setOpen(false) }

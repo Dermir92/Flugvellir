@@ -300,6 +300,7 @@ export default async function AirportPage(props: PageProps<'/airport/[icao]'>) {
           <span className="ap-footer-note">
             <a href={AIRAC_META.source_url} target="_blank" rel="noopener noreferrer">Isavia eAIP</a>
             {' · '}Always verify with current NOTAMs before flight
+            {' · '}<a href="https://foxel.is" target="_blank" rel="noopener noreferrer">Foxel</a>
           </span>
         </div>
       </footer>

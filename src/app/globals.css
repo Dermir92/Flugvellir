@@ -474,6 +474,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 @media (max-width: 640px) {
   :root { --header-h: 50px; --footer-h: 36px; }
   .brand-name { font-size: 20px; }
+  .header-inner { padding: 0 12px; gap: 8px; }
+  .header-links { display: none; }
   .search-input { width: 150px; }
   .map-legend { display: none; }
   .footer-credit { display: none; }

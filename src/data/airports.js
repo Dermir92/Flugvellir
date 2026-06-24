@@ -1,4 +1,4 @@
-﻿﻿// Flugvellir â€” Icelandic Airport Data
+﻿﻿// Flugvellir — Icelandic Airport Data
 // Source: Isavia eAIP AIRAC A06/2026, effective 11 JUN 2026
 // Verified against: https://eaip.isavia.is/A_06-2026_2026_06_11/
 // NOTE: Always verify with current NOTAMs and official AIP before flight.
@@ -21,7 +21,7 @@ const AIRPORTS = [
     lng: -22.6056,
     lat_dms: "63°59'06\"N",
     lng_dms: "022°36'20\"W",
-    description: "Iceland's main international gateway. Built on a lava plain on the Reykjanes peninsula â€” stark, windswept, and reliably busy. Handles virtually all of Iceland's intercontinental traffic, with the volcanics of Reykjanes as a constant backdrop.",
+    description: "Iceland's main international gateway. Built on a lava plain on the Reykjanes peninsula — stark, windswept, and reliably busy. Handles virtually all of Iceland's intercontinental traffic, with the volcanics of Reykjanes as a constant backdrop.",
     runways: [
       {
         id: "01/19",
@@ -64,22 +64,22 @@ const AIRPORTS = [
     fuel: {
       avgas: false,
       jet_a1: true,
-      supplier: "Isavia OHF â€” hydrant 3,500 L/min, refuellers 2,000 L/min"
+      supplier: "Isavia OHF — hydrant 3,500 L/min, refuellers 2,000 L/min"
     },
     services: {
       ppr: false,
       customs: true,
       deicing: true,
       fire_cat: "8",
-      slots: "Required for commercial operations â€” contact Isavia Slot Office",
+      slots: "Required for commercial operations — contact Isavia Slot Office",
       handling: "Full ground handling available"
     },
     remarks: [
       "Strong and gusty surface winds common, particularly from WSW.",
-      "Military activity on north apron â€” NOTAMs frequently issued for restricted areas.",
+      "Military activity on north apron — NOTAMs frequently issued for restricted areas.",
       "CAT II/III ops on RWY 19 require special approval and airline equipment certification.",
       "VOR/TACAN KFV 112.800 is a primary holding/routing fix for the region.",
-      "Fire CAT 8 during 0500â€“1900, CAT 7 during 1900â€“0500."
+      "Fire CAT 8 during 0500–1900, CAT 7 during 1900–0500."
     ],
     pilot_notes: {
       circuit_alt_ft: 1200,
@@ -112,7 +112,7 @@ const AIRPORTS = [
     lng: -21.9406,
     lat_dms: "64°07'48\"N",
     lng_dms: "021°56'26\"W",
-    description: "Reykjavík's city-centre airport â€” the hub for domestic flying and general aviation. On a clear day you can see Snæfellsjökull from the runway. Compact, well-run, and one of the most atmospherically situated airports in the world.",
+    description: "Reykjavík's city-centre airport — the hub for domestic flying and general aviation. On a clear day you can see Snæfellsjökull from the runway. Compact, well-run, and one of the most atmospherically situated airports in the world.",
     runways: [
       {
         id: "01/19",
@@ -146,13 +146,13 @@ const AIRPORTS = [
     ],
     hours: {
       service: "ATC",
-      schedule: "Weekdays 07:00â€“23:00; Weekends & holidays 08:00â€“23:00",
+      schedule: "Weekdays 07:00–23:00; Weekends & holidays 08:00–23:00",
       notes: "Closed Christmas Day, New Year's Day, Easter Sunday. AFIS available outside hours on 15 min notice for emergency, ambulance, coastguard."
     },
     fuel: {
       avgas: true,
       jet_a1: true,
-      supplier: "Icelandair ehf / Iceland Aero Agents â€” AVGAS 200 L/min, Jet A-1 800 L/min"
+      supplier: "Icelandair ehf / Iceland Aero Agents — AVGAS 200 L/min, Jet A-1 800 L/min"
     },
     services: {
       ppr: false,
@@ -163,10 +163,10 @@ const AIRPORTS = [
       handling: "Multiple handlers available"
     },
     remarks: [
-      "City-centre location â€” visual approaches to RWY 01/19 can be spectacular in VMC, demanding in reduced visibility.",
+      "City-centre location — visual approaches to RWY 01/19 can be spectacular in VMC, demanding in reduced visibility.",
       "RWY 19 ILS CAT I; LOC-only approach available for RWY 13.",
-      "Close proximity to BIKF â€” always confirm correct airport when filing in Reykjavík area.",
-      "Noise abatement procedures apply â€” avoid residential areas on departure.",
+      "Close proximity to BIKF — always confirm correct airport when filing in Reykjavík area.",
+      "Noise abatement procedures apply — avoid residential areas on departure.",
       "CAT VI standard; CAT VII available with 30 min notice."
     ],
     pilot_notes: {
@@ -202,7 +202,7 @@ const AIRPORTS = [
     lng: -18.0719,
     lat_dms: "65°39'24\"N",
     lng_dms: "018°04'19\"W",
-    description: "Northern Iceland's main airport, sitting in the floor of Eyjafjörður fjord with mountains rising steeply on both sides. Two ILS approaches â€” the step-down to RWY 19 and the steep offset LOC to RWY 01 â€” make this one of the more demanding fields in Iceland.",
+    description: "Northern Iceland's main airport, sitting in the floor of Eyjafjörður fjord with mountains rising steeply on both sides. Two ILS approaches — the step-down to RWY 19 and the steep offset LOC to RWY 01 — make this one of the more demanding fields in Iceland.",
     runways: [
       {
         id: "01/19",
@@ -225,13 +225,13 @@ const AIRPORTS = [
     ],
     hours: {
       service: "ATC",
-      schedule: "Daily 07:00â€“23:00. Christmas Eve & New Year's Eve 07:00â€“16:00.",
+      schedule: "Daily 07:00–23:00. Christmas Eve & New Year's Eve 07:00–16:00.",
       notes: "No service New Year's Day, Easter Sunday, Christmas Day."
     },
     fuel: {
       avgas: true,
       jet_a1: true,
-      supplier: "Isavia â€” AVGAS 150 L/min, Jet A-1 650 L/min"
+      supplier: "Isavia — AVGAS 150 L/min, Jet A-1 650 L/min"
     },
     services: {
       ppr: false,
@@ -239,11 +239,11 @@ const AIRPORTS = [
       deicing: true,
       fire_cat: "6",
       slots: "Not required",
-      handling: "Available â€” Icelandair Akureyri 131.4 MHz; Akureyri FBO 132.9 MHz"
+      handling: "Available — Icelandair Akureyri 131.4 MHz; Akureyri FBO 132.9 MHz"
     },
     remarks: [
       "Fjord terrain causes significant wind shear and turbulence on approach, even at low surface winds.",
-      "LOC RWY 19 has a 3° offset â€” do not confuse with ILS track. No glide path signal.",
+      "LOC RWY 19 has a 3° offset — do not confuse with ILS track. No glide path signal.",
       "ILS RWY 01 uses a steep 5.3° glide path due to terrain south of field.",
       "Winter ops: icing conditions and low stratus common. Check PIREPs.",
       "CAT VI standard; CAT VII available with 30 min notice."
@@ -279,7 +279,7 @@ const AIRPORTS = [
     lng: -14.4014,
     lat_dms: "65°17'00\"N",
     lng_dms: "014°24'05\"W",
-    description: "Gateway to the East Fjords. Serves as a North Atlantic diversion alternate for transatlantic traffic. Despite being AFIS-only, the infrastructure is solid â€” ILS CAT I on RWY 03, good fuel and handling.",
+    description: "Gateway to the East Fjords. Serves as a North Atlantic diversion alternate for transatlantic traffic. Despite being AFIS-only, the infrastructure is solid — ILS CAT I on RWY 03, good fuel and handling.",
     runways: [
       {
         id: "03/21",
@@ -301,13 +301,13 @@ const AIRPORTS = [
     ],
     hours: {
       service: "AFIS",
-      schedule: "Daily 07:00â€“23:00",
+      schedule: "Daily 07:00–23:00",
       notes: "Outside hours with 30 min notice."
     },
     fuel: {
       avgas: true,
       jet_a1: true,
-      supplier: "Icelandair ehf â€” Jet A-1 600 L/min"
+      supplier: "Icelandair ehf — Jet A-1 600 L/min"
     },
     services: {
       ppr: true,
@@ -318,7 +318,7 @@ const AIRPORTS = [
       handling: "Available"
     },
     remarks: [
-      "Used as a North Atlantic diversion alternate â€” equipment available for unexpected heavy traffic.",
+      "Used as a North Atlantic diversion alternate — equipment available for unexpected heavy traffic.",
       "Fog frequent in the Lagarfljót river valley, particularly autumn mornings.",
       "CAT V during AFIS hours; CAT III outside hours; higher on request.",
       "East Iceland gateway to Vatnajökull, Jökulsárlón, and the highlands."
@@ -354,7 +354,7 @@ const AIRPORTS = [
     lng: -23.1353,
     lat_dms: "66°03'29\"N",
     lng_dms: "023°08'07\"W",
-    description: "One of the most demanding approaches in Iceland â€” possibly in Europe. The airport sits on a spit of land in a deep fjord. Pilots must fly a curved visual approach around steep terrain. No traffic circuit established due to surrounding mountains.",
+    description: "One of the most demanding approaches in Iceland — possibly in Europe. The airport sits on a spit of land in a deep fjord. Pilots must fly a curved visual approach around steep terrain. No traffic circuit established due to surrounding mountains.",
     runways: [
       {
         id: "07/25",
@@ -362,7 +362,7 @@ const AIRPORTS = [
         width_m: 43,
         surface: "Asphalt stabilized gravel",
         pcn: null,
-        notes: "Curved visual approach only â€” no IFR approach available. Strip width 80m at end 07, narrows to 60m at end 25. Night ops significantly restricted."
+        notes: "Curved visual approach only — no IFR approach available. Strip width 80m at end 07, narrows to 60m at end 25. Night ops significantly restricted."
       }
     ],
     frequencies: [
@@ -376,13 +376,13 @@ const AIRPORTS = [
     ],
     hours: {
       service: "AFIS",
-      schedule: "Summer (Junâ€“Aug): Monâ€“Fri 07:00â€“18:45, Sat 08:00â€“18:15, Sun 08:00â€“18:45. Winter: Monâ€“Fri 08:00â€“18:00, Satâ€“Sun 09:00â€“18:00.",
+      schedule: "Summer (Jun–Aug): Mon–Fri 07:00–18:45, Sat 08:00–18:15, Sun 08:00–18:45. Winter: Mon–Fri 08:00–18:00, Sat–Sun 09:00–18:00.",
       notes: "Closed Easter, Christmas, New Year's Day."
     },
     fuel: {
       avgas: true,
       jet_a1: true,
-      supplier: "On request â€” +354 892-3923 / +354 844-8500. AVGAS H24 on request, Jet A-1 09:00â€“18:00."
+      supplier: "On request — +354 892-3923 / +354 844-8500. AVGAS H24 on request, Jet A-1 09:00–18:00."
     },
     services: {
       ppr: false,
@@ -393,9 +393,9 @@ const AIRPORTS = [
       handling: "Limited"
     },
     remarks: [
-      "CURVED VISUAL APPROACH â€” must be flown exactly as published. No IFR approach.",
-      "No traffic circuit established â€” terrain on all sides.",
-      "Night operations carry significant restrictions â€” see AIP AD 2.23.",
+      "CURVED VISUAL APPROACH — must be flown exactly as published. No IFR approach.",
+      "No traffic circuit established — terrain on all sides.",
+      "Night operations carry significant restrictions — see AIP AD 2.23.",
       "Westfjords Air Routes require special approval for crews unfamiliar with this approach.",
       "In good VMC on a summer day, one of the most beautiful approaches in the world."
     ],
@@ -430,7 +430,7 @@ const AIRPORTS = [
     lng: -15.2272,
     lat_dms: "64°17'44\"N",
     lng_dms: "015°13'38\"W",
-    description: "Serves the Höfn area and the Vatnajökull glacier region. Surrounded by extraordinary scenery â€” Vatnajökull dominates the horizon to the north. A useful base for glacier tours and southeast Iceland operations.",
+    description: "Serves the Höfn area and the Vatnajökull glacier region. Surrounded by extraordinary scenery — Vatnajökull dominates the horizon to the north. A useful base for glacier tours and southeast Iceland operations.",
     runways: [
       {
         id: "18/36",
@@ -450,14 +450,14 @@ const AIRPORTS = [
     ],
     hours: {
       service: "AFIS",
-      schedule: "Mon 08:00â€“16:00; Tue closed; Wed 07:00â€“18:30; Thuâ€“Fri 08:00â€“16:00; Sat closed; Sun 12:00â€“16:00.",
+      schedule: "Mon 08:00–16:00; Tue closed; Wed 07:00–18:30; Thu–Fri 08:00–16:00; Sat closed; Sun 12:00–16:00.",
       notes: "After-hours: 1 hr notice (summer), 2 hr (winter)."
     },
     fuel: {
       avgas: false,
       jet_a1: true,
       notes: "Með fyrirfram beiðni (PN)",
-      supplier: "Friðrik Jónas Friðriksson â€” +354 478-1859 / GSM +354 893-0693 / jonas@rafhorn.is Â· 170 L/min"
+      supplier: "Friðrik Jónas Friðriksson — +354 478-1859 / GSM +354 893-0693 / jonas@rafhorn.is Â· 170 L/min"
     },
     services: {
       ppr: true,
@@ -468,20 +468,20 @@ const AIRPORTS = [
       handling: "Basic"
     },
     remarks: [
-      "Strong katabatic winds common off Vatnajökull â€” can be severe with little warning.",
+      "Strong katabatic winds common off Vatnajökull — can be severe with little warning.",
       "CAT III during operational hours; CAT IV for scheduled flights.",
-      "Jökulsárlón glacier lagoon is ~60 km NW â€” popular destination for glacier tour ops.",
-      "Low-level helicopter operations in area â€” glacier rescue and tour activity."
+      "Jökulsárlón glacier lagoon is ~60 km NW — popular destination for glacier tour ops.",
+      "Low-level helicopter operations in area — glacier rescue and tour activity."
     ],
     pilot_notes: {
       circuit_note: "Right-hand pattern for RWY 18. Left-hand pattern for RWY 36. Confirm circuit altitude in current AIP charts.",
       entry: "Contact Hornafjörður AFIS on 119.100 before arrival. Note the irregular opening hours before departure.",
       sample_call: "Hornafjörður Radio, OY-ABC, Cessna 172, [position], VFR inbound, request airfield information.",
       tips: [
-        "Bird hazard: geese are common on and around the airfield, mainly east of the runway. Present from end of March through October â€” peak numbers in spring and autumn.",
-        "Geese thin out Juneâ€“August when nesting ends, but do not disappear entirely.",
-        "Strong katabatic winds can develop rapidly off Vatnajökull with little warning â€” monitor MET carefully.",
-        "Irregular hours (closed Tuesday and Saturday) â€” always confirm before departure."
+        "Bird hazard: geese are common on and around the airfield, mainly east of the runway. Present from end of March through October — peak numbers in spring and autumn.",
+        "Geese thin out June–August when nesting ends, but do not disappear entirely.",
+        "Strong katabatic winds can develop rapidly off Vatnajökull with little warning — monitor MET carefully.",
+        "Irregular hours (closed Tuesday and Saturday) — always confirm before departure."
       ]
     },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
@@ -501,7 +501,7 @@ const AIRPORTS = [
     lng: -20.2792,
     lat_dms: "63°25'30\"N",
     lng_dms: "020°16'45\"W",
-    description: "On the Westman Islands â€” a cluster of volcanic islands off Iceland's south coast. The highest airport elevation in Iceland's domestic network. The 1973 eruption of Eldfell buried part of the town and remains visible from the airport.",
+    description: "On the Westman Islands — a cluster of volcanic islands off Iceland's south coast. The highest airport elevation in Iceland's domestic network. The 1973 eruption of Eldfell buried part of the town and remains visible from the airport.",
     runways: [
       {
         id: "03/21",
@@ -530,13 +530,13 @@ const AIRPORTS = [
     ],
     hours: {
       service: "AFIS",
-      schedule: "Summer (Mayâ€“Aug): Monâ€“Fri 08:00â€“19:00, Sat 09:00â€“17:00, Sun 09:00â€“18:00. Winter (Sepâ€“Apr): Monâ€“Fri 08:00â€“18:00, Satâ€“Sun 09:00â€“18:00.",
-      notes: "Extended on request â€” 1 hr (summer), 2 hr (winter) notice required."
+      schedule: "Summer (May–Aug): Mon–Fri 08:00–19:00, Sat 09:00–17:00, Sun 09:00–18:00. Winter (Sep–Apr): Mon–Fri 08:00–18:00, Sat–Sun 09:00–18:00.",
+      notes: "Extended on request — 1 hr (summer), 2 hr (winter) notice required."
     },
     fuel: {
       avgas: false,
       jet_a1: true,
-      supplier: "On request â€” +354 515-1100 or +354 840-1720. 200 L/min."
+      supplier: "On request — +354 515-1100 or +354 840-1720. 200 L/min."
     },
     services: {
       ppr: true,
@@ -547,10 +547,10 @@ const AIRPORTS = [
       handling: "Basic"
     },
     remarks: [
-      "Volcanic island â€” Eldfell crater and 1973 lava flow clearly visible from circuit.",
-      "Fog common around the islands, can dissipate suddenly â€” check METARs carefully.",
+      "Volcanic island — Eldfell crater and 1973 lava flow clearly visible from circuit.",
+      "Fog common around the islands, can dissipate suddenly — check METARs carefully.",
       "Strong and unpredictable wind shear on approach.",
-      "Puffin colony nearby â€” bird activity NOTAMs issued seasonally.",
+      "Puffin colony nearby — bird activity NOTAMs issued seasonally.",
       "Contact operator before departure."
     ],
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
@@ -572,7 +572,7 @@ const AIRPORTS = [
     lng: -14.8506,
     lat_dms: "65°43'14\"N",
     lng_dms: "014°51'02\"W",
-    description: "Remote northeast Iceland. One of the quieter strips in the country â€” serves a small community but important for connectivity to the northeast.",
+    description: "Remote northeast Iceland. One of the quieter strips in the country — serves a small community but important for connectivity to the northeast.",
     runways: [
       {
         id: "04/22",
@@ -589,13 +589,13 @@ const AIRPORTS = [
     nav: [],
     hours: {
       service: "AFIS",
-      schedule: "Mon/Tue/Thu 08:00â€“15:00; Fri/Sun 13:00â€“17:00; Wed/Sat closed.",
-      notes: "Out-of-hours with 1â€“2 hr notice."
+      schedule: "Mon/Tue/Thu 08:00–15:00; Fri/Sun 13:00–17:00; Wed/Sat closed.",
+      notes: "Out-of-hours with 1–2 hr notice."
     },
     fuel: {
       avgas: false,
       jet_a1: false,
-      supplier: "No fuel available â€” plan accordingly"
+      supplier: "No fuel available — plan accordingly"
     },
     services: {
       ppr: false,
@@ -606,8 +606,8 @@ const AIRPORTS = [
       handling: "Self-service"
     },
     remarks: [
-      "No fuel on field â€” nearest fuel at BIEG (Egilsstaðir).",
-      "AFIS hours are limited â€” confirm before departure.",
+      "No fuel on field — nearest fuel at BIEG (Egilsstaðir).",
+      "AFIS hours are limited — confirm before departure.",
       "Good base for northeast Iceland coastal fjord flying."
     ],
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
@@ -627,7 +627,7 @@ const AIRPORTS = [
     lng: -17.4258,
     lat_dms: "65°57'09\"N",
     lng_dms: "017°25'33\"W",
-    description: "Gateway to northeast Iceland and the whale watching capital of the country. Short but usable strip with Skjálfandi bay views. The space exploration connection is real â€” NASA astronauts trained in the lava fields nearby.",
+    description: "Gateway to northeast Iceland and the whale watching capital of the country. Short but usable strip with Skjálfandi bay views. The space exploration connection is real — NASA astronauts trained in the lava fields nearby.",
     runways: [
       {
         id: "02/20",
@@ -644,7 +644,7 @@ const AIRPORTS = [
     nav: [],
     hours: {
       service: "AFIS",
-      schedule: "Available on request during office hours 09:00â€“16:00.",
+      schedule: "Available on request during office hours 09:00–16:00.",
       notes: "Surcharge applies outside hours."
     },
     fuel: {
@@ -661,7 +661,7 @@ const AIRPORTS = [
       handling: "Basic"
     },
     remarks: [
-      "Whale watching capital of Iceland â€” significant small boat and tour activity on the bay.",
+      "Whale watching capital of Iceland — significant small boat and tour activity on the bay.",
       "Good views of Tjörnes peninsula and Skjálfandi bay from the circuit.",
       "NASA astronauts (Apollo program) used the Húsavík lava fields as moon-surface training ground."
     ],
@@ -682,7 +682,7 @@ const AIRPORTS = [
     lng: -20.1375,
     lat_dms: "63°33'22\"N",
     lng_dms: "020°08'15\"W",
-    description: "A small coastal strip on Iceland's south shore with both grass and asphalt-gravel surfaces. VFR only â€” no ATS services on field.",
+    description: "A small coastal strip on Iceland's south shore with both grass and asphalt-gravel surfaces. VFR only — no ATS services on field.",
     runways: [
       { id: "03/21", length_m: 800,  width_m: 30, surface: "Grass",                    pcn: null, notes: null },
       { id: "12/30", length_m: 1000, width_m: 30, surface: "Asphalt-stabilized gravel", pcn: null, notes: "Coarse surface can cause damage to tires." }
@@ -702,9 +702,9 @@ const AIRPORTS = [
       fire_cat: "0", handling: "Self-service"
     },
     remarks: [
-      "VFR only â€” IFR not permitted.",
+      "VFR only — IFR not permitted.",
       "Pilot-activated runway lights on RWY 12/30: key 122.8 MHz three times. Lights extinguish after 18 min.",
-      "ARFF CAT 0 â€” no fire service on field."
+      "ARFF CAT 0 — no fire service on field."
     ],
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
   },
@@ -744,7 +744,7 @@ const AIRPORTS = [
     remarks: [
       "IFR/VFR operations permitted.",
       "RNP approach available on RWY 03.",
-      "APAPI on both runway ends â€” RWY 03 offset 3° to west."
+      "APAPI on both runway ends — RWY 03 offset 3° to west."
     ],
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
   },
@@ -793,7 +793,7 @@ const AIRPORTS = [
     pilot_notes: {
       tips: [
         "Warning: vehicles may be on or near runway 17/35. Check runway is clear before take-off and landing.",
-        "Uncontrolled airfield â€” make position reports early and check the runway visually."
+        "Uncontrolled airfield — make position reports early and check the runway visually."
       ]
     },
         charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
@@ -905,8 +905,8 @@ const AIRPORTS = [
     pilot_notes: {
       circuit_note: "Circuit shall be flown east and north of the runway. Confirm circuit altitude in current AIP charts.",
       tips: [
-        "The published circuit is specifically east and north of the runway â€” do not fly the circuit to the west or south.",
-        "Uncontrolled airfield â€” announce intentions on MF frequency."
+        "The published circuit is specifically east and north of the runway — do not fly the circuit to the west or south.",
+        "Uncontrolled airfield — announce intentions on MF frequency."
       ]
     },
         charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
@@ -1097,10 +1097,10 @@ const AIRPORTS = [
     services: { ppr: true, customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
-      circuit_note: "Glider circuit east of runway. Model aircraft circuit west of runway â€” be aware of separation. Confirm circuit altitude in current AIP charts.",
+      circuit_note: "Glider circuit east of runway. Model aircraft circuit west of runway — be aware of separation. Confirm circuit altitude in current AIP charts.",
       tips: [
         "Glider operations use the circuit east of runway. Model aircraft operate west of runway. Announce your position and be aware of both.",
-        "Uncontrolled airfield â€” listen out carefully and announce early."
+        "Uncontrolled airfield — listen out carefully and announce early."
       ]
     },
         charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
@@ -1295,7 +1295,7 @@ const AIRPORTS = [
       tips: [
         "Power aircraft must fly the circuit north of runway 13/31, at 1,300 ft MSL / 700 ft AGL.",
         "Glider operations use the circuit south of the runway. Announce your position and watch for gliders on base and final.",
-        "Uncontrolled airfield â€” listen out on the MF frequency."
+        "Uncontrolled airfield — listen out on the MF frequency."
       ]
     },
         charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
@@ -1348,8 +1348,8 @@ const AIRPORTS = [
     pilot_notes: {
       circuit_note: "RWY 05: Left-hand. RWY 23: Right-hand. RWY 14: Right-hand. RWY 32: Left-hand. Circuit at 1,000 ft.",
       tips: [
-        "No formal notification of runway surface conditions is published â€” check conditions yourself before use.",
-        "Night operations restricted 23:00â€“07:00. Touch-and-go permitted weekdays 07:00â€“18:00 only."
+        "No formal notification of runway surface conditions is published — check conditions yourself before use.",
+        "Night operations restricted 23:00–07:00. Touch-and-go permitted weekdays 07:00–18:00 only."
       ]
     },
         charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
@@ -1481,8 +1481,8 @@ const AIRPORTS = [
     remarks: [],
     pilot_notes: {
       tips: [
-        "Significant bird activity near the runway â€” birds are reluctant to move. Exercise caution on approach and landing.",
-        "Uncontrolled airfield â€” announce intentions early on MF."
+        "Significant bird activity near the runway — birds are reluctant to move. Exercise caution on approach and landing.",
+        "Uncontrolled airfield — announce intentions early on MF."
       ]
     },
         charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
@@ -1511,10 +1511,10 @@ const AIRPORTS = [
       t_and_g: "No touch-and-go or training/practice flights permitted at this airfield.",
       tips: [
         "Aircraft with engines over 200 HP are not permitted except in emergencies.",
-        "Helicopter operations in the circuit are prohibited, except LHG helicopters â€” and only with written permission from the FKM chairman.",
+        "Helicopter operations in the circuit are prohibited, except LHG helicopters — and only with written permission from the FKM chairman.",
         "No training or practice flights are allowed.",
-        "This airfield is close to the Reykjavík (BIRK) CTR â€” file a flight plan and obtain Reykjavík Tower clearance before entering the CTR.",
-        "Unusually restricted airfield â€” read all published AIP conditions before use."
+        "This airfield is close to the Reykjavík (BIRK) CTR — file a flight plan and obtain Reykjavík Tower clearance before entering the CTR.",
+        "Unusually restricted airfield — read all published AIP conditions before use."
       ]
     },
         charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
@@ -1624,8 +1624,8 @@ const AIRPORTS = [
     remarks: [],
     pilot_notes: {
       tips: [
-        "Minimal bird activity at the airfield â€” no nesting recorded.",
-        "AFIS service â€” contact on published frequency. Separation is the pilot's responsibility."
+        "Minimal bird activity at the airfield — no nesting recorded.",
+        "AFIS service — contact on published frequency. Separation is the pilot's responsibility."
       ]
     },
         charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
@@ -1653,7 +1653,7 @@ const AIRPORTS = [
       tips: [
         "Arctic tern nesting around the airport, mainly in the moors east of the runway. Expect birds on and around the runway from 1 May through 30 September.",
         "Razorbill (Rita) present at the cliff northwest of the runway.",
-        "Uncontrolled airfield â€” announce intentions on MF frequency."
+        "Uncontrolled airfield — announce intentions on MF frequency."
       ]
     },
         charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
@@ -1681,8 +1681,8 @@ const AIRPORTS = [
       tips: [
         "Small birds and ducks common in the marshes around the airport.",
         "Swans and geese at Miklavatn lake southwest of the runway.",
-        "Arctic tern nesting west of the runway â€” expect bird activity on approach to runway.",
-        "AFIS service â€” contact on published frequency. Separation is the pilot's responsibility."
+        "Arctic tern nesting west of the runway — expect bird activity on approach to runway.",
+        "AFIS service — contact on published frequency. Separation is the pilot's responsibility."
       ]
     },
         charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
@@ -1710,7 +1710,7 @@ const AIRPORTS = [
       tips: [
         "Geese nest east of the airport. They arrive late April and are present through June, returning again in August.",
         "Eider duck nesting at the pond southwest of the airport.",
-        "AFIS service â€” contact on published frequency. Separation is the pilot's responsibility."
+        "AFIS service — contact on published frequency. Separation is the pilot's responsibility."
       ]
     },
         charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"

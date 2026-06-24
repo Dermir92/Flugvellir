@@ -192,9 +192,9 @@ export default function MapPageClient() {
             {t('disclaimer')}
           </span>
           <span className="footer-credit">
-            <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">
-              © OpenStreetMap
-            </a>
+            <a href="https://foxel.is" target="_blank" rel="noopener noreferrer">Foxel</a>
+            <span className="footer-sep"> · </span>
+            <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">© OpenStreetMap</a>
           </span>
         </div>
       </footer>
