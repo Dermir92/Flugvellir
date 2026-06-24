@@ -99,7 +99,7 @@ export default function MapPageClient() {
             <span className="header-link-dot" aria-hidden="true">·</span>
             <a className="header-link" href="https://en.vedur.is/aviation/" target="_blank" rel="noopener noreferrer">{t('link_weather')}</a>
             <span className="header-link-dot" aria-hidden="true">·</span>
-            <a className="header-link" href="https://notam.isavia.is/" target="_blank" rel="noopener noreferrer">{t('link_notam')}</a>
+            <a className="header-link" href="https://www.avians.is/en/c-preflight-information/notam" target="_blank" rel="noopener noreferrer">{t('link_notam')}</a>
           </nav>
           <div className="header-controls">
             <div className="search-wrap">
