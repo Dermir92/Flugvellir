@@ -1537,33 +1537,267 @@ body.vfr-modal-open { overflow: hidden; }
 }
 .vfr-disclaimer strong { color: var(--text-secondary); }
 
+/* === HEADER REGION BADGE === */
+.ap-hdr-region {
+  font-size: 12px;
+  color: #a0cce8;
+  margin-left: auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* === STATUS CARD === */
+.ap-status-wrap {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 24px 24px 0;
+}
+
+.status-card {
+  background: var(--navy);
+  border: 1px solid rgba(126,207,245,0.18);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(10,30,48,0.18);
+}
+
+.status-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px 12px;
+  border-bottom: 1px solid rgba(126,207,245,0.12);
+}
+
+.status-title {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #a0cce8;
+}
+
+.status-loading-text { font-size: 12px; color: #7099b8; }
+.status-no-metar     { font-size: 12px; color: #7099b8; }
+
+.status-cat {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 3px 10px;
+  border-radius: 4px;
+}
+.status-cat--vfr  { background: var(--moss);      color: #ffffff; }
+.status-cat--mvfr { background: var(--glacier-dim); color: var(--navy); }
+.status-cat--ifr  { background: var(--volcanic);  color: #ffffff; }
+.status-cat--lifr { background: #7a1a0a;           color: #ffffff; }
+
+.status-met-row {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid rgba(126,207,245,0.1);
+}
+
+.status-met-cell {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 14px 20px;
+  border-right: 1px solid rgba(126,207,245,0.1);
+}
+.status-met-cell:last-child { border-right: none; }
+
+.status-met-lbl {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #7ecff5;
+}
+
+.status-met-val {
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  font-family: var(--font-mono);
+}
+
+.status-rwy-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.status-rwy-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 20px;
+  border-bottom: 1px solid rgba(126,207,245,0.08);
+}
+.status-rwy-row:last-child { border-bottom: none; }
+.status-rwy-row--pref { background: rgba(42,144,80,0.12); }
+
+.status-rwy-num {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  color: #7ecff5;
+  width: 68px;
+  flex-shrink: 0;
+}
+
+.status-rwy-comp,
+.status-rwy-xw {
+  font-size: 13px;
+  color: #c0e0f5;
+  flex: 1;
+}
+.status-rwy-comp strong,
+.status-rwy-xw strong {
+  color: #ffffff;
+  font-size: 15px;
+}
+
+.status-comp-lbl { color: #a0cce8; font-size: 12px; }
+.status-comp-lbl--tail { color: var(--volcanic-light); }
+
+.status-pref-badge {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: var(--moss);
+  color: #ffffff;
+  padding: 2px 8px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.status-ppr-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 20px;
+  background: rgba(224,85,69,0.15);
+  border-top: 1px solid rgba(224,85,69,0.3);
+}
+
+.status-ppr-badge {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  background: var(--volcanic);
+  color: #ffffff;
+  padding: 3px 10px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.status-ppr-note {
+  font-size: 12px;
+  color: #c0e0f5;
+}
+
+/* === TWO-COLUMN BODY GRID === */
+.ap-body-grid {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 24px 24px 60px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.ap-col {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* === INLINE VFR / PILOT NOTES === */
+.ap-card--pilot-notes {
+  border-color: rgba(126,207,245,0.3);
+}
+.ap-card--pilot-notes .ap-card-title {
+  background: rgba(30,90,138,0.15);
+  border-bottom-color: rgba(126,207,245,0.2);
+}
+
+.vfr-inline-body {
+  padding: 0;
+}
+.vfr-inline-body .vfr-section {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--card-border);
+}
+.vfr-inline-body .vfr-section:last-child { border-bottom: none; }
+.vfr-inline-body .vfr-section-title {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-label);
+  margin-bottom: 6px;
+}
+.vfr-inline-body .vfr-text { font-size: 13.5px; color: var(--text-secondary); line-height: 1.55; }
+.vfr-inline-body .vfr-tips { padding-left: 16px; margin: 4px 0 0; }
+.vfr-inline-body .vfr-tips li { font-size: 13px; color: var(--text-secondary); margin-bottom: 4px; line-height: 1.5; }
+.vfr-inline-body .vfr-meta-row { display: flex; justify-content: space-between; font-size: 13px; color: var(--text-secondary); padding: 3px 0; }
+.vfr-inline-body .vfr-meta-lbl { color: var(--text-muted); font-size: 12px; }
+.vfr-inline-body .vfr-section--meta { background: var(--surface); }
+.vfr-inline-body .vfr-disclaimer {
+  padding: 12px 18px;
+  font-size: 11.5px;
+  color: var(--text-muted);
+  background: var(--surface);
+  border-top: 1px solid var(--card-border);
+  line-height: 1.5;
+}
+
+/* charts wrap — keep full width */
+.ap-charts-wrap {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 24px 32px;
+}
+
 /* === AIRPORT RESPONSIVE === */
+@media (max-width: 860px) {
+  .ap-body-grid {
+    grid-template-columns: 1fr;
+    padding: 20px 16px 48px;
+    gap: 16px;
+  }
+  .ap-status-wrap { padding: 16px 16px 0; }
+  .ap-charts-wrap { padding: 0 16px 24px; }
+}
+
 @media (max-width: 720px) {
-  .ap-hero-inner { grid-template-columns: 1fr; gap: 24px; }
-  .ap-hero-name { font-size: 34px; }
-  .ap-hero-map-wrap { order: -1; }
-  .ap-mini-map { height: 200px; border-radius: var(--radius); border-bottom: 1px solid rgba(126,207,245,0.15); }
-  .ap-mini-map-label { border-radius: 0 0 var(--radius) var(--radius); }
-  .ap-main { padding: 20px 16px 48px; gap: 16px; }
-  .ap-hero { padding: 24px 16px 0; }
-  .ap-stats-strip { padding: 0 16px; }
   .ap-page-header { padding: 0 16px; gap: 8px; }
   .ap-hdr-name { display: none; }
+  .ap-hdr-region { display: none; }
   .runways-grid { padding: 14px; gap: 12px; }
   .metar-section { padding: 14px; }
   .metar-item { width: 100%; }
   .ap-footer { padding: 0 16px; }
+  .status-met-row { flex-direction: column; }
+  .status-met-cell { border-right: none; border-bottom: 1px solid rgba(126,207,245,0.1); padding: 10px 16px; }
+  .status-met-cell:last-child { border-bottom: none; }
+  .status-rwy-row { flex-wrap: wrap; gap: 8px; }
 }
 
 @media (max-width: 480px) {
-  .ap-hero-name { font-size: 28px; }
-  .ap-hero-region { font-size: 12px; }
-  .ap-hero-desc { font-size: 14px; }
   .services-grid { grid-template-columns: 1fr 1fr; }
-  .ap-stat-value { font-size: 16px; }
   .rwy-card { flex-direction: column; }
   .freq-hz { font-size: 18px; }
   .notam-validity { display: none; }
+  .status-rwy-num { width: auto; }
 }
 
 @media (max-width: 600px) {

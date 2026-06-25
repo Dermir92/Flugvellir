@@ -76,6 +76,22 @@ function buildVfrContent(a: Airport): string {
   `
 }
 
+export function VfrSection({ airport }: { airport: Airport }) {
+  if (!airport.pilot_notes) return null
+  return (
+    <div className="ap-card ap-card--pilot-notes">
+      <div className="ap-card-title">
+        Pilot Notes
+        <span className="notam-src">AIP-sourced</span>
+      </div>
+      <div
+        className="vfr-inline-body"
+        dangerouslySetInnerHTML={{ __html: buildVfrContent(airport) }}
+      />
+    </div>
+  )
+}
+
 export function VfrButton({ airport, variant }: { airport: Airport; variant: 'header' | 'hero' }) {
   const [open, setOpen] = useState(false)
 
