@@ -1471,7 +1471,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: true, jet_a1: false, supplier: "AVGAS 100LL — limited supply, confirm availability before departure" },
-    services: { ppr: true, customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: false, customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
       entry: "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk.",
