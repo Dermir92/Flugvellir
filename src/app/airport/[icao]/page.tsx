@@ -107,6 +107,23 @@ export default async function AirportPage(props: PageProps<'/airport/[icao]'>) {
           {/* Pilot Notes — inline, first-class */}
           <VfrSection airport={a} />
 
+          {/* Remarks — operational knowledge, belongs with pilot notes */}
+          {a.remarks?.length ? (
+            <div className="ap-card">
+              <div className="ap-card-title">Remarks</div>
+              <div className="remarks-body">
+                <ul className="remark-list">
+                  {a.remarks.map((r, i) => (
+                    <li key={i} className="remark-item">
+                      <span className="remark-dot" aria-hidden="true" />
+                      <span>{r}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ) : null}
+
           {/* NOTAMs */}
           <NotamCard icao={a.icao} />
 
@@ -214,23 +231,6 @@ export default async function AirportPage(props: PageProps<'/airport/[icao]'>) {
               </div>
             </div>
           )}
-
-          {/* Remarks */}
-          {a.remarks?.length ? (
-            <div className="ap-card">
-              <div className="ap-card-title">Remarks</div>
-              <div className="remarks-body">
-                <ul className="remark-list">
-                  {a.remarks.map((r, i) => (
-                    <li key={i} className="remark-item">
-                      <span className="remark-dot" aria-hidden="true" />
-                      <span>{r}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          ) : null}
 
           {/* Weather — demoted to bottom of reference column */}
           <WeatherCard lat={a.lat} lng={a.lng} />
