@@ -1470,9 +1470,14 @@ const AIRPORTS = [
     ],
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
-    fuel: { avgas: true, jet_a1: false, supplier: "AVGAS 100LL" },
+    fuel: { avgas: true, jet_a1: false, supplier: "AVGAS 100LL — limited supply, confirm availability before departure" },
     services: { ppr: true, customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
+    pilot_notes: {
+      entry: "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk.",
+      traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz — \"Stórikroppur Traffic\" — and report position.",
+      sample_call: "Stórikroppur Traffic, TF-XXX, Cessna 172, [position], VFR inbound, blind."
+    },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
   },
   {
