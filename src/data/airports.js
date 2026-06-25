@@ -823,13 +823,14 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 434 1210", ppr_contact: "Böðvar Magnússon (Isavia District 1)", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz — \"Búðardalur umferð\" — and report position.",
       sample_call: "Búðardalur umferð, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
       tips: [
-        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk."
+        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk.",
+        "21 m mast 65 m south of the runway end — obstacle data in AIP BIBR AD 2.10."
       ]
     },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
@@ -851,14 +852,15 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 478 8288", ppr_contact: "Sveitastjórnarskrifstofa Djúpavogs (Isavia District 4)", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.400 MHz — \"Djúpivogur umferð\" — and report position.",
       sample_call: "Djúpivogur umferð, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
       tips: [
         "Warning: vehicles may be on or near runway 17/35. Check runway is clear before take-off and landing.",
-        "Uncontrolled airfield — make position reports early and check the runway visually."
+        "Uncontrolled airfield — make position reports early and check the runway visually.",
+        "High ground west of runway. Mast 1 NM north at 230 ft MSL — see AIP BIDV AD 2.10."
       ]
     },
         charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
@@ -880,7 +882,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 862 1766", ppr_contact: "Gunnar Sigurjónsson (Isavia District 4)", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.400 MHz — \"Fagurhólsmýri umferð\" — and report position.",
@@ -908,7 +910,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 893 0331", ppr_contact: "Þröstur Jónsson (Flugklúbbur Flúða / Isavia)", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz — \"Flúðir umferð\" — and report position.",
@@ -937,7 +939,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 864 7072", ppr_contact: "Guðmundur J. Jónasson (Isavia District 3)", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz — \"Grímsstaðir umferð\" — and report position.",
@@ -965,13 +967,14 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 892 0268", ppr_contact: "Sigurður Sigurbergsson (eigandi / owner)", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz — \"Grundarfjörður umferð\" — and report position.",
       sample_call: "Grundarfjörður umferð, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
       tips: [
-        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk."
+        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk.",
+        "Emergency shelter on site with fire extinguisher and first aid kit."
       ]
     },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
@@ -994,7 +997,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 840 7026", ppr_contact: "Matthías Sveinbjörnsson (Flugmálafélag Íslands / Isavia District 1)", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.400 MHz — \"Hella umferð\" — and report position.",
@@ -1002,7 +1005,9 @@ const AIRPORTS = [
       circuit_note: "Circuit shall be flown east and north of the runway. Confirm circuit altitude in current AIP charts.",
       tips: [
         "The published circuit is specifically east and north of the runway — do not fly the circuit to the west or south.",
-        "Uncontrolled airfield — announce intentions on MF frequency."
+        "Uncontrolled airfield — announce intentions on MF frequency.",
+        "Traffic circuit is east and north of the runway.",
+        "Pilot-activated runway lights (RWY 04/22) on 122.8 MHz — key 3, 5, or 7 times. Lights extinguish automatically after 18 min."
       ]
     },
         charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
@@ -1025,7 +1030,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 864 7072", ppr_contact: "Guðmundur J. Jónasson (Isavia District 3)", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz — \"Herðubreiðarlindir umferð\" — and report position.",
@@ -1053,13 +1058,14 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 424 5660", ppr_contact: "Umdæmisstjóri District 2 (Isavia)", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.600 MHz — \"Hólmavík umferð\" — and report position.",
       sample_call: "Hólmavík umferð, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
       tips: [
-        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk."
+        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk.",
+        "Fence at the south end of the runway — obstacle data in AIP BIHK AD 2.10."
       ]
     },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
@@ -1081,7 +1087,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 892 1550", ppr_contact: "Bergþór Kristleifsson (Isavia District 1)", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
       circuit_alt_ft: null,
@@ -1090,7 +1096,8 @@ const AIRPORTS = [
       sample_call: "Húsafell umferð, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
       tips: [
         "No taxiway or apron — only one aircraft may be parked at the airstrip at a time. Confirm the strip is clear before arrival.",
-        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk."
+        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk.",
+        "Safety area north of RWY 10/28 is partially limited. Steep slope and obstacles near the small power station NW of the runway — see AIP BIHZ AD 2.12."
       ]
     },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
@@ -1113,13 +1120,14 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 424 5387", ppr_contact: "Helgi Bjarnason (Isavia District 1)", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz — \"Hveravellir umferð\" — and report position.",
       sample_call: "Hveravellir umferð, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
       tips: [
-        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk."
+        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk.",
+        "Surface can be soft — rocks may break through and damage tyres."
       ]
     },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
@@ -1173,13 +1181,14 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 424 5387", ppr_contact: "Helgi Bjarnason (Isavia District 1)", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz — \"Kerlingarfjöll umferð\" — and report position.",
       sample_call: "Kerlingarfjöll umferð, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
       tips: [
-        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk."
+        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk.",
+        "Aerial wire strung from a cabin across the ravine — obstacle data in AIP BIKE AD 2.10."
       ]
     },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
@@ -1201,7 +1210,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 424 5387", ppr_contact: "Helgi Bjarnason (Isavia District 1)", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.400 MHz — \"Kirkjubæjarklaustur umferð\" — and report position.",
@@ -1229,7 +1238,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 860 5634", ppr_contact: "Umdæmisstjóri District 3 (Isavia)", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
   },
@@ -1248,13 +1257,15 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "None", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 463 1313", ppr_contact: "Melgerðismelar (glider aerodrome, Isavia District 3)", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
       circuit_note: "Glider circuit east of runway. Model aircraft circuit west of runway — be aware of separation. Confirm circuit altitude in current AIP charts.",
       tips: [
         "Glider operations use the circuit east of runway. Model aircraft operate west of runway. Announce your position and be aware of both.",
-        "Uncontrolled airfield — listen out carefully and announce early."
+        "Uncontrolled airfield — listen out carefully and announce early.",
+        "Glider aerodrome. Glider circuit east of the runway; powered aircraft circuit west. ATZ: 2 NM radius, upper limit 1,500 ft AMSL, H24.",
+        "Before entering the ATZ, contact both Akureyri Tower on 118.200 MHz and Melgerðismelar on 119.900 MHz."
       ]
     },
         charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
@@ -1276,7 +1287,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 892 0008", ppr_contact: "Múlakot (einkavöllur / private)", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.400 MHz — \"Múlakot umferð\" — and report position.",
@@ -1304,13 +1315,14 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 424 5639", ppr_contact: "Umdæmisstjóri District 4 (Isavia)", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz — \"Norðfjörður umferð\" — and report position.",
       sample_call: "Norðfjörður umferð, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
       tips: [
-        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk."
+        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk.",
+        "AFIS (Norðfjörður Radio) available on request for ambulance and emergency flights only."
       ]
     },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
@@ -1333,7 +1345,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 424 5387", ppr_contact: "Helgi Bjarnason (Isavia District 1)", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz — \"Nýidalur umferð\" — and report position.",
@@ -1361,7 +1373,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 465 1269", ppr_contact: "Umdæmisstjóri District 3 (Isavia)", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz — \"Raufarhöfn umferð\" — and report position.",
@@ -1389,13 +1401,14 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 424 5660", ppr_contact: "Umdæmisstjóri District 2 (Isavia)", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz — \"Reykhólar umferð\" — and report position.",
       sample_call: "Reykhólar umferð, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
       tips: [
-        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk."
+        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk.",
+        "Power line 300 m from the east end of the runway — obstacle data in AIP BIRE AD 2.10."
       ]
     },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
@@ -1417,13 +1430,14 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: true, jet_a1: false, supplier: "AVGAS 100LL" },
-    services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 860 5634", ppr_contact: "Umdæmisstjóri District 3 (Isavia)", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz — \"Reykjahlíð umferð\" — and report position.",
       sample_call: "Reykjahlíð umferð, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
       tips: [
-        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk."
+        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk.",
+        "Terrain rises above obstacle surfaces 2 km north of the airport — see AIP BIRL AD 2.10."
       ]
     },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
@@ -1445,13 +1459,14 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 424 5660", ppr_contact: "Umdæmisstjóri District 2 (Isavia)", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz — \"Reykjanes umferð\" — and report position.",
       sample_call: "Reykjanes umferð, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
       tips: [
-        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk."
+        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk.",
+        "No safety areas on either side of the runway. Obstacles at both runway ends — see AIP BIRS AD 2.10."
       ]
     },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
@@ -1473,13 +1488,15 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: true, supplier: "Jet A-1 available" },
-    services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 894 3611", ppr_contact: "Guðjón Hrannar Björnsson (Isavia District 1)", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz — \"Rif umferð\" — and report position.",
       sample_call: "Rif umferð, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
       tips: [
-        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk."
+        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk.",
+        "1,542 ft MSL mast 3 NM west of the airport — obstacle data in AIP BIRF AD 2.10.",
+        "NDB RF 330 kHz is on the field with a range of ~50 NM — not monitored."
       ]
     },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
@@ -1499,14 +1516,15 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "None", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 697 8730", ppr_contact: "Svifflugfélag Íslands (Isavia)", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
       circuit_note: "Power aircraft circuit north of runway 13/31 at 1,300 ft MSL (700 ft AGL). Glider circuit south of runway.",
       tips: [
         "Power aircraft must fly the circuit north of runway 13/31, at 1,300 ft MSL / 700 ft AGL.",
         "Glider operations use the circuit south of the runway. Announce your position and watch for gliders on base and final.",
-        "Uncontrolled airfield — listen out on the MF frequency."
+        "Uncontrolled airfield — listen out on the MF frequency.",
+        "Glider aerodrome. Glider circuit south of the runway; powered aircraft circuit north at 1,300 ft MSL / 700 ft AGL."
       ]
     },
         charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
@@ -1533,13 +1551,15 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 699 1414", ppr_contact: "Ómar Ragnarsson (eigandi / private)", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz — \"Sauðárflugvöllur umferð\" — and report position.",
       sample_call: "Sauðárflugvöllur umferð, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
       tips: [
-        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk."
+        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk.",
+        "High ground (~50 ft) at the ends of runways 03/21, 13/31, and 18/36 — see AIP BISA AD 2.10.",
+        "Seasonal use — conditions may change with short notice. Nearest automatic met station is at Kárahnjúkar, 17 km away."
       ]
     },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
@@ -1562,7 +1582,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: true, jet_a1: false, supplier: "AVGAS 100LL" },
-    services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 856 5513", ppr_contact: "Guðjón Kjartansson (Flugklúbbur Selfoss)", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz — \"Selfoss umferð\" — and report position.",
@@ -1570,7 +1590,10 @@ const AIRPORTS = [
       circuit_note: "RWY 05: Left-hand. RWY 23: Right-hand. RWY 14: Right-hand. RWY 32: Left-hand. Circuit at 1,000 ft.",
       tips: [
         "No formal notification of runway surface conditions is published — check conditions yourself before use.",
-        "Night operations restricted 23:00–07:00. Touch-and-go permitted weekdays 07:00–18:00 only."
+        "Night operations restricted 23:00–07:00. Touch-and-go permitted weekdays 07:00–18:00 only.",
+        "Takeoffs prohibited 23:00–07:00 (emergencies excepted). Touch-and-go permitted weekdays 07:00–18:00 only.",
+        "Circuit altitude 1,000 ft MSL. RWY 05 left circuit. RWY 23 right circuit — pass Sandvíkurbær at 1,000 ft before turning downwind. RWY 14 right circuit. RWY 32 left circuit.",
+        "Pilot-activated runway lights (RWY 05/23) on 122.8 MHz — key 3 times. Auto-off after 18 min. Emergency use only."
       ]
     },
         charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
@@ -1592,13 +1615,14 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 464 9100", ppr_contact: "Fjallabyggð sveitarfélag (municipality)", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz — \"Siglufjörður umferð\" — and report position.",
       sample_call: "Siglufjörður umferð, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
       tips: [
-        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk."
+        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk.",
+        "This airfield is restricted to ambulance and emergency flights only — not open to general traffic."
       ]
     },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
@@ -1621,13 +1645,15 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: true, jet_a1: true, supplier: "Check NOTAMs" },
-    services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 478 2406", ppr_contact: "Jón Grétar Sigurðsson (Atlantsflug ehf.)", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.400 MHz — \"Skaftafell umferð\" — and report position.",
       sample_call: "Skaftafell umferð, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
       tips: [
-        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk."
+        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk.",
+        "Vehicle traffic on road at the thresholds of RWY 15 and 16 — check runway is clear before take-off and landing.",
+        "Vatnajökull National Park is northwest of the airport — noise-sensitive area. Announce your arrival on frequency in advance."
       ]
     },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
@@ -1650,7 +1676,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 424 5387", ppr_contact: "Helgi Bjarnason (Isavia District 1)", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.400 MHz — \"Skálavatn umferð\" — and report position.",
@@ -1678,7 +1704,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 424 5387", ppr_contact: "Helgi Bjarnason (Isavia District 1)", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.400 MHz — \"Skógasandur umferð\" — and report position.",
@@ -1706,14 +1732,15 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: true, jet_a1: false, supplier: "AVGAS 100LL — limited supply, confirm availability before departure" },
-    services: { ppr: false, customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: false, ppr_phone: "+354 694 4676", ppr_contact: "Snorri Kristleifsson (Isavia District 1)", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
       entry: "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk.",
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz — \"Stórikroppur umferð\" — and report position.",
       sample_call: "Stórikroppur umferð, TF-XXX, Cessna 172, [position], VFR inbound, blind.",
       tips: [
-        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk."
+        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk.",
+        "Pilot shelter on site — door code 0325."
       ]
     },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
@@ -1735,14 +1762,17 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 894 3611", ppr_contact: "Guðjón Hrannar Björnsson (Isavia District 1)", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz — \"Stykkishólmur umferð\" — and report position.",
       sample_call: "Stykkishólmur umferð, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
       tips: [
         "Significant bird activity near the runway — birds are reluctant to move. Exercise caution on approach and landing.",
-        "Uncontrolled airfield — announce intentions early on MF."
+        "Uncontrolled airfield — announce intentions early on MF.",
+        "Traffic circuit is west of the runway.",
+        "360 ft MSL mast east of the runway — obstacle data in AIP BIST AD 2.10.",
+        "Bird hazard: large numbers of gulls and geese near the runway year-round."
       ]
     },
     hazards: [
@@ -1767,7 +1797,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: true, jet_a1: false, supplier: "AVGAS 100LL" },
-    services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 858 4286", ppr_contact: "Sigurjón Valsson (Flugklúbbur Mosfellsbæjar)", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
       circuit_note: "Circuit at 700 ft, north of the airfield only.",
@@ -1777,7 +1807,10 @@ const AIRPORTS = [
         "Helicopter operations in the circuit are prohibited, except LHG helicopters — and only with written permission from the FKM chairman.",
         "No training or practice flights are allowed.",
         "This airfield is close to the Reykjavík (BIRK) CTR — file a flight plan and obtain Reykjavík Tower clearance before entering the CTR.",
-        "Unusually restricted airfield — read all published AIP conditions before use."
+        "Unusually restricted airfield — read all published AIP conditions before use.",
+        "Members and guests only — PPR mandatory.",
+        "Aircraft over 200 HP are not permitted. Helicopters (except LHG) require written permission from the club chairman. Circuit at 700 ft north of the field.",
+        "Within Reykjavík CTR — file a flight plan and obtain BIRK Tower clearance before entering."
       ]
     },
         charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
@@ -1799,7 +1832,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 487 1243", ppr_contact: "Reynir Ragnarsson (Isavia District 1)", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.400 MHz — \"Vík umferð\" — and report position.",
@@ -1827,13 +1860,14 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 424 4090", ppr_contact: "AFIS BIIS / Umdæmisstjóri District 2 (Isavia)", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz — \"Þingeyri umferð\" — and report position.",
       sample_call: "Þingeyri umferð, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
       tips: [
-        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk."
+        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk.",
+        "8 m high power line 1,000 m from the SE end of the runway — obstacle data in AIP BITE AD 2.10."
       ]
     },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
@@ -1856,13 +1890,14 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 424 5387", ppr_contact: "Helgi Bjarnason (Isavia District 1)", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.400 MHz — \"Þórsmörk umferð\" — and report position.",
       sample_call: "Þórsmörk umferð, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
       tips: [
-        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk."
+        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk.",
+        "Power line 900 m from the east end of the runway — obstacle data in AIP BITM AD 2.10."
       ]
     },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
@@ -1884,7 +1919,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "AFIS", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 424 4085", ppr_contact: "Bíldudalur AFIS / Umdæmisstjóri District 2 (Isavia)", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
       entry: "Contact Bíldudalur AFIS on 119.100 before arrival.",
@@ -1909,12 +1944,13 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "AFIS", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 424 4086", ppr_contact: "Gjögur AFIS / Umdæmisstjóri District 2 (Isavia)", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
       tips: [
         "Minimal bird activity at the airfield — no nesting recorded.",
-        "AFIS service — contact on published frequency. Separation is the pilot's responsibility."
+        "AFIS service — contact on published frequency. Separation is the pilot's responsibility.",
+        "AFIS available limited hours: Summer (Jun–Aug) Fri 09:00–16:00; Winter (Sep–May) Mon & Fri 10:00–16:00."
       ]
     },
         charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
@@ -1936,13 +1972,16 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "AFIS", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 424 4070", ppr_contact: "Grímsey AFIS (Isavia District 3)", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
       tips: [
         "Arctic tern nesting around the airport, mainly in the moors east of the runway. Expect birds on and around the runway from 1 May through 30 September.",
         "Razorbill (Rita) present at the cliff northwest of the runway.",
-        "Uncontrolled airfield — announce intentions on MF frequency."
+        "Uncontrolled airfield — announce intentions on MF frequency.",
+        "Multiple obstacles east of the runway — antennas, masts, and buildings at 93–412 ft — see AIP BIGR AD 2.10.",
+        "Arctic tern nesting east of the runway 1 May – 30 Sep — expect aggressive bird behaviour at low altitude.",
+        "PAPI on RWY 17 is only usable within 8° east of the centreline."
       ]
     },
     hazards: [
@@ -1967,14 +2006,15 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "AFIS", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 424 4072", ppr_contact: "Sauðárkrókur AFIS (Isavia District 3)", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
       tips: [
         "Small birds and ducks common in the marshes around the airport.",
         "Swans and geese at Miklavatn lake southwest of the runway.",
         "Arctic tern nesting west of the runway — expect bird activity on approach to runway.",
-        "AFIS service — contact on published frequency. Separation is the pilot's responsibility."
+        "AFIS service — contact on published frequency. Separation is the pilot's responsibility.",
+        "Multiple obstacles around the airport including masts and terrain at 158–344 ft MSL — see AIP BIKR AD 2.10."
       ]
     },
     hazards: [
@@ -1999,13 +2039,15 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "AFIS", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 424 4071", ppr_contact: "Þórshöfn AFIS (Isavia District 3)", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
       tips: [
         "Geese nest east of the airport. They arrive late April and are present through June, returning again in August.",
         "Eider duck nesting at the pond southwest of the airport.",
-        "AFIS service — contact on published frequency. Separation is the pilot's responsibility."
+        "AFIS service — contact on published frequency. Separation is the pilot's responsibility.",
+        "Terrain in Area 2 rises to 515 ft MSL to the east and SE of the airport — see AIP BITN AD 2.10.",
+        "Geese nest east of the airport late April – early June, returning August–September. Eider nesting SW of the airport."
       ]
     },
     hazards: [
