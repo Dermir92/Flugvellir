@@ -1457,11 +1457,11 @@ const AIRPORTS = [
   {
     icao: "BISR", iata: null,
     name: "Stórikroppur Airport", name_is: "Stórikroppur",
-    type: "small", city: "Stórikroppur", region: "Höfuðborgarsvæðið",
+    type: "small", city: "Stórikroppur", region: "Vesturland",
     elevation_ft: 119, elevation_m: 36,
     lat: 64.6344, lng: -21.4875,
     lat_dms: "64°38'04\"N", lng_dms: "021°29'15\"W",
-    description: "Stórikroppur airport in Höfuðborgarsvæðið, Iceland. IFR/VFR operations.",
+    description: "Stórikroppur airport in Vesturland, Iceland. VFR operations.",
     runways: [
       { id: "05/23", length_m: 700, width_m: 18, surface: "Asphalt-stabilized gravel", pcn: null, notes: null }
     ],
