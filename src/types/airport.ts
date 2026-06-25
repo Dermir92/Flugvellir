@@ -34,11 +34,24 @@ export interface Fuel {
 
 export interface Services {
   ppr: boolean
+  ppr_phone?: string
+  ppr_contact?: string
   customs: boolean
   deicing: boolean
   fire_cat?: string
   slots?: string
   handling?: string
+}
+
+export interface Hazard {
+  type: 'bird' | 'volcanic' | 'military' | 'terrain'
+  description: string
+  season?: string
+}
+
+export interface AirspaceInfo {
+  class: string
+  name: string
 }
 
 export interface PilotNotes {
@@ -47,6 +60,7 @@ export interface PilotNotes {
   circuit_dir?: string | null
   t_and_g?: string
   entry?: string
+  traffic?: string
   sample_call?: string
   tips?: string[]
 }
@@ -59,6 +73,7 @@ export interface Airport {
   name: string
   name_is: string
   type: AirportType
+  highland?: boolean
   city: string
   region: string
   elevation_ft: number
@@ -76,6 +91,8 @@ export interface Airport {
   services?: Services
   remarks?: string[]
   pilot_notes?: PilotNotes
+  hazards?: Hazard[]
+  airspace?: AirspaceInfo
   charts_url?: string
 }
 

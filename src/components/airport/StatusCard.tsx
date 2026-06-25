@@ -102,7 +102,7 @@ export default function StatusCard({ airport }: { airport: Airport }) {
       .catch(() => setLoaded(true))
   }, [airport.icao])
 
-  const hasPpr = airport.services?.ppr
+
 
   const cat = loaded && raw ? getFlightCat(raw) : null
 
@@ -186,12 +186,6 @@ export default function StatusCard({ airport }: { airport: Airport }) {
         </div>
       )}
 
-      {hasPpr && (
-        <div className="status-ppr-bar">
-          <span className="status-ppr-badge">PPR REQUIRED</span>
-          <span className="status-ppr-note">Contact operator before departure</span>
-        </div>
-      )}
     </div>
   )
 }

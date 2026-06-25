@@ -16,8 +16,8 @@ export async function GET(
     }),
   ])
 
-  const metar = mr.ok ? await mr.json() : []
-  const taf   = tr.ok ? await tr.json() : []
+  const metar = mr.ok ? await mr.json().catch(() => []) : []
+  const taf   = tr.ok ? await tr.json().catch(() => []) : []
 
   return NextResponse.json({ metar, taf })
 }

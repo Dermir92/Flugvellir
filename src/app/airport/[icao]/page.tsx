@@ -3,11 +3,32 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 import { AIRPORTS, AIRAC_META } from '@/data/airports'
 import MetarCard from '@/components/airport/MetarCard'
-import WeatherCard from '@/components/airport/WeatherCard'
 import NotamCard from '@/components/airport/NotamCard'
 import StatusCard from '@/components/airport/StatusCard'
 import { VfrSection } from '@/components/airport/VfrGuide'
+import CircuitDiagram from '@/components/airport/CircuitDiagram'
+import AlternatesCard from '@/components/airport/AlternatesCard'
+import CrosswindCard from '@/components/airport/CrosswindCard'
+import ForecastCard from '@/components/airport/ForecastCard'
 import type { Airport } from '@/types/airport'
+import type { AltInfo } from '@/components/airport/AlternatesCard'
+
+function getAlternates(from: Airport, all: Airport[], count = 3): AltInfo[] {
+  const R = 6371
+  return all
+    .filter(a => a.icao !== from.icao)
+    .map(a => {
+      const dLat = (a.lat - from.lat) * Math.PI / 180
+      const dLng = (a.lng - from.lng) * Math.PI / 180
+      const lat1 = from.lat * Math.PI / 180
+      const lat2 = a.lat * Math.PI / 180
+      const x = Math.sin(dLat / 2) ** 2 + Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLng / 2) ** 2
+      const distNm = Math.round(R * 2 * Math.atan2(Math.sqrt(x), Math.sqrt(1 - x)) * 0.539957)
+      return { icao: a.icao, name: a.name, distNm }
+    })
+    .sort((a, b) => a.distNm - b.distNm)
+    .slice(0, count)
+}
 
 export async function generateStaticParams() {
   return AIRPORTS.map(a => ({ icao: a.icao }))
@@ -41,6 +62,7 @@ export default async function AirportPage(props: PageProps<'/airport/[icao]'>) {
 
   const svcBadge = a.hours?.service.toLowerCase() === 'atc'  ? 'atc'
                  : a.hours?.service.toLowerCase() === 'afis' ? 'afis' : 'other'
+  const alternates = getAlternates(a, AIRPORTS)
 
   return (
     <div className="airport-page">
@@ -56,6 +78,8 @@ export default async function AirportPage(props: PageProps<'/airport/[icao]'>) {
         <span className="ap-hdr-icao">{a.icao}</span>
         <span className="ap-hdr-name">{a.name}</span>
         <span className={`ap-hdr-badge ap-hdr-badge--${a.type}`}>{typeLabel(a.type)}</span>
+        {a.highland && <span className="ap-hdr-badge ap-hdr-badge--highland">Highland</span>}
+        {a.airspace && <span className="ap-hdr-badge ap-hdr-badge--airspace">{a.airspace.name} · Class {a.airspace.class}</span>}
         <span className="ap-hdr-region">{a.region} · {a.elevation_ft} ft AMSL</span>
       </header>
 
@@ -79,29 +103,37 @@ export default async function AirportPage(props: PageProps<'/airport/[icao]'>) {
                   const [lo, hi] = rwy.id.split('/')
                   const surfCls = rwy.surface.toLowerCase().includes('gravel') ? 'gravel' : 'asphalt'
                   return (
-                    <div key={rwy.id} className="rwy-card">
-                      <div className="rwy-visual" aria-hidden="true">
-                        <span className="rwy-end-num">{lo}</span>
-                        <div className="rwy-strip"><div className="rwy-cl" /></div>
-                        <span className="rwy-end-num">{hi || ''}</span>
-                      </div>
-                      <div className="rwy-info">
-                        <div className="rwy-id-label">{rwy.id}</div>
-                        <div className="rwy-dims-row">
-                          <strong>{rwy.length_m.toLocaleString()} m</strong>
-                          <span className="dim-x"> x </span>{rwy.width_m} m
+                    <div key={rwy.id}>
+                      <div className="rwy-card">
+                        <div className="rwy-visual" aria-hidden="true">
+                          <span className="rwy-end-num">{lo}</span>
+                          <div className="rwy-strip"><div className="rwy-cl" /></div>
+                          <span className="rwy-end-num">{hi || ''}</span>
                         </div>
-                        <div className="rwy-tags">
-                          <span className={`rwy-tag rwy-tag--${surfCls}`}>{rwy.surface}</span>
-                          {rwy.pcn && <span className="rwy-tag">PCN {rwy.pcn}</span>}
+                        <div className="rwy-info">
+                          <div className="rwy-id-label">{rwy.id}</div>
+                          <div className="rwy-dims-row">
+                            <strong>{rwy.length_m.toLocaleString()} m</strong>
+                            <span className="dim-x"> x </span>{rwy.width_m} m
+                          </div>
+                          <div className="rwy-tags">
+                            <span className={`rwy-tag rwy-tag--${surfCls}`}>{rwy.surface}</span>
+                            {rwy.pcn && <span className="rwy-tag">PCN {rwy.pcn}</span>}
+                          </div>
+                          {rwy.notes && <p className="rwy-note">{rwy.notes}</p>}
                         </div>
-                        {rwy.notes && <p className="rwy-note">{rwy.notes}</p>}
                       </div>
+                      <CircuitDiagram airport={a} runwayId={rwy.id} />
                     </div>
                   )
                 })}
               </div>
             </div>
+          )}
+
+          {/* Crosswind calculator — live wind from METAR, manual override for planning */}
+          {a.runways?.length > 0 && (
+            <CrosswindCard icao={a.icao} runways={a.runways} />
           )}
 
           {/* Pilot Notes — inline, first-class */}
@@ -132,8 +164,12 @@ export default async function AirportPage(props: PageProps<'/airport/[icao]'>) {
         {/* ── RIGHT COLUMN: reference ── */}
         <div className="ap-col">
 
-          {/* METAR / TAF */}
+          {/* METAR / TAF — always shown; ForecastCard self-hides when METAR exists */}
           <MetarCard icao={a.icao} />
+          <ForecastCard icao={a.icao} lat={a.lat} lng={a.lng} />
+
+          {/* Alternates — nearest airports with live conditions */}
+          <AlternatesCard alternates={alternates} />
 
           {/* Frequencies */}
           {a.frequencies?.length ? (
@@ -228,12 +264,27 @@ export default async function AirportPage(props: PageProps<'/airport/[icao]'>) {
                 </div>
                 {a.services.slots    && <div className="svc-extra"><strong>Slots:</strong> {a.services.slots}</div>}
                 {a.services.handling && <div className="svc-extra"><strong>Handling:</strong> {a.services.handling}</div>}
+                {a.services.ppr && (
+                  <div className="svc-ppr-row">
+                    <span className="svc-ppr-label">PPR</span>
+                    {a.services.ppr_phone ? (
+                      <span className="svc-ppr-info">
+                        {a.services.ppr_contact && <span className="svc-ppr-contact">{a.services.ppr_contact} · </span>}
+                        <a href={`tel:${a.services.ppr_phone.replace(/\s/g, '')}`} className="svc-ppr-phone">
+                          {a.services.ppr_phone}
+                        </a>
+                      </span>
+                    ) : (
+                      <span className="svc-ppr-info svc-ppr-info--unpublished">
+                        Contact operator — see AIP AD 2.18
+                      </span>
+                    )}
+                  </div>
+                )}
               </div>
             </div>
           )}
 
-          {/* Weather — demoted to bottom of reference column */}
-          <WeatherCard lat={a.lat} lng={a.lng} />
 
         </div>
       </div>

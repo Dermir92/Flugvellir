@@ -21,6 +21,15 @@ function buildVfrContent(a: Airport): string {
     circuitHtml = `<p class="vfr-text">Circuit information not available in this record. Check current AIP charts before flight.</p>`
   }
 
+  // --- Radio Procedures ---
+  const radioHtml = p.traffic
+    ? `<div class="vfr-section">
+        <div class="vfr-section-title">Radio Procedures</div>
+        <p class="vfr-text">${p.traffic}</p>
+        ${p.sample_call ? `<div class="vfr-sample-call"><span class="vfr-sample-lbl">Sample call:</span> ${p.sample_call}</div>` : ''}
+       </div>`
+    : ''
+
   // --- Touch & Go ---
   const tgText = p.t_and_g
     ? p.t_and_g
@@ -58,6 +67,7 @@ function buildVfrContent(a: Airport): string {
       <div class="vfr-section-title">Traffic Circuit</div>
       ${circuitHtml}
     </div>
+    ${radioHtml}
     <div class="vfr-section">
       <div class="vfr-section-title">Touch &amp; Go</div>
       <p class="vfr-text">${tgText}</p>
@@ -76,18 +86,53 @@ function buildVfrContent(a: Airport): string {
   `
 }
 
+const HAZARD_ICON: Record<string, string> = { bird: '🐦', volcanic: '🌋', military: '⚠', terrain: '⛰' }
+const HAZARD_COLOR: Record<string, string> = { bird: '#a8d8a8', volcanic: '#f0a060', military: '#f0c84a', terrain: '#e08060' }
+
 export function VfrSection({ airport }: { airport: Airport }) {
-  if (!airport.pilot_notes) return null
+  const hasHazards = (airport.hazards?.length ?? 0) > 0
+  if (!airport.pilot_notes && !hasHazards && !airport.highland) return null
   return (
     <div className="ap-card ap-card--pilot-notes">
       <div className="ap-card-title">
         Pilot Notes
         <span className="notam-src">AIP-sourced</span>
       </div>
-      <div
-        className="vfr-inline-body"
-        dangerouslySetInnerHTML={{ __html: buildVfrContent(airport) }}
-      />
+      {airport.highland && (
+        <div style={{
+          display: 'flex', alignItems: 'flex-start', gap: '10px',
+          background: 'transparent', border: '1px solid rgba(240,180,60,0.6)',
+          borderRadius: '6px', padding: '11px 14px', marginBottom: '10px',
+          fontSize: '12.5px', color: '#f0c84a', lineHeight: '1.5', fontWeight: 600
+        }}>
+          <span style={{ fontSize: '13px', flexShrink: 0, marginTop: '1px' }}>⚠</span>
+          <span>Highland airfield — density altitude, rapidly changing weather, and limited rescue services. Confirm conditions before departure.</span>
+        </div>
+      )}
+      {hasHazards && (
+        <div style={{ padding: '14px 18px 0', marginBottom: '0' }}>
+          <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.08em', color: '#7099b8', textTransform: 'uppercase', marginBottom: '8px' }}>Hazards</div>
+          {airport.hazards!.map((h, i) => (
+            <div key={i} style={{
+              display: 'flex', gap: '10px', alignItems: 'flex-start',
+              padding: '7px 0',
+              borderTop: i > 0 ? '1px solid rgba(255,255,255,0.05)' : 'none'
+            }}>
+              <span style={{ fontSize: '14px', flexShrink: 0, marginTop: '1px' }}>{HAZARD_ICON[h.type] ?? '⚠'}</span>
+              <div>
+                <div style={{ fontSize: '12px', color: HAZARD_COLOR[h.type] ?? '#c8e0f0', fontWeight: 500, lineHeight: 1.4 }}>{h.description}</div>
+                {h.season && <div style={{ fontSize: '11px', color: '#7099b8', marginTop: '3px' }}>{h.season}</div>}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+      {airport.pilot_notes && (
+        <div
+          className="vfr-inline-body"
+          dangerouslySetInnerHTML={{ __html: buildVfrContent(airport) }}
+        />
+      )}
     </div>
   )
 }

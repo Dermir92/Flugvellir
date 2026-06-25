@@ -1,0 +1,75 @@
+.overlay {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 900;
+  width: 288px;
+  background: rgba(10, 30, 48, 0.90);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(126, 207, 245, 0.2);
+  border-radius: 12px;
+  padding: 20px 20px 18px;
+  box-shadow: 0 8px 32px rgba(10, 30, 48, 0.45);
+}
+
+.overlayTitle {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 3px;
+}
+
+.overlaySubtitle {
+  font-size: 13px;
+  font-weight: 600;
+  color: #7ecff5;
+  margin-bottom: 4px;
+}
+
+.overlayDesc {
+  font-size: 11px;
+  color: #7099b8;
+  margin: 0 0 14px;
+  line-height: 1.45;
+}
+
+.overlaySearchWrap {
+  position: relative;
+}
+
+.overlayInput {
+  width: 100%;
+  box-sizing: border-box;
+  background: rgba(30, 90, 138, 0.35);
+  border: 1px solid rgba(126, 207, 245, 0.3);
+  border-radius: 8px;
+  padding: 10px 36px 10px 14px;
+  font-size: 14px;
+  color: #fff;
+  outline: none;
+}
+
+.overlayInput::placeholder {
+  color: rgba(126, 207, 245, 0.45);
+}
+
+.overlaySearchIcon {
+  position: absolute;
+  right: 11px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 15px;
+  height: 15px;
+  color: #7099b8;
+  pointer-events: none;
+}
+
+.overlayDropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  z-index: 910;
+}
