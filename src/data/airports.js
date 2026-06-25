@@ -750,7 +750,10 @@ const AIRPORTS = [
     ],
     pilot_notes: {
       traffic: "No ATS services on field. Make position reports on 118.400 MHz before arrival. VFR only.",
-      sample_call: "Bakki Traffic, TF-XXX, [type], [position], VFR inbound, blind."
+      sample_call: "Bakki umferð, TF-XXX, [type], [position], VFR inbound, blind.",
+      tips: [
+        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk."
+      ]
     },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
   },
@@ -794,7 +797,10 @@ const AIRPORTS = [
     ],
     pilot_notes: {
       traffic: "Uncontrolled airfield — make blind calls on 118.600 MHz before arrival. No ATS services on field.",
-      sample_call: "Blönduós Traffic, TF-XXX, [type], [position], VFR inbound, blind."
+      sample_call: "Blönduós umferð, TF-XXX, [type], [position], VFR inbound, blind.",
+      tips: [
+        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk."
+      ]
     },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
   },
@@ -820,8 +826,11 @@ const AIRPORTS = [
     services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
-      traffic: "All traffic in the vicinity is encouraged to make blind calls on 118.100 MHz — \"Búðardalur Traffic\" — and report position.",
-      sample_call: "Búðardalur Traffic, TF-XXX, [aircraft type], [position], VFR inbound, blind."
+      traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz — \"Búðardalur umferð\" — and report position.",
+      sample_call: "Búðardalur umferð, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
+      tips: [
+        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk."
+      ]
     },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
   },
@@ -845,8 +854,8 @@ const AIRPORTS = [
     services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
-      traffic: "All traffic in the vicinity is encouraged to make blind calls on 118.400 MHz — \"Djúpivogur Traffic\" — and report position.",
-      sample_call: "Djúpivogur Traffic, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
+      traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.400 MHz — \"Djúpivogur umferð\" — and report position.",
+      sample_call: "Djúpivogur umferð, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
       tips: [
         "Warning: vehicles may be on or near runway 17/35. Check runway is clear before take-off and landing.",
         "Uncontrolled airfield — make position reports early and check the runway visually."
@@ -874,8 +883,11 @@ const AIRPORTS = [
     services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
-      traffic: "All traffic in the vicinity is encouraged to make blind calls on 118.400 MHz — \"Fagurhólsmýri Traffic\" — and report position.",
-      sample_call: "Fagurhólsmýri Traffic, TF-XXX, [aircraft type], [position], VFR inbound, blind."
+      traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.400 MHz — \"Fagurhólsmýri umferð\" — and report position.",
+      sample_call: "Fagurhólsmýri umferð, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
+      tips: [
+        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk."
+      ]
     },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
   },
@@ -899,8 +911,11 @@ const AIRPORTS = [
     services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
-      traffic: "All traffic in the vicinity is encouraged to make blind calls on 118.100 MHz — \"Flúðir Traffic\" — and report position.",
-      sample_call: "Flúðir Traffic, TF-XXX, [aircraft type], [position], VFR inbound, blind."
+      traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz — \"Flúðir umferð\" — and report position.",
+      sample_call: "Flúðir umferð, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
+      tips: [
+        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk."
+      ]
     },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
   },
@@ -925,8 +940,11 @@ const AIRPORTS = [
     services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
-      traffic: "All traffic in the vicinity is encouraged to make blind calls on 118.100 MHz — \"Grímsstaðir Traffic\" — and report position.",
-      sample_call: "Grímsstaðir Traffic, TF-XXX, [aircraft type], [position], VFR inbound, blind."
+      traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz — \"Grímsstaðir umferð\" — and report position.",
+      sample_call: "Grímsstaðir umferð, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
+      tips: [
+        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk."
+      ]
     },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
   },
@@ -950,8 +968,11 @@ const AIRPORTS = [
     services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
-      traffic: "All traffic in the vicinity is encouraged to make blind calls on 118.100 MHz — \"Grundarfjörður Traffic\" — and report position.",
-      sample_call: "Grundarfjörður Traffic, TF-XXX, [aircraft type], [position], VFR inbound, blind."
+      traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz — \"Grundarfjörður umferð\" — and report position.",
+      sample_call: "Grundarfjörður umferð, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
+      tips: [
+        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk."
+      ]
     },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
   },
@@ -976,8 +997,8 @@ const AIRPORTS = [
     services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
-      traffic: "All traffic in the vicinity is encouraged to make blind calls on 118.400 MHz — \"Hella Traffic\" — and report position.",
-      sample_call: "Hella Traffic, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
+      traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.400 MHz — \"Hella umferð\" — and report position.",
+      sample_call: "Hella umferð, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
       circuit_note: "Circuit shall be flown east and north of the runway. Confirm circuit altitude in current AIP charts.",
       tips: [
         "The published circuit is specifically east and north of the runway — do not fly the circuit to the west or south.",
@@ -1007,8 +1028,11 @@ const AIRPORTS = [
     services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
-      traffic: "All traffic in the vicinity is encouraged to make blind calls on 118.100 MHz — \"Herðubreiðarlindir Traffic\" — and report position.",
-      sample_call: "Herðubreiðarlindir Traffic, TF-XXX, [aircraft type], [position], VFR inbound, blind."
+      traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz — \"Herðubreiðarlindir umferð\" — and report position.",
+      sample_call: "Herðubreiðarlindir umferð, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
+      tips: [
+        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk."
+      ]
     },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
   },
@@ -1032,8 +1056,11 @@ const AIRPORTS = [
     services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
-      traffic: "All traffic in the vicinity is encouraged to make blind calls on 118.600 MHz — \"Hólmavík Traffic\" — and report position.",
-      sample_call: "Hólmavík Traffic, TF-XXX, [aircraft type], [position], VFR inbound, blind."
+      traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.600 MHz — \"Hólmavík umferð\" — and report position.",
+      sample_call: "Hólmavík umferð, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
+      tips: [
+        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk."
+      ]
     },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
   },
@@ -1059,8 +1086,8 @@ const AIRPORTS = [
     pilot_notes: {
       circuit_alt_ft: null,
       circuit_dir: null,
-      traffic: "All traffic in the vicinity is encouraged to make blind calls on 118.100 MHz — \"Húsafell Traffic\" — and report position.",
-      sample_call: "Húsafell Traffic, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
+      traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz — \"Húsafell umferð\" — and report position.",
+      sample_call: "Húsafell umferð, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
       tips: [
         "No taxiway or apron — only one aircraft may be parked at the airstrip at a time. Confirm the strip is clear before arrival.",
         "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk."
@@ -1089,8 +1116,11 @@ const AIRPORTS = [
     services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
-      traffic: "All traffic in the vicinity is encouraged to make blind calls on 118.100 MHz — \"Hveravellir Traffic\" — and report position.",
-      sample_call: "Hveravellir Traffic, TF-XXX, [aircraft type], [position], VFR inbound, blind."
+      traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz — \"Hveravellir umferð\" — and report position.",
+      sample_call: "Hveravellir umferð, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
+      tips: [
+        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk."
+      ]
     },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
   },
@@ -1111,11 +1141,17 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 893 6762", ppr_contact: "Ásbjörn Pálsson (Isavia District 1)", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
-      traffic: "All traffic in the vicinity is encouraged to make blind calls on 118.100 MHz — \"Kaldármelar Traffic\" — and report position.",
-      sample_call: "Kaldármelar Traffic, TF-XXX, [aircraft type], [position], VFR inbound, blind."
+      circuit_alt_ft: null,
+      circuit_dir: null,
+      traffic: "All traffic in the vicinity is encouraged to make position reports on 118.100 MHz — \"Kaldármelar umferð\" — when below 2,000 ft.",
+      sample_call: "Kaldármelar umferð, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
+      tips: [
+        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk.",
+        "Telephone line to the west of the runway — obstacle data in AIP BIKA AD 2.10."
+      ]
     },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
   },
@@ -1140,8 +1176,11 @@ const AIRPORTS = [
     services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
-      traffic: "All traffic in the vicinity is encouraged to make blind calls on 118.100 MHz — \"Kerlingarfjöll Traffic\" — and report position.",
-      sample_call: "Kerlingarfjöll Traffic, TF-XXX, [aircraft type], [position], VFR inbound, blind."
+      traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz — \"Kerlingarfjöll umferð\" — and report position.",
+      sample_call: "Kerlingarfjöll umferð, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
+      tips: [
+        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk."
+      ]
     },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
   },
@@ -1165,8 +1204,11 @@ const AIRPORTS = [
     services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
-      traffic: "All traffic in the vicinity is encouraged to make blind calls on 118.400 MHz — \"Kirkjubæjarklaustur Traffic\" — and report position.",
-      sample_call: "Kirkjubæjarklaustur Traffic, TF-XXX, [aircraft type], [position], VFR inbound, blind."
+      traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.400 MHz — \"Kirkjubæjarklaustur umferð\" — and report position.",
+      sample_call: "Kirkjubæjarklaustur umferð, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
+      tips: [
+        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk."
+      ]
     },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
   },
@@ -1237,8 +1279,11 @@ const AIRPORTS = [
     services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
-      traffic: "All traffic in the vicinity is encouraged to make blind calls on 118.400 MHz — \"Múlakot Traffic\" — and report position.",
-      sample_call: "Múlakot Traffic, TF-XXX, [aircraft type], [position], VFR inbound, blind."
+      traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.400 MHz — \"Múlakot umferð\" — and report position.",
+      sample_call: "Múlakot umferð, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
+      tips: [
+        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk."
+      ]
     },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
   },
@@ -1262,8 +1307,11 @@ const AIRPORTS = [
     services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
-      traffic: "All traffic in the vicinity is encouraged to make blind calls on 118.100 MHz — \"Norðfjörður Traffic\" — and report position.",
-      sample_call: "Norðfjörður Traffic, TF-XXX, [aircraft type], [position], VFR inbound, blind."
+      traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz — \"Norðfjörður umferð\" — and report position.",
+      sample_call: "Norðfjörður umferð, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
+      tips: [
+        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk."
+      ]
     },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
   },
@@ -1288,8 +1336,11 @@ const AIRPORTS = [
     services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
-      traffic: "All traffic in the vicinity is encouraged to make blind calls on 118.100 MHz — \"Nýidalur Traffic\" — and report position.",
-      sample_call: "Nýidalur Traffic, TF-XXX, [aircraft type], [position], VFR inbound, blind."
+      traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz — \"Nýidalur umferð\" — and report position.",
+      sample_call: "Nýidalur umferð, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
+      tips: [
+        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk."
+      ]
     },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
   },
@@ -1313,8 +1364,11 @@ const AIRPORTS = [
     services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
-      traffic: "All traffic in the vicinity is encouraged to make blind calls on 118.100 MHz — \"Raufarhöfn Traffic\" — and report position.",
-      sample_call: "Raufarhöfn Traffic, TF-XXX, [aircraft type], [position], VFR inbound, blind."
+      traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz — \"Raufarhöfn umferð\" — and report position.",
+      sample_call: "Raufarhöfn umferð, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
+      tips: [
+        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk."
+      ]
     },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
   },
@@ -1338,8 +1392,11 @@ const AIRPORTS = [
     services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
-      traffic: "All traffic in the vicinity is encouraged to make blind calls on 118.100 MHz — \"Reykhólar Traffic\" — and report position.",
-      sample_call: "Reykhólar Traffic, TF-XXX, [aircraft type], [position], VFR inbound, blind."
+      traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz — \"Reykhólar umferð\" — and report position.",
+      sample_call: "Reykhólar umferð, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
+      tips: [
+        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk."
+      ]
     },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
   },
@@ -1363,8 +1420,11 @@ const AIRPORTS = [
     services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
-      traffic: "All traffic in the vicinity is encouraged to make blind calls on 118.100 MHz — \"Reykjahlíð Traffic\" — and report position.",
-      sample_call: "Reykjahlíð Traffic, TF-XXX, [aircraft type], [position], VFR inbound, blind."
+      traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz — \"Reykjahlíð umferð\" — and report position.",
+      sample_call: "Reykjahlíð umferð, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
+      tips: [
+        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk."
+      ]
     },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
   },
@@ -1388,8 +1448,11 @@ const AIRPORTS = [
     services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
-      traffic: "All traffic in the vicinity is encouraged to make blind calls on 118.100 MHz — \"Reykjanes Traffic\" — and report position.",
-      sample_call: "Reykjanes Traffic, TF-XXX, [aircraft type], [position], VFR inbound, blind."
+      traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz — \"Reykjanes umferð\" — and report position.",
+      sample_call: "Reykjanes umferð, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
+      tips: [
+        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk."
+      ]
     },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
   },
@@ -1413,8 +1476,11 @@ const AIRPORTS = [
     services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
-      traffic: "All traffic in the vicinity is encouraged to make blind calls on 118.100 MHz — \"Rif Traffic\" — and report position.",
-      sample_call: "Rif Traffic, TF-XXX, [aircraft type], [position], VFR inbound, blind."
+      traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz — \"Rif umferð\" — and report position.",
+      sample_call: "Rif umferð, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
+      tips: [
+        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk."
+      ]
     },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
   },
@@ -1470,8 +1536,11 @@ const AIRPORTS = [
     services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
-      traffic: "All traffic in the vicinity is encouraged to make blind calls on 118.100 MHz — \"Sauðárflugvöllur Traffic\" — and report position.",
-      sample_call: "Sauðárflugvöllur Traffic, TF-XXX, [aircraft type], [position], VFR inbound, blind."
+      traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz — \"Sauðárflugvöllur umferð\" — and report position.",
+      sample_call: "Sauðárflugvöllur umferð, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
+      tips: [
+        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk."
+      ]
     },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
   },
@@ -1496,8 +1565,8 @@ const AIRPORTS = [
     services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
-      traffic: "All traffic in the vicinity is encouraged to make blind calls on 118.100 MHz — \"Selfoss Traffic\" — and report position.",
-      sample_call: "Selfoss Traffic, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
+      traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz — \"Selfoss umferð\" — and report position.",
+      sample_call: "Selfoss umferð, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
       circuit_note: "RWY 05: Left-hand. RWY 23: Right-hand. RWY 14: Right-hand. RWY 32: Left-hand. Circuit at 1,000 ft.",
       tips: [
         "No formal notification of runway surface conditions is published — check conditions yourself before use.",
@@ -1526,8 +1595,11 @@ const AIRPORTS = [
     services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
-      traffic: "All traffic in the vicinity is encouraged to make blind calls on 118.100 MHz — \"Siglufjörður Traffic\" — and report position.",
-      sample_call: "Siglufjörður Traffic, TF-XXX, [aircraft type], [position], VFR inbound, blind."
+      traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz — \"Siglufjörður umferð\" — and report position.",
+      sample_call: "Siglufjörður umferð, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
+      tips: [
+        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk."
+      ]
     },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
   },
@@ -1552,8 +1624,11 @@ const AIRPORTS = [
     services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
-      traffic: "All traffic in the vicinity is encouraged to make blind calls on 118.400 MHz — \"Skaftafell Traffic\" — and report position.",
-      sample_call: "Skaftafell Traffic, TF-XXX, [aircraft type], [position], VFR inbound, blind."
+      traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.400 MHz — \"Skaftafell umferð\" — and report position.",
+      sample_call: "Skaftafell umferð, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
+      tips: [
+        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk."
+      ]
     },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
   },
@@ -1578,8 +1653,11 @@ const AIRPORTS = [
     services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
-      traffic: "All traffic in the vicinity is encouraged to make blind calls on 118.400 MHz — \"Skálavatn Traffic\" — and report position.",
-      sample_call: "Skálavatn Traffic, TF-XXX, [aircraft type], [position], VFR inbound, blind."
+      traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.400 MHz — \"Skálavatn umferð\" — and report position.",
+      sample_call: "Skálavatn umferð, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
+      tips: [
+        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk."
+      ]
     },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
   },
@@ -1603,8 +1681,11 @@ const AIRPORTS = [
     services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
-      traffic: "All traffic in the vicinity is encouraged to make blind calls on 118.400 MHz — \"Skógasandur Traffic\" — and report position.",
-      sample_call: "Skógasandur Traffic, TF-XXX, [aircraft type], [position], VFR inbound, blind."
+      traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.400 MHz — \"Skógasandur umferð\" — and report position.",
+      sample_call: "Skógasandur umferð, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
+      tips: [
+        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk."
+      ]
     },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
   },
@@ -1629,8 +1710,11 @@ const AIRPORTS = [
     remarks: [],
     pilot_notes: {
       entry: "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk.",
-      traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz — \"Stórikroppur Traffic\" — and report position.",
-      sample_call: "Stórikroppur Traffic, TF-XXX, Cessna 172, [position], VFR inbound, blind."
+      traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz — \"Stórikroppur umferð\" — and report position.",
+      sample_call: "Stórikroppur umferð, TF-XXX, Cessna 172, [position], VFR inbound, blind.",
+      tips: [
+        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk."
+      ]
     },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
   },
@@ -1654,8 +1738,8 @@ const AIRPORTS = [
     services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
-      traffic: "All traffic in the vicinity is encouraged to make blind calls on 118.100 MHz — \"Stykkishólmur Traffic\" — and report position.",
-      sample_call: "Stykkishólmur Traffic, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
+      traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz — \"Stykkishólmur umferð\" — and report position.",
+      sample_call: "Stykkishólmur umferð, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
       tips: [
         "Significant bird activity near the runway — birds are reluctant to move. Exercise caution on approach and landing.",
         "Uncontrolled airfield — announce intentions early on MF."
@@ -1718,8 +1802,11 @@ const AIRPORTS = [
     services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
-      traffic: "All traffic in the vicinity is encouraged to make blind calls on 118.400 MHz — \"Vík Traffic\" — and report position.",
-      sample_call: "Vík Traffic, TF-XXX, [aircraft type], [position], VFR inbound, blind."
+      traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.400 MHz — \"Vík umferð\" — and report position.",
+      sample_call: "Vík umferð, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
+      tips: [
+        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk."
+      ]
     },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
   },
@@ -1743,8 +1830,11 @@ const AIRPORTS = [
     services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
-      traffic: "All traffic in the vicinity is encouraged to make blind calls on 118.100 MHz — \"Þingeyri Traffic\" — and report position.",
-      sample_call: "Þingeyri Traffic, TF-XXX, [aircraft type], [position], VFR inbound, blind."
+      traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz — \"Þingeyri umferð\" — and report position.",
+      sample_call: "Þingeyri umferð, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
+      tips: [
+        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk."
+      ]
     },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
   },
@@ -1769,8 +1859,11 @@ const AIRPORTS = [
     services: { ppr: true, ppr_phone: "+354 424 4000", ppr_contact: "Isavia Innanlandsflugvellir", customs: false, deicing: false, fire_cat: null, handling: false },
     remarks: [],
     pilot_notes: {
-      traffic: "All traffic in the vicinity is encouraged to make blind calls on 118.400 MHz — \"Þórsmörk Traffic\" — and report position.",
-      sample_call: "Þórsmörk Traffic, TF-XXX, [aircraft type], [position], VFR inbound, blind."
+      traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.400 MHz — \"Þórsmörk umferð\" — and report position.",
+      sample_call: "Þórsmörk umferð, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
+      tips: [
+        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk."
+      ]
     },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
   },
