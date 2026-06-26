@@ -101,9 +101,9 @@ export function VfrSection({ airport }: { airport: Airport }) {
       {airport.highland && (
         <div style={{
           display: 'flex', alignItems: 'flex-start', gap: '10px',
-          background: 'transparent', border: '1px solid rgba(240,180,60,0.6)',
+          background: 'transparent', border: '1px solid rgba(200,140,80,0.5)',
           borderRadius: '6px', padding: '11px 14px', marginBottom: '10px',
-          fontSize: '12.5px', color: '#f0c84a', lineHeight: '1.5', fontWeight: 600
+          fontSize: '12.5px', color: '#c8905a', lineHeight: '1.5', fontWeight: 600
         }}>
           <span style={{ fontSize: '13px', flexShrink: 0, marginTop: '1px' }}>⚠</span>
           <span>Highland airfield — density altitude, rapidly changing weather, and limited rescue services. Confirm conditions before departure.</span>
