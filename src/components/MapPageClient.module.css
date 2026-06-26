@@ -259,8 +259,8 @@
 .catMvfr { background: #b8b000; color: #2d2d00; }
 .catIfr  { background: #b83020; color: #fff; }
 .catLifr { background: #c00030; color: #fff; }
-/* — badge: solid bg so the dash is legible */
-.catNone { background: rgba(60, 100, 140, 0.4); color: #a0cce8; }
+/* — badge: solid enough bg so the chip registers against the dark sidebar */
+.catNone { background: rgba(50, 90, 130, 0.65); color: #a0cce8; }
 
 /* --- Recent airports --- */
 .recentRow {
@@ -327,7 +327,7 @@
 }
 
 .sbFooterLinks a {
-  color: #7099b8;           /* 5.97:1 against #0a1e30 — passes AA */
+  color: #8ab4cc;           /* 6.96:1 against #0a1e30 — matches condName */
   text-decoration: none;
   transition: color 0.12s;
 }
