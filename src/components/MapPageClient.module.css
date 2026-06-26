@@ -73,3 +73,11 @@
   right: 0;
   z-index: 910;
 }
+
+.overlayHint {
+  margin: 8px 0 0;
+  font-size: 11px;
+  color: #5a7a90;
+  text-align: center;
+  letter-spacing: 0.02em;
+}

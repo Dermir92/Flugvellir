@@ -476,7 +476,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .header-inner { padding: 0 12px; gap: 8px; }
   .header-links { display: none; }
   .search-input { width: 150px; }
-  .map-legend { display: none; }
+  .map-legend { left: auto; right: 14px; bottom: 10px; flex-direction: row; gap: 10px; padding: 7px 11px; }
   .footer-credit { display: none; }
 }
 

@@ -55,6 +55,7 @@ export default function MapPageClient() {
   const [lang, setLang] = useState<Lang>('en')
   const [query, setQuery] = useState('')
   const [activeIdx, setActiveIdx] = useState(-1)
+  const [hintDismissed, setHintDismissed] = useState(false)
   const inputRef        = useRef<HTMLInputElement>(null)
   const overlayInputRef = useRef<HTMLInputElement>(null)
 
@@ -70,6 +71,7 @@ export default function MapPageClient() {
     : []
 
   const navigate = useCallback((icao: string) => {
+    setHintDismissed(true)
     router.push('/airport/' + icao)
   }, [router])
 
@@ -148,9 +150,15 @@ export default function MapPageClient() {
             </div>
             <button
               className="lang-btn"
-              aria-label="Toggle language"
+              aria-label={lang === 'en' ? 'Switch to Icelandic' : 'Switch to English'}
+              title={lang === 'en' ? 'Switch to Icelandic' : 'Switch to English'}
               onClick={() => setLang(l => l === 'en' ? 'is' : 'en')}
             >
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true" style={{ opacity: 0.7 }}>
+                <circle cx="6" cy="6" r="5" stroke="currentColor" strokeWidth="1.2"/>
+                <ellipse cx="6" cy="6" rx="2.2" ry="5" stroke="currentColor" strokeWidth="1.2"/>
+                <line x1="1" y1="6" x2="11" y2="6" stroke="currentColor" strokeWidth="1.2"/>
+              </svg>
               {lang === 'en' ? 'IS' : 'EN'}
             </button>
           </div>
@@ -176,7 +184,7 @@ export default function MapPageClient() {
               autoComplete="off"
               spellCheck={false}
               value={query}
-              onChange={e => { setQuery(e.target.value); setActiveIdx(-1) }}
+              onChange={e => { setQuery(e.target.value); setActiveIdx(-1); if (e.target.value) setHintDismissed(true) }}
               onKeyDown={handleKeyDown}
               onBlur={() => setTimeout(() => setQuery(''), 150)}
             />
@@ -200,6 +208,9 @@ export default function MapPageClient() {
               </div>
             )}
           </div>
+          {!hintDismissed && !query && (
+            <p className={s.overlayHint}>or click any airport on the map</p>
+          )}
         </div>
 
         <div className="map-legend" aria-hidden="true">
