@@ -64,6 +64,7 @@ export default function LeafletMap({ onAirportClick }: Props) {
         const type = ap.type as keyof typeof MARKER_CONFIGS
         const { svg, size, r } = makeMarkerSvg(type, ap.icao)
 
+        // airport-marker--{type} class is targeted by MapPageClient dimCSS injection for filter dimming
         const icon = L.divIcon({
           html: `<div class="airport-marker airport-marker--${ap.type}" data-icao="${ap.icao}">${svg}</div>`,
           iconSize:   [size, size],

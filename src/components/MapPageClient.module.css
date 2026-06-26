@@ -422,6 +422,7 @@
     background: rgba(0, 0, 0, 0.52);
     z-index: 499;
     backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
   }
 
   .collapseBtn {

@@ -216,7 +216,8 @@ export default function MapPageClient() {
     .map(icao => AIRPORTS.find(ap => ap.icao === icao))
     .filter((ap): ap is (typeof AIRPORTS)[number] => !!ap)
 
-  // CSS injected to dim filtered-out map markers (no changes to LeafletMap)
+  // Dim filtered-out map markers via CSS injection. Targets .airport-marker--{type} classes
+  // defined in LeafletMap.tsx divIcon html — update here if those class names ever change.
   const dimCSS = ALL_TYPES
     .filter(t => !activeFilters.has(t))
     .map(t => `.airport-marker--${t} { opacity: 0.1 !important; pointer-events: none !important; transition: opacity 0.2s ease !important; }`)
