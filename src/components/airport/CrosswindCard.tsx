@@ -30,18 +30,21 @@ function xwCalc(windDir: number, windSpd: number, rwHeading: number) {
   }
 }
 
-function xwColor(xw: number): string {
-  if (xw <= 5)  return 'xw-ok'
-  if (xw <= 10) return 'xw-warn'
-  if (xw <= 15) return 'xw-caution'
-  return 'xw-limit'
+function xwColor(xw: number, limit: number): string {
+  if (xw > limit)        return 'xw-limit'
+  if (xw > limit * 0.75) return 'xw-caution'
+  if (xw > limit * 0.5)  return 'xw-warn'
+  return 'xw-ok'
 }
+
+const XW_LIMITS = [10, 12, 15, 20, 25]
 
 export default function CrosswindCard({ icao, runways }: Props) {
   const [liveWind, setLiveWind] = useState<Wind>({ dir: 0, speed: 0, source: 'loading' })
   const [manual, setManual]     = useState(false)
   const [manDir, setManDir]     = useState('270')
   const [manSpd, setManSpd]     = useState('15')
+  const [limit, setLimit]       = useState(15)
 
   useEffect(() => {
     fetch(`/api/metar/${icao}`)
@@ -119,6 +122,18 @@ export default function CrosswindCard({ icao, runways }: Props) {
         {manual && (
           <span className="xw-live-badge xw-live-badge--manual">Manual</span>
         )}
+        <label className="xw-limit-label" aria-label="Crosswind limit">
+          Limit
+          <select
+            className="xw-limit-select"
+            value={limit}
+            onChange={e => setLimit(Number(e.target.value))}
+          >
+            {XW_LIMITS.map(l => (
+              <option key={l} value={l}>{l} kt</option>
+            ))}
+          </select>
+        </label>
         <button
           className="xw-toggle-btn"
           onClick={() => setManual(m => !m)}
@@ -189,8 +204,11 @@ export default function CrosswindCard({ icao, runways }: Props) {
             const isBest = bestPerRwy.get(e.runwayKey) === e.label
             const tailwind = e.headwind < 0
             const hwAbs = Math.abs(e.headwind)
-            const hwPct = Math.min(hwAbs / 30, 1) * 100
-            const xwPct = Math.min(e.crosswind / 20, 1) * 100
+            // Scale bars to 1.5× the limit so the limit line sits at 67% of the track
+            const barMax = Math.max(limit * 1.5, 20)
+            const hwPct  = Math.min(hwAbs / barMax, 1) * 100
+            const xwPct  = Math.min(e.crosswind / barMax, 1) * 100
+            const limitPct = Math.min(limit / barMax, 1) * 100
 
             // gust crosswind
             const gustXw = e.gust ? Math.round(Math.abs(e.gust * Math.sin(((active.dir - e.heading) * Math.PI) / 180))) : undefined
@@ -217,7 +235,7 @@ export default function CrosswindCard({ icao, runways }: Props) {
                 </div>
                 <div className="xw-col-xw">
                   <div className="xw-bar-row">
-                    <span className={`xw-xw-val xw-xw-val--${xwColor(e.crosswind)}`}>
+                    <span className={`xw-xw-val xw-xw-val--${xwColor(e.crosswind, limit)}`}>
                       {e.crosswind} kt
                       {gustXw != null && gustXw !== e.crosswind && (
                         <span className="xw-gust-xw"> G{gustXw}</span>
@@ -225,9 +243,10 @@ export default function CrosswindCard({ icao, runways }: Props) {
                     </span>
                     <div className="xw-bar-track">
                       <div
-                        className={`xw-bar-fill xw-bar-fill--xw xw-bar-fill--${xwColor(e.crosswind)}`}
+                        className={`xw-bar-fill xw-bar-fill--xw xw-bar-fill--${xwColor(e.crosswind, limit)}`}
                         style={{ width: `${xwPct}%` }}
                       />
+                      <div className="xw-bar-limit" style={{ left: `${limitPct}%` }} />
                     </div>
                   </div>
                 </div>
