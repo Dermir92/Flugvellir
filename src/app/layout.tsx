@@ -21,6 +21,11 @@ export const metadata: Metadata = {
   description: 'Interactive map of Icelandic airports and airfields with AIP data. Made for pilots and aviation enthusiasts.',
 }
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+}
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${barlowCondensed.variable} ${inter.variable}`}>
