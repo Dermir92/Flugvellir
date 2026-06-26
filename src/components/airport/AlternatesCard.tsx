@@ -31,10 +31,10 @@ function getFlightCat(raw: string): Cat {
 }
 
 const CAT_STYLE: Record<Cat, React.CSSProperties> = {
-  VFR:  { background: '#00c47a', color: '#003d22' },
-  MVFR: { background: '#b8b000', color: '#2d2d00' },
-  IFR:  { background: '#e06000', color: '#fff' },
-  LIFR: { background: '#c00030', color: '#fff' },
+  VFR:  { background: '#00c47a', color: '#003d22' },  /* 5.43:1 AA */
+  MVFR: { background: '#b8b000', color: '#2d2d00' },  /* 6.22:1 AA */
+  IFR:  { background: '#b83020', color: '#fff' },      /* 6.03:1 AA */
+  LIFR: { background: '#c00030', color: '#fff' },      /* 6.39:1 AA */
   none: { background: 'rgba(100,140,180,0.25)', color: '#7099b8' },
 }
 
@@ -125,6 +125,11 @@ export default function AlternatesCard({ alternates }: { alternates: AltInfo[] }
               }}>
                 {alt.distNm} NM
               </div>
+
+              {/* Navigation indicator */}
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true" style={{ flexShrink: 0, color: '#9ab8cc' }}>
+                <path d="M3 1.5l4 3.5-4 3.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
             </Link>
           )
         })}

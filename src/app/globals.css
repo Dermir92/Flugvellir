@@ -1626,10 +1626,10 @@ body.vfr-modal-open { overflow: hidden; }
   padding: 3px 10px;
   border-radius: 4px;
 }
-.status-cat--vfr  { background: var(--moss);      color: #ffffff; }
-.status-cat--mvfr { background: var(--glacier-dim); color: var(--navy); }
-.status-cat--ifr  { background: var(--volcanic);  color: #ffffff; }
-.status-cat--lifr { background: #7a1a0a;           color: #ffffff; }
+.status-cat--vfr  { background: #38b060; color: #0a1e30; }  /* 6.08:1 AA */
+.status-cat--mvfr { background: var(--glacier-dim); color: var(--navy); }  /* 6.58:1 AA */
+.status-cat--ifr  { background: #b83020; color: #ffffff; }  /* 6.03:1 AA */
+.status-cat--lifr { background: #7a1a0a; color: #ffffff; }  /* 10.6:1 AAA */
 
 .status-met-row {
   display: flex;
