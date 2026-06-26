@@ -1,15 +1,13 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { parseWindFromRaw, windDisplayStr } from '@/lib/wind'
 
 interface MetarData {
   rawOb?: string
   obsTime?: number | string
   temp?: number
   dewp?: number
-  wdir?: number | 'VRB'
-  wspd?: number
-  wgst?: number
   altim?: number
 }
 
@@ -24,10 +22,7 @@ function fmtTime(iso: number | string | undefined) {
 }
 
 function windStr(m: MetarData) {
-  const dir = m.wdir === 0 && m.wspd === 0 ? 'Calm'
-    : m.wdir === 'VRB' ? `VRB ${m.wspd} kt`
-    : `${String(m.wdir).padStart(3, '0')}° / ${m.wspd} kt`
-  return m.wgst ? `${dir} G${m.wgst} kt` : dir
+  return windDisplayStr(parseWindFromRaw(m.rawOb ?? ''))
 }
 
 function parseClouds(raw: string) {

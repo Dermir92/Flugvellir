@@ -2,13 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import type { Airport } from '@/types/airport'
-
-interface MetarData {
-  rawOb?: string
-  wdir?: number | 'VRB'
-  wspd?: number
-  wgst?: number
-}
+import { parseWindFromRaw, windDisplayStr } from '@/lib/wind'
 
 type FlightCat = 'VFR' | 'MVFR' | 'IFR' | 'LIFR' | null
 
@@ -86,7 +80,6 @@ function computeWindRows(runways: Airport['runways'], wdir: number, wspd: number
 }
 
 export default function StatusCard({ airport }: { airport: Airport }) {
-  const [metar,  setMetar]  = useState<MetarData | null>(null)
   const [raw,    setRaw]    = useState('')
   const [loaded, setLoaded] = useState(false)
 
@@ -96,42 +89,23 @@ export default function StatusCard({ airport }: { airport: Airport }) {
         if (!r.ok) throw new Error()
         const { metar: metars } = await r.json()
         const m = metars?.[0] ?? null
-        if (m) { setMetar(m); setRaw(m.rawOb ?? '') }
+        if (m?.rawOb) setRaw(m.rawOb)
         setLoaded(true)
       })
       .catch(() => setLoaded(true))
   }, [airport.icao])
-
-
 
   const cat = loaded && raw ? getFlightCat(raw) : null
 
   const catLabel: Record<string, string> = { VFR: 'VFR', MVFR: 'MVFR', IFR: 'IFR', LIFR: 'LIFR' }
   const catCls:   Record<string, string> = { VFR: 'status-cat--vfr', MVFR: 'status-cat--mvfr', IFR: 'status-cat--ifr', LIFR: 'status-cat--lifr' }
 
-  const canCalcWind = (
-    metar &&
-    typeof metar.wdir === 'number' &&
-    typeof metar.wspd === 'number' &&
-    metar.wspd > 0
-  )
+  const parsedWind = loaded && raw ? parseWindFromRaw(raw) : null
+  const windDisplay = windDisplayStr(parsedWind)
 
-  let windDisplay = '--'
   let windRows: WindRow[] = []
-
-  if (metar) {
-    if (!metar.wspd || metar.wspd === 0) {
-      windDisplay = 'Calm'
-    } else if (metar.wdir === 'VRB') {
-      windDisplay = `VRB ${metar.wspd} kt`
-    } else if (typeof metar.wdir === 'number') {
-      windDisplay = `${String(metar.wdir).padStart(3, '0')}° / ${metar.wspd} kt`
-      if (metar.wgst) windDisplay += ` G${metar.wgst}`
-    }
-  }
-
-  if (canCalcWind) {
-    windRows = computeWindRows(airport.runways, metar!.wdir as number, metar!.wspd as number)
+  if (parsedWind && typeof parsedWind.dir === 'number' && parsedWind.spd > 0) {
+    windRows = computeWindRows(airport.runways, parsedWind.dir, parsedWind.spd)
   }
 
   return (

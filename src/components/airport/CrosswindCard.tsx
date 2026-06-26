@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import type { Runway } from '@/types/airport'
+import { parseWindFromRaw } from '@/lib/wind'
 
 interface Props {
   icao: string
@@ -50,13 +51,14 @@ export default function CrosswindCard({ icao, runways }: Props) {
     fetch(`/api/metar/${icao}`)
       .then(r => r.json())
       .then(({ metar }) => {
-        const m = metar?.[0]
-        if (!m || m.wspd == null) { setLiveWind(w => ({ ...w, source: 'unavailable' })); return }
-        if (m.wdir === 'VRB')    { setLiveWind({ dir: 0, speed: m.wspd, gust: m.wgst, source: 'vrb' }); return }
-        if (m.wdir == null)      { setLiveWind(w => ({ ...w, source: 'unavailable' })); return }
-        setLiveWind({ dir: m.wdir, speed: m.wspd, gust: m.wgst, source: 'live' })
+        const raw = metar?.[0]?.rawOb ?? ''
+        const w = parseWindFromRaw(raw)
+        if (!w) { setLiveWind(wv => ({ ...wv, source: 'unavailable' })); return }
+        if (w.dir === 'VRB') { setLiveWind({ dir: 0, speed: w.spd, gust: w.gust, source: 'vrb' }); return }
+        if (w.spd === 0)     { setLiveWind(wv => ({ ...wv, source: 'unavailable' })); return }
+        setLiveWind({ dir: w.dir as number, speed: w.spd, gust: w.gust, source: 'live' })
       })
-      .catch(() => setLiveWind(w => ({ ...w, source: 'unavailable' })))
+      .catch(() => setLiveWind(wv => ({ ...wv, source: 'unavailable' })))
   }, [icao])
 
   const active: Wind | null = (() => {
