@@ -860,7 +860,8 @@ const AIRPORTS = [
       tips: [
         "Warning: vehicles may be on or near runway 17/35. Check runway is clear before take-off and landing.",
         "Uncontrolled airfield — make position reports early and check the runway visually.",
-        "High ground west of runway. Mast 1 NM north at 230 ft MSL — see AIP BIDV AD 2.10."
+        "High ground west of runway. Mast 1 NM north at 230 ft MSL — see AIP BIDV AD 2.10.",
+        "Runway surface can be loose after vehicle traffic. Safety area is smaller than regulation requires."
       ]
     },
         charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
@@ -888,7 +889,8 @@ const AIRPORTS = [
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.400 MHz — \"Fagurhólsmýri umferð\" — and report position.",
       sample_call: "Fagurhólsmýri umferð, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
       tips: [
-        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk."
+        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk.",
+        "The runway is partly soft in sections — take off and land with caution."
       ]
     },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
@@ -1188,7 +1190,8 @@ const AIRPORTS = [
       sample_call: "Kerlingarfjöll umferð, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
       tips: [
         "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk.",
-        "Aerial wire strung from a cabin across the ravine — obstacle data in AIP BIKE AD 2.10."
+        "Aerial wire strung from a cabin across the ravine — obstacle data in AIP BIKE AD 2.10.",
+        "Both runways are usually soft due to wet soil. Frost-heaved rocks can damage tyres — take off and land with caution."
       ]
     },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
@@ -1408,7 +1411,8 @@ const AIRPORTS = [
       sample_call: "Reykhólar umferð, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
       tips: [
         "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk.",
-        "Power line 300 m from the east end of the runway — obstacle data in AIP BIRE AD 2.10."
+        "Power line 300 m from the east end of the runway — obstacle data in AIP BIRE AD 2.10.",
+        "Safety area is limited on both sides of the runway at the western section."
       ]
     },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
@@ -1682,7 +1686,8 @@ const AIRPORTS = [
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.400 MHz — \"Skálavatn umferð\" — and report position.",
       sample_call: "Skálavatn umferð, TF-XXX, [aircraft type], [position], VFR inbound, blind.",
       tips: [
-        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk."
+        "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk.",
+        "Safety area is limited for 500 m alongside the NW side of the runway where a road runs."
       ]
     },
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
@@ -1772,7 +1777,8 @@ const AIRPORTS = [
         "Uncontrolled airfield — announce intentions early on MF.",
         "Traffic circuit is west of the runway.",
         "360 ft MSL mast east of the runway — obstacle data in AIP BIST AD 2.10.",
-        "Bird hazard: large numbers of gulls and geese near the runway year-round."
+        "Bird hazard: large numbers of gulls and geese near the runway year-round.",
+        "Coarse surface — can cause damage to tyres."
       ]
     },
     hazards: [
@@ -1950,7 +1956,8 @@ const AIRPORTS = [
       tips: [
         "Minimal bird activity at the airfield — no nesting recorded.",
         "AFIS service — contact on published frequency. Separation is the pilot's responsibility.",
-        "AFIS available limited hours: Summer (Jun–Aug) Fri 09:00–16:00; Winter (Sep–May) Mon & Fri 10:00–16:00."
+        "AFIS available limited hours: Summer (Jun–Aug) Fri 09:00–16:00; Winter (Sep–May) Mon & Fri 10:00–16:00.",
+        "Safety areas limited on both sides of the runway, especially at the northern end. Outside service hours, vehicles and pedestrians may be on the road west of the runway between end 22 and the terminal."
       ]
     },
         charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
