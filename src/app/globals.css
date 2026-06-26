@@ -1070,8 +1070,6 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 .ap-footer-inner {
-  max-width: var(--max-w);
-  margin: 0 auto;
   height: 42px;
   display: flex;
   align-items: center;
@@ -1592,12 +1590,6 @@ body.vfr-modal-open { overflow: hidden; }
 }
 
 /* === STATUS CARD === */
-.ap-status-wrap {
-  max-width: var(--max-w);
-  margin: 0 auto;
-  padding: 24px 24px 0;
-}
-
 .status-card {
   background: var(--navy);
   border: 1px solid rgba(126,207,245,0.18);
@@ -1747,22 +1739,298 @@ body.vfr-modal-open { overflow: hidden; }
   color: #c0e0f5;
 }
 
-/* === TWO-COLUMN BODY GRID === */
-.ap-body-grid {
-  max-width: var(--max-w);
-  margin: 0 auto;
-  padding: 24px 24px 60px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  align-items: start;
+/* === DASHBOARD LAYOUT === */
+.ap-dashboard {
+  display: flex;
+  align-items: stretch;
+  min-height: calc(100vh - var(--header-h));
 }
 
-.ap-col {
+/* ── Sidebar ── */
+.ap-sidebar {
+  width: 300px;
+  flex-shrink: 0;
+  background: var(--navy);
+  border-right: 1px solid rgba(255,255,255,0.08);
+  position: sticky;
+  top: var(--header-h);
+  height: calc(100vh - var(--header-h));
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(126,207,245,0.2) transparent;
+}
+
+.ap-sb-inner { padding: 20px 0 48px; }
+
+.ap-sb-identity {
+  padding: 20px 20px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.ap-sb-icao {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--glacier);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.ap-sb-name {
+  font-size: 15px;
+  font-weight: 500;
+  color: #ffffff;
+  line-height: 1.35;
+  margin-bottom: 8px;
+}
+.ap-sb-meta {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 2px;
+  font-size: 12px;
+  color: #7099b8;
+  margin-bottom: 10px;
 }
+.ap-sb-coords { font-family: var(--font-mono); font-size: 11px; }
+.ap-sb-badges { display: flex; flex-wrap: wrap; gap: 5px; }
+
+.ap-sb-section {
+  padding: 14px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.ap-sb-section--last { border-bottom: none; }
+
+.ap-sb-label {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #4a7090;
+  margin-bottom: 10px;
+}
+
+.ap-sb-desc {
+  font-size: 12.5px;
+  color: #a0cce8;
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* Frequencies */
+.ap-sb-freq {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 5px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.ap-sb-freq:last-child { border-bottom: none; }
+.ap-sb-freq-role {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 3px;
+  background: rgba(126,207,245,0.1);
+  color: #c0e0f5;
+  flex-shrink: 0;
+}
+.ap-sb-freq-role--twr,
+.ap-sb-freq-role--atc,
+.ap-sb-freq-role--app,
+.ap-sb-freq-role--dep  { background: rgba(42,144,80,0.25); color: #50d880; }
+.ap-sb-freq-role--gnd,
+.ap-sb-freq-role--del  { background: rgba(42,144,80,0.15); color: #a0d8a0; }
+.ap-sb-freq-role--afis { background: rgba(90,184,232,0.2); color: #7ecff5; }
+.ap-sb-freq-role--atis { background: rgba(90,184,232,0.1); color: #a0cce8; }
+.ap-sb-freq-hz {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+}
+.ap-sb-freq-unit { font-size: 11px; color: #5a88a8; font-weight: 400; }
+
+/* Nav aids */
+.ap-sb-nav {
+  display: grid;
+  grid-template-columns: 52px 1fr auto;
+  gap: 6px;
+  align-items: center;
+  padding: 4px 0;
+}
+.ap-sb-nav-type {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #4a7090;
+  background: rgba(255,255,255,0.06);
+  padding: 2px 5px;
+  border-radius: 2px;
+  text-align: center;
+}
+.ap-sb-nav-ident { font-size: 13px; font-weight: 600; color: #ffffff; }
+.ap-sb-nav-freq  { font-size: 12px; color: #7099b8; font-family: var(--font-mono); }
+
+/* Hours */
+.ap-sb-svc-badge {
+  display: inline-block;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 3px;
+  margin-bottom: 8px;
+}
+.ap-sb-svc-badge--atc   { background: rgba(42,144,80,0.3);   color: #50d880; }
+.ap-sb-svc-badge--afis  { background: rgba(90,184,232,0.2);  color: #7ecff5; }
+.ap-sb-svc-badge--other { background: rgba(255,255,255,0.07); color: #a0cce8; }
+.ap-sb-hours-sched { font-size: 13px; color: #c0e0f5; line-height: 1.5; }
+.ap-sb-hours-note  { font-size: 11.5px; color: #7099b8; margin-top: 5px; line-height: 1.5; }
+
+/* Fuel */
+.ap-sb-fuel-pills { display: flex; gap: 6px; margin-bottom: 6px; flex-wrap: wrap; }
+.ap-sb-fuel-pill {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 3px;
+}
+.ap-sb-fuel-pill--yes { background: rgba(42,144,80,0.25); color: #50d880; border: 1px solid rgba(42,144,80,0.4); }
+.ap-sb-fuel-pill--no  { background: rgba(255,255,255,0.04); color: #3a6080; border: 1px solid rgba(255,255,255,0.06); }
+.ap-sb-fuel-none { font-size: 12px; color: #3a6080; }
+.ap-sb-fuel-note { font-size: 11.5px; color: #7099b8; line-height: 1.5; margin-top: 4px; }
+
+/* Services */
+.ap-sb-svc-chips { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 8px; }
+.ap-sb-svc-chip {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 3px;
+}
+.ap-sb-svc-chip--yes { background: rgba(42,144,80,0.2);  color: #50d880; border: 1px solid rgba(42,144,80,0.3); }
+.ap-sb-svc-chip--no  { background: rgba(255,255,255,0.04); color: #3a6080; border: 1px solid rgba(255,255,255,0.06); }
+.ap-sb-svc-note { font-size: 11.5px; color: #7099b8; line-height: 1.5; margin-top: 4px; }
+
+/* PPR */
+.ap-sb-ppr {
+  margin-top: 10px;
+  padding: 10px 12px;
+  background: rgba(224,85,69,0.12);
+  border: 1px solid rgba(224,85,69,0.28);
+  border-radius: 6px;
+}
+.ap-sb-ppr-label {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--volcanic-light);
+  margin-bottom: 4px;
+}
+.ap-sb-ppr-contact { font-size: 12.5px; color: #c0e0f5; margin-bottom: 4px; line-height: 1.4; }
+.ap-sb-ppr-phone {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--volcanic-light);
+  margin-top: 4px;
+  letter-spacing: 0.02em;
+}
+.ap-sb-ppr-phone:hover { color: #fff; text-decoration: none; }
+
+/* Charts link */
+.ap-sb-charts {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--glacier);
+  padding: 8px 12px;
+  border: 1px solid rgba(126,207,245,0.2);
+  border-radius: 6px;
+  margin-bottom: 10px;
+  transition: background 0.15s, color 0.15s;
+}
+.ap-sb-charts:hover { background: rgba(126,207,245,0.08); text-decoration: none; color: #fff; }
+
+.ap-sb-airac {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: #4a6880;
+}
+
+/* ── Main content ── */
+.ap-content {
+  flex: 1;
+  min-width: 0;
+  background: var(--page-bg);
+  padding: 0 0 80px;
+}
+
+/* Flatten card boxes inside main content */
+.ap-content .ap-card {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(176,216,240,0.65);
+  border-radius: 0;
+  box-shadow: none;
+}
+.ap-content .ap-card:last-child { border-bottom: none; }
+
+.ap-content .ap-card-title {
+  background: transparent;
+  border-bottom: 1px solid rgba(176,216,240,0.5);
+  padding: 18px 28px 12px;
+}
+
+/* Pilot notes — subtle background tint to distinguish from weather sections */
+.ap-content .ap-card--pilot-notes {
+  background: rgba(30,90,138,0.03);
+}
+.ap-content .ap-card--pilot-notes .ap-card-title {
+  background: rgba(30,90,138,0.05);
+}
+
+/* Pilot notes inner padding to match 28px gutter */
+.ap-content .vfr-inline-body .vfr-section { padding: 14px 28px; }
+.ap-content .vfr-inline-body .vfr-disclaimer { padding: 12px 28px; }
+
+/* Status card keeps its dark styling */
+.ap-content .status-card {
+  border-radius: 0;
+  border: none;
+  border-bottom: 2px solid rgba(126,207,245,0.15);
+  box-shadow: 0 4px 20px rgba(10,30,48,0.12);
+}
+
+/* Flat section wrapper (Runways, Remarks) */
+.ap-section {
+  border-bottom: 1px solid rgba(176,216,240,0.65);
+}
+
+.ap-section-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-label);
+  padding: 18px 28px 10px;
+}
+
+.ap-content .runways-grid { padding: 4px 28px 20px; }
+.ap-content .remark-list  { padding: 4px 28px 20px; }
 
 /* === INLINE VFR / PILOT NOTES === */
 .ap-card--pilot-notes {
@@ -1805,29 +2073,63 @@ body.vfr-modal-open { overflow: hidden; }
   line-height: 1.5;
 }
 
-/* charts wrap — keep full width */
-.ap-charts-wrap {
-  max-width: var(--max-w);
-  margin: 0 auto;
-  padding: 0 24px 32px;
+/* === AIRPORT RESPONSIVE === */
+
+/* Sidebar collapses to top strip on narrow viewports */
+@media (max-width: 960px) {
+  .ap-sidebar { width: 260px; }
 }
 
-/* === AIRPORT RESPONSIVE === */
 @media (max-width: 860px) {
-  .ap-body-grid {
-    grid-template-columns: 1fr;
-    padding: 20px 16px 48px;
-    gap: 16px;
+  .ap-dashboard { flex-direction: column; }
+
+  .ap-sidebar {
+    width: 100%;
+    position: static;
+    height: auto;
+    overflow: visible;
+    border-right: none;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
   }
-  .ap-status-wrap { padding: 16px 16px 0; }
-  .ap-charts-wrap { padding: 0 16px 24px; }
+
+  .ap-sb-inner {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 0;
+    padding: 0;
+  }
+
+  .ap-sb-identity {
+    grid-column: 1 / -1;
+    padding: 16px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 10px;
+  }
+  .ap-sb-icao   { font-size: 20px; margin-bottom: 0; }
+  .ap-sb-name   { font-size: 14px; margin-bottom: 0; flex: 1; min-width: 160px; }
+  .ap-sb-meta   { flex-direction: row; flex-wrap: wrap; gap: 8px; margin-bottom: 0; font-size: 11.5px; width: 100%; }
+  .ap-sb-badges { display: none; }
+
+  .ap-sb-section { border-bottom: none; border-right: 1px solid rgba(255,255,255,0.06); }
+  .ap-sb-section--last { border-right: none; }
+
+  .ap-content .runways-grid { padding: 4px 20px 20px; }
+  .ap-content .remark-list  { padding: 4px 20px 20px; }
+  .ap-content .ap-card-title { padding: 16px 20px 12px; }
+  .ap-content .vfr-inline-body .vfr-section { padding: 14px 20px; }
+  .ap-content .vfr-inline-body .vfr-disclaimer { padding: 12px 20px; }
+  .ap-section-label { padding: 16px 20px 10px; }
 }
 
 @media (max-width: 720px) {
   .ap-page-header { padding: 0 16px; gap: 8px; }
-  .ap-hdr-name { display: none; }
+  .ap-hdr-name   { display: none; }
   .ap-hdr-region { display: none; }
-  .runways-grid { padding: 14px; gap: 12px; }
+
+  .ap-sb-inner { grid-template-columns: 1fr 1fr; }
+
   .metar-section { padding: 14px; }
   .metar-item { width: 100%; }
   .ap-footer { padding: 0 16px; }
@@ -1837,19 +2139,25 @@ body.vfr-modal-open { overflow: hidden; }
   .status-rwy-row { flex-wrap: wrap; gap: 8px; }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 560px) {
+  .ap-sb-inner { grid-template-columns: 1fr; }
+  .ap-sb-section { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
+
   .services-grid { grid-template-columns: 1fr 1fr; }
   .rwy-card { flex-direction: column; }
   .freq-hz { font-size: 18px; }
   .notam-validity { display: none; }
   .status-rwy-num { width: auto; }
-  /* Enlarge touch targets and text on small phones */
+
+  .ap-content .ap-card-title { padding: 14px 16px 10px; }
+  .ap-content .runways-grid  { padding: 4px 16px 16px; }
+  .ap-content .remark-list   { padding: 4px 16px 16px; }
+  .ap-content .vfr-inline-body .vfr-section { padding: 12px 16px; }
+  .ap-content .vfr-inline-body .vfr-disclaimer { padding: 10px 16px; }
+  .ap-section-label { padding: 14px 16px 8px; }
+
   .freq-item { padding: 13px 16px; }
   .notam-item-head { padding: 14px 16px; }
-  .vfr-inline-body .vfr-section { padding: 14px 16px; }
-  .hours-body, .fuel-body, .services-body, .remarks-body { padding: 16px; }
-  .runways-grid { padding: 14px; }
-  .ap-hero-desc { font-size: 15px; }
 }
 
 @media (max-width: 600px) {

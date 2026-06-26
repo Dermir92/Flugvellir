@@ -63,9 +63,11 @@ export default async function AirportPage(props: PageProps<'/airport/[icao]'>) {
   const svcBadge = a.hours?.service.toLowerCase() === 'atc'  ? 'atc'
                  : a.hours?.service.toLowerCase() === 'afis' ? 'afis' : 'other'
   const alternates = getAlternates(a, AIRPORTS)
+  const hasFuel = a.fuel?.avgas || a.fuel?.jet_a1
 
   return (
     <div className="airport-page">
+
       {/* Sticky header */}
       <header className="ap-page-header">
         <Link href="/" className="ap-back-link">
@@ -83,21 +85,169 @@ export default async function AirportPage(props: PageProps<'/airport/[icao]'>) {
         <span className="ap-hdr-region">{a.region} · {a.elevation_ft} ft AMSL</span>
       </header>
 
-      {/* Status card — full width, first thing pilots see */}
-      <div className="ap-status-wrap">
-        <StatusCard airport={a} />
-      </div>
+      {/* Dashboard */}
+      <div className="ap-dashboard">
 
-      {/* Two-column body */}
-      <div className="ap-body-grid">
+        {/* ── SIDEBAR ── */}
+        <aside className="ap-sidebar">
+          <div className="ap-sb-inner">
 
-        {/* ── LEFT COLUMN: operational ── */}
-        <div className="ap-col">
+            {/* Identity */}
+            <div className="ap-sb-identity">
+              <div className="ap-sb-icao">{a.icao}{a.iata ? ` · ${a.iata}` : ''}</div>
+              <div className="ap-sb-name">{a.name}</div>
+              <div className="ap-sb-meta">
+                <span>{a.region}</span>
+                <span>{a.elevation_ft} ft · {a.elevation_m} m AMSL</span>
+                {a.lat_dms && <span className="ap-sb-coords">{a.lat_dms} {a.lng_dms}</span>}
+              </div>
+              <div className="ap-sb-badges">
+                <span className={`ap-hdr-badge ap-hdr-badge--${a.type}`}>{typeLabel(a.type)}</span>
+                {a.highland && <span className="ap-hdr-badge ap-hdr-badge--highland">Highland</span>}
+                {a.airspace && <span className="ap-hdr-badge ap-hdr-badge--airspace">Class {a.airspace.class}</span>}
+              </div>
+            </div>
+
+            {/* Description */}
+            {a.description && (
+              <div className="ap-sb-section">
+                <p className="ap-sb-desc">{a.description}</p>
+              </div>
+            )}
+
+            {/* Frequencies */}
+            {a.frequencies?.length ? (
+              <div className="ap-sb-section">
+                <div className="ap-sb-label">Frequencies</div>
+                {a.frequencies.map(f => {
+                  const role = f.role.toLowerCase()
+                  const cls = ['atis','del','gnd','twr','app','dep','afis','unicom','mf'].includes(role) ? role : 'other'
+                  return (
+                    <div key={f.role + f.freq} className="ap-sb-freq">
+                      <span className={`ap-sb-freq-role ap-sb-freq-role--${cls}`}>{f.role}</span>
+                      <span className="ap-sb-freq-hz">{f.freq} <span className="ap-sb-freq-unit">MHz</span></span>
+                    </div>
+                  )
+                })}
+              </div>
+            ) : null}
+
+            {/* Nav aids */}
+            {a.nav?.length ? (
+              <div className="ap-sb-section">
+                <div className="ap-sb-label">Navigation Aids</div>
+                {a.nav.map(n => {
+                  const unit = n.type.startsWith('NDB') ? 'kHz' : 'MHz'
+                  return (
+                    <div key={n.ident} className="ap-sb-nav">
+                      <span className="ap-sb-nav-type">{n.type}</span>
+                      <span className="ap-sb-nav-ident">{n.ident}</span>
+                      <span className="ap-sb-nav-freq">{n.freq} {unit}</span>
+                    </div>
+                  )
+                })}
+              </div>
+            ) : null}
+
+            {/* Operating hours */}
+            {a.hours && (
+              <div className="ap-sb-section">
+                <div className="ap-sb-label">Operating Hours</div>
+                <span className={`ap-sb-svc-badge ap-sb-svc-badge--${svcBadge}`}>{a.hours.service}</span>
+                <div className="ap-sb-hours-sched">{a.hours.schedule}</div>
+                {a.hours.notes && <div className="ap-sb-hours-note">{a.hours.notes}</div>}
+              </div>
+            )}
+
+            {/* Fuel */}
+            {a.fuel && (
+              <div className="ap-sb-section">
+                <div className="ap-sb-label">Fuel</div>
+                <div className="ap-sb-fuel-pills">
+                  {[['AVGAS', a.fuel.avgas], ['JET A-1', a.fuel.jet_a1]].map(([label, avail]) => (
+                    <span key={String(label)} className={`ap-sb-fuel-pill ap-sb-fuel-pill--${avail ? 'yes' : 'no'}`}>
+                      {label}
+                    </span>
+                  ))}
+                </div>
+                {!hasFuel && <div className="ap-sb-fuel-none">No fuel on field</div>}
+                {a.fuel.supplier && <div className="ap-sb-fuel-note">{a.fuel.supplier}</div>}
+                {a.fuel.notes    && <div className="ap-sb-fuel-note">{a.fuel.notes}</div>}
+              </div>
+            )}
+
+            {/* Services */}
+            {a.services && (
+              <div className="ap-sb-section">
+                <div className="ap-sb-label">Services</div>
+                <div className="ap-sb-svc-chips">
+                  {[
+                    ['Customs',   a.services.customs],
+                    ['De-icing',  a.services.deicing],
+                    [a.services.fire_cat ? `Fire CAT ${a.services.fire_cat}` : 'Fire CAT —', !!a.services.fire_cat],
+                  ].map(([label, val]) => (
+                    <span key={String(label)} className={`ap-sb-svc-chip ap-sb-svc-chip--${val ? 'yes' : 'no'}`}>
+                      {label}
+                    </span>
+                  ))}
+                </div>
+                {a.services.handling && (
+                  <div className="ap-sb-svc-note">{a.services.handling}</div>
+                )}
+                {a.services.ppr && (
+                  <div className="ap-sb-ppr">
+                    <div className="ap-sb-ppr-label">PPR Required</div>
+                    {a.services.ppr_contact && (
+                      <div className="ap-sb-ppr-contact">{a.services.ppr_contact}</div>
+                    )}
+                    {a.services.ppr_phone ? (
+                      <a href={`tel:${a.services.ppr_phone.replace(/\s/g,'')}`} className="ap-sb-ppr-phone">
+                        {a.services.ppr_phone}
+                      </a>
+                    ) : (
+                      <div className="ap-sb-ppr-contact" style={{fontStyle:'italic'}}>See AIP AD 2.18</div>
+                    )}
+                  </div>
+                )}
+                {a.services.slots && (
+                  <div className="ap-sb-svc-note"><strong>Slots:</strong> {a.services.slots}</div>
+                )}
+              </div>
+            )}
+
+            {/* Charts */}
+            {a.charts_url && (
+              <div className="ap-sb-section ap-sb-section--last">
+                <a href={a.charts_url} target="_blank" rel="noopener noreferrer" className="ap-sb-charts">
+                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                    <path d="M3 3h4v1.5H4.5v7h7V10H13v4H3V3Z" fill="currentColor" opacity="0.6"/>
+                    <path d="M9 2h5v5l-1.5-1.5L8 10 6 8l4.5-4.5L9 2Z" fill="currentColor"/>
+                  </svg>
+                  AIP Charts — Isavia eAIP
+                </a>
+                <div className="ap-sb-airac">
+                  <span className="airac-pulse" aria-hidden="true" />
+                  AIRAC {AIRAC_META.cycle} · {AIRAC_META.effective}
+                </div>
+              </div>
+            )}
+
+          </div>
+        </aside>
+
+        {/* ── MAIN CONTENT ── */}
+        <div className="ap-content">
+
+          {/* Weather status + crosswind — first thing pilots see */}
+          <StatusCard airport={a} />
+
+          {/* Pilot notes — core operational content */}
+          <VfrSection airport={a} />
 
           {/* Runways */}
           {a.runways?.length > 0 && (
-            <div className="ap-card">
-              <div className="ap-card-title">Runways</div>
+            <div className="ap-section">
+              <div className="ap-section-label">Runways</div>
               <div className="runways-grid">
                 {a.runways.map(rwy => {
                   const [lo, hi] = rwy.id.split('/')
@@ -131,28 +281,30 @@ export default async function AirportPage(props: PageProps<'/airport/[icao]'>) {
             </div>
           )}
 
-          {/* Crosswind calculator — live wind from METAR, manual override for planning */}
+          {/* Crosswind calculator */}
           {a.runways?.length > 0 && (
             <CrosswindCard icao={a.icao} runways={a.runways} />
           )}
 
-          {/* Pilot Notes — inline, first-class */}
-          <VfrSection airport={a} />
+          {/* METAR / TAF */}
+          <MetarCard icao={a.icao} />
+          <ForecastCard icao={a.icao} lat={a.lat} lng={a.lng} />
 
-          {/* Remarks — operational knowledge, belongs with pilot notes */}
+          {/* Alternates */}
+          <AlternatesCard alternates={alternates} />
+
+          {/* Remarks */}
           {a.remarks?.length ? (
-            <div className="ap-card">
-              <div className="ap-card-title">Remarks</div>
-              <div className="remarks-body">
-                <ul className="remark-list">
-                  {a.remarks.map((r, i) => (
-                    <li key={i} className="remark-item">
-                      <span className="remark-dot" aria-hidden="true" />
-                      <span>{r}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+            <div className="ap-section">
+              <div className="ap-section-label">Remarks</div>
+              <ul className="remark-list">
+                {a.remarks.map((r, i) => (
+                  <li key={i} className="remark-item">
+                    <span className="remark-dot" aria-hidden="true" />
+                    <span>{r}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           ) : null}
 
@@ -160,147 +312,7 @@ export default async function AirportPage(props: PageProps<'/airport/[icao]'>) {
           <NotamCard icao={a.icao} />
 
         </div>
-
-        {/* ── RIGHT COLUMN: reference ── */}
-        <div className="ap-col">
-
-          {/* METAR / TAF — always shown; ForecastCard self-hides when METAR exists */}
-          <MetarCard icao={a.icao} />
-          <ForecastCard icao={a.icao} lat={a.lat} lng={a.lng} />
-
-          {/* Alternates — nearest airports with live conditions */}
-          <AlternatesCard alternates={alternates} />
-
-          {/* Frequencies */}
-          {a.frequencies?.length ? (
-            <div className="ap-card">
-              <div className="ap-card-title">Frequencies</div>
-              <div className="freq-list">
-                {a.frequencies.map(f => {
-                  const role = f.role.toLowerCase()
-                  const cls  = ['atis','del','gnd','twr','app','dep','afis','unicom','mf'].includes(role) ? role : 'other'
-                  return (
-                    <div key={f.role + f.freq} className="freq-item">
-                      <span className={`freq-role freq-role--${cls}`}>{f.role}</span>
-                      <span className="freq-hz">{f.freq} MHz</span>
-                    </div>
-                  )
-                })}
-              </div>
-            </div>
-          ) : null}
-
-          {/* Nav aids */}
-          {a.nav?.length ? (
-            <div className="ap-card">
-              <div className="ap-card-title">Navigation Aids</div>
-              <div className="nav-list">
-                {a.nav.map(n => {
-                  const unit = n.type.startsWith('NDB') ? 'kHz' : 'MHz'
-                  return (
-                    <div key={n.ident} className="nav-item">
-                      <span className="nav-type-tag">{n.type}</span>
-                      <span className="nav-ident">{n.ident}</span>
-                      <span className="nav-freq-val">{n.freq} {unit}</span>
-                      {n.notes && <span className="nav-note">{n.notes}</span>}
-                    </div>
-                  )
-                })}
-              </div>
-            </div>
-          ) : null}
-
-          {/* Hours */}
-          {a.hours && (
-            <div className="ap-card">
-              <div className="ap-card-title">Operating Hours</div>
-              <div className="hours-body">
-                <div className="hours-row">
-                  <span className={`hours-svc-badge hours-svc-badge--${svcBadge}`}>{a.hours.service}</span>
-                  <div>
-                    <div className="hours-schedule">{a.hours.schedule}</div>
-                    {a.hours.notes && <div className="hours-notes">{a.hours.notes}</div>}
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* Fuel */}
-          {a.fuel && (
-            <div className="ap-card">
-              <div className="ap-card-title">Fuel</div>
-              <div className="fuel-body">
-                <div className="fuel-pills">
-                  {[['AVGAS', a.fuel.avgas], ['JET A-1', a.fuel.jet_a1]].map(([label, avail]) => (
-                    <div key={String(label)} className={`fuel-pill fuel-pill--${avail ? 'yes' : 'no'}`}>
-                      <span className={`fuel-dot fuel-dot--${avail ? 'yes' : 'no'}`} />
-                      {label}
-                    </div>
-                  ))}
-                </div>
-                {a.fuel.notes    && <div className="fuel-supplier">{a.fuel.notes}</div>}
-                {a.fuel.supplier && <div className="fuel-supplier">{a.fuel.supplier}</div>}
-              </div>
-            </div>
-          )}
-
-          {/* Services */}
-          {a.services && (
-            <div className="ap-card">
-              <div className="ap-card-title">Handling &amp; Services</div>
-              <div className="services-body">
-                <div className="services-grid">
-                  {[
-                    ['Customs', a.services.customs],
-                    ['De-icing', a.services.deicing],
-                    [`Fire Cat. ${a.services.fire_cat || '--'}`, !!a.services.fire_cat],
-                  ].map(([label, val]) => (
-                    <div key={String(label)} className="svc-item">
-                      <span className={`svc-check svc-check--${val ? 'yes' : 'no'}`}>{val ? 'v' : '--'}</span>
-                      {label}
-                    </div>
-                  ))}
-                </div>
-                {a.services.slots    && <div className="svc-extra"><strong>Slots:</strong> {a.services.slots}</div>}
-                {a.services.handling && <div className="svc-extra"><strong>Handling:</strong> {a.services.handling}</div>}
-                {a.services.ppr && (
-                  <div className="svc-ppr-row">
-                    <span className="svc-ppr-label">PPR</span>
-                    {a.services.ppr_phone ? (
-                      <span className="svc-ppr-info">
-                        {a.services.ppr_contact && <span className="svc-ppr-contact">{a.services.ppr_contact} · </span>}
-                        <a href={`tel:${a.services.ppr_phone.replace(/\s/g, '')}`} className="svc-ppr-phone">
-                          {a.services.ppr_phone}
-                        </a>
-                      </span>
-                    ) : (
-                      <span className="svc-ppr-info svc-ppr-info--unpublished">
-                        Contact operator — see AIP AD 2.18
-                      </span>
-                    )}
-                  </div>
-                )}
-              </div>
-            </div>
-          )}
-
-
-        </div>
       </div>
-
-      {/* Charts link */}
-      {a.charts_url && (
-        <div className="ap-charts-wrap">
-          <a href={a.charts_url} target="_blank" rel="noopener noreferrer" className="ap-charts-btn">
-            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <path d="M3 3h4v1.5H4.5v7h7V10H13v4H3V3Z" fill="currentColor" opacity="0.6"/>
-              <path d="M9 2h5v5l-1.5-1.5L8 10 6 8l4.5-4.5L9 2Z" fill="currentColor"/>
-            </svg>
-            View AIP Charts — {a.icao} on Isavia eAIP
-          </a>
-        </div>
-      )}
 
       {/* Footer */}
       <footer className="ap-footer">
