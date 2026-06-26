@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import type { Airport } from '@/types/airport'
+import { AIRAC_META } from '@/data/airports'
 
 function buildVfrContent(a: Airport): string {
   const p    = a.pilot_notes || {}
@@ -96,7 +97,16 @@ export function VfrSection({ airport }: { airport: Airport }) {
     <div className="ap-card ap-card--pilot-notes">
       <div className="ap-card-title">
         Pilot Notes
-        <span className="notam-src">AIP-sourced</span>
+        <a
+          href={AIRAC_META.source_url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="notam-src"
+          style={{ textDecoration: 'none' }}
+          title={`Isavia eAIP — effective ${AIRAC_META.effective}`}
+        >
+          eAIP {AIRAC_META.cycle}
+        </a>
       </div>
       {airport.highland && (
         <div style={{
