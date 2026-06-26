@@ -124,7 +124,7 @@ export default async function AirportPage(props: PageProps<'/airport/[icao]'>) {
                   const cls = ['atis','del','gnd','twr','app','dep','afis','unicom','mf'].includes(role) ? role : 'other'
                   return (
                     <div key={f.role + f.freq} className="ap-sb-freq">
-                      <span className={`ap-sb-freq-role ap-sb-freq-role--${cls}`}>{f.role}</span>
+                      <span className={`ap-sb-freq-role ap-sb-freq-role--${cls}`}>{f.label ?? f.role}</span>
                       <span className="ap-sb-freq-hz">{f.freq} <span className="ap-sb-freq-unit">MHz</span></span>
                     </div>
                   )

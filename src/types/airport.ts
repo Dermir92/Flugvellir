@@ -10,6 +10,7 @@ export interface Runway {
 export interface Frequency {
   role: string
   freq: string
+  label?: string
 }
 
 export interface NavAid {

@@ -45,8 +45,8 @@ const AIRPORTS = [
       { role: "DEL",   freq: "121.000" },
       { role: "GND",   freq: "121.900" },
       { role: "TWR",   freq: "118.300" },
-      { role: "APP",   freq: "119.300" },
-      { role: "APP",   freq: "121.300" }
+      { role: "APP",   freq: "119.300", label: "APP 1" },
+      { role: "APP",   freq: "121.300", label: "APP 2" }
     ],
     nav: [
       { type: "VOR/TACAN", ident: "KFV",  freq: "112.800", notes: "CH75X, H24" },
