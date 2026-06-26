@@ -5,7 +5,7 @@
 
 const AIRPORTS = [
 
-  // â"€â"€ INTERNATIONAL â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€
+  // -- INTERNATIONAL ----------------------------------------------------------
 
   {
     icao: "BIKF",
@@ -194,7 +194,7 @@ const AIRPORTS = [
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
   },
 
-  // â"€â"€ REGIONAL â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€
+  // -- REGIONAL ----------------------------------------------------------------
 
   {
     icao: "BIAR",
@@ -449,7 +449,7 @@ const AIRPORTS = [
         width_m: 30,
         surface: "Asphalt stabilized gravel",
         pcn: null,
-        notes: "RWY 18 slope âˆ’0.3%, THR elevation 24 ft. RWY 36 slope +0.3%, THR elevation 7 ft. NDB approach available."
+        notes: "RWY 18 slope −0.3%, THR elevation 24 ft. RWY 36 slope +0.3%, THR elevation 7 ft. NDB approach available."
       }
     ],
     frequencies: [
@@ -590,7 +590,7 @@ const AIRPORTS = [
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
   },
 
-  // â"€â"€ SMALL AIRFIELDS (eAIP verified) â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€
+  // -- SMALL AIRFIELDS (eAIP verified) ----------------------------------------
 
   {
     icao: "BIVO",
@@ -673,7 +673,7 @@ const AIRPORTS = [
         width_m: 30,
         surface: "Asphalt stabilized gravel",
         pcn: null,
-        notes: "RWY 02 slope âˆ’0.08%, THR 48 ft. RWY 20 slope +0.08%, THR 44 ft."
+        notes: "RWY 02 slope −0.08%, THR 48 ft. RWY 20 slope +0.08%, THR 44 ft."
       }
     ],
     frequencies: [
