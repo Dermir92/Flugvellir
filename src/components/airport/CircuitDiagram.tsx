@@ -56,7 +56,7 @@ export default function CircuitDiagram({
   const rwyX2 = 232
   const rwyMid = (rwyX1 + rwyX2) / 2
   const boxH = 34
-  const boxY = boxAbove ? 8 : rwyY + rwyH + 6
+  const boxY = boxAbove ? rwyY - boxH - 6 : rwyY + rwyH + 6
 
   const cRunway = '#0f2a45'
   const cBox = '#7ecff5'
