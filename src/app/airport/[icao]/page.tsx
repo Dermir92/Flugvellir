@@ -196,7 +196,6 @@ export default async function AirportPage(props: PageProps<'/airport/[icao]'>) {
                 )}
                 {a.services.ppr && (
                   <div className="ap-sb-ppr">
-                    <div className="ap-sb-ppr-label">PPR Required</div>
                     {a.services.ppr_contact && (
                       <div className="ap-sb-ppr-contact">{a.services.ppr_contact}</div>
                     )}
