@@ -367,6 +367,8 @@ export default function MapPageClient() {
                 <a href="https://foxel.is" target="_blank" rel="noopener noreferrer">Foxel</a>
                 <span style={{ color: '#3a4a58' }}> · </span>
                 <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">© OpenStreetMap</a>
+                <span style={{ color: '#3a4a58' }}> · </span>
+                <a href="/skilmalar">Skilmálar</a>
               </div>
             </footer>
 

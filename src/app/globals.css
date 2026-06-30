@@ -2656,3 +2656,201 @@ body.vfr-modal-open { overflow: hidden; }
   .sun-col-val { font-size: 18px; }
   .sun-col--twilight .sun-col-val { font-size: 15px; }
 }
+
+/* ================================================================
+   LEGAL / SKILMÁLAR PAGE — terms and disclaimer
+   ================================================================ */
+
+.legal-page {
+  min-height: 100dvh;
+  background: var(--page-bg);
+  font-family: var(--font-body);
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+}
+
+.legal-header {
+  background: var(--lava);
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid rgba(126,207,245,0.12);
+}
+
+.legal-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--glacier-light);
+  text-decoration: none;
+  margin-bottom: 12px;
+}
+.legal-back:hover { color: #fff; }
+
+.legal-title {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #fff;
+  margin: 0 0 4px;
+}
+
+.legal-meta {
+  font-size: 12px;
+  color: #90bcd8;
+  margin: 0;
+}
+
+.legal-body {
+  flex: 1;
+  max-width: 780px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 32px 24px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Safety banner */
+.legal-safety-banner {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  background: #fff3e0;
+  border: 1.5px solid #e07b00;
+  border-radius: 8px;
+  padding: 16px 18px;
+  margin-bottom: 32px;
+  color: #3a1f00;
+  font-size: 13.5px;
+  line-height: 1.6;
+}
+.legal-safety-icon {
+  font-size: 20px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.legal-safety-en {
+  display: block;
+  margin-top: 6px;
+  color: #5a3000;
+  font-style: italic;
+}
+
+/* Sections */
+.legal-section {
+  border-top: 1px solid var(--card-border);
+  padding: 28px 0;
+}
+.legal-section:first-of-type { border-top: none; }
+
+.legal-h2 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--navy);
+  margin: 0 0 12px;
+}
+
+.legal-h3 {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-label);
+  margin: 20px 0 10px;
+}
+
+.legal-section p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text-primary);
+  margin: 0 0 10px;
+}
+
+.legal-en {
+  color: var(--text-muted) !important;
+  font-size: 13px !important;
+  font-style: italic;
+  border-left: 2px solid var(--card-border);
+  padding-left: 10px;
+  margin-left: 4px;
+}
+
+.legal-mono {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  background: rgba(0,0,0,0.05);
+  padding: 1px 4px;
+  border-radius: 3px;
+}
+
+.legal-list {
+  margin: 8px 0 0;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.legal-list li {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--text-primary);
+}
+
+/* Table */
+.legal-subsection { margin-top: 16px; }
+
+.legal-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin-top: 8px;
+}
+.legal-table th {
+  text-align: left;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-label);
+  padding: 6px 10px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--card-border);
+}
+.legal-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid rgba(176,216,240,0.4);
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+.legal-table tr:last-child td { border-bottom: none; }
+.legal-table a { color: var(--navy-light); }
+.legal-table a:hover { color: var(--lava); }
+
+/* Footer */
+.legal-footer {
+  background: var(--lava);
+  padding: 14px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: #90bcd8;
+  border-top: 1px solid rgba(126,207,245,0.1);
+}
+.legal-footer .legal-back { margin: 0; }
+
+@media (max-width: 600px) {
+  .legal-header { padding: 16px; }
+  .legal-body   { padding: 20px 16px 40px; }
+  .legal-title  { font-size: 22px; }
+  .legal-table  { font-size: 12px; }
+  .legal-table th, .legal-table td { padding: 6px 8px; }
+}
