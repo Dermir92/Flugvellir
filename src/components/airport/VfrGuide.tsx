@@ -37,7 +37,7 @@ function buildVfrContent(a: Airport): string {
       ? 'Request touch-and-go clearance from ATC at your initial radio call. ATC will advise based on traffic.'
       : isAfis
         ? 'Announce touch-and-go intentions on the AFIS frequency. AFIS will advise on known traffic.'
-        : 'No ATC — announce all intentions on the MF. Touch and go is generally permitted for VFR flights at uncontrolled airfields.'
+        : 'No ATC. Announce all intentions on the MF. Touch and go is generally permitted for VFR flights at uncontrolled airfields.'
 
   // --- Runway surface notes ---
   const rwyNotes = (a.runways || []).filter(r => r.notes)
