@@ -4,6 +4,9 @@ import { useEffect, useRef } from 'react'
 import 'leaflet/dist/leaflet.css'
 import { AIRPORTS } from '@/data/airports'
 
+// Consumed by MapPageClient's CSS injection for filter dimming — keep in sync
+export const MARKER_CLASS_PREFIX = 'airport-marker--'
+
 const MAP_CENTER: [number, number] = [64.9, -18.5]
 const MAP_ZOOM = 6
 
@@ -32,8 +35,12 @@ interface Props {
 }
 
 export default function LeafletMap({ onAirportClick }: Props) {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const mapRef       = useRef<import('leaflet').Map | null>(null)
+  const containerRef   = useRef<HTMLDivElement>(null)
+  const mapRef         = useRef<import('leaflet').Map | null>(null)
+  const onClickRef     = useRef(onAirportClick)
+
+  // Keep ref current without triggering map rebuild
+  useEffect(() => { onClickRef.current = onAirportClick }, [onAirportClick])
 
   useEffect(() => {
     if (!containerRef.current || mapRef.current) return
@@ -82,7 +89,7 @@ export default function LeafletMap({ onAirportClick }: Props) {
           permanent: false,
         })
 
-        marker.on('click', () => onAirportClick(ap.icao))
+        marker.on('click', () => onClickRef.current(ap.icao))
         marker.addTo(map)
       })
     })
@@ -91,7 +98,7 @@ export default function LeafletMap({ onAirportClick }: Props) {
       mapRef.current?.remove()
       mapRef.current = null
     }
-  }, [onAirportClick])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps — onAirportClick is accessed via onClickRef
 
   return <div ref={containerRef} className="map-container" />
 }

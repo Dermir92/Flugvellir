@@ -2,14 +2,18 @@
 
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/navigation'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { AIRPORTS, AIRAC_META } from '@/data/airports'
+import { getFlightCat } from '@/lib/metar'
 import s from './MapPageClient.module.css'
 
 const LeafletMap = dynamic(() => import('./LeafletMap'), {
   ssr: false,
   loading: () => <div className="map-container" style={{ background: '#0e1420' }} />,
 })
+
+// Must match MARKER_CLASS_PREFIX exported from LeafletMap.tsx — update both together
+const MARKER_CLASS_PREFIX = 'airport-marker--'
 
 const TYPE_COLORS: Record<string, string> = {
   international: '#e05545',
@@ -93,7 +97,8 @@ export default function MapPageClient() {
   // Initialise from localStorage (runs client-side only)
   useEffect(() => {
     if (window.matchMedia('(max-width: 900px)').matches) {
-      setSidebarOpen(false)
+      // Mobile defaults closed; restore only if user explicitly opened it
+      if (localStorage.getItem('hp_sidebar') !== 'open') setSidebarOpen(false)
     } else {
       if (localStorage.getItem('hp_sidebar') === 'closed') setSidebarOpen(false)
     }
@@ -119,11 +124,11 @@ export default function MapPageClient() {
     const ids = AIRPORTS.map(ap => ap.icao).join(',')
     fetch(`/api/metar/batch?ids=${ids}`)
       .then(r => r.json())
-      .then(({ metar }: { metar: Array<{ icaoId?: string; stationId?: string; fltCat?: string; fltcat?: string }> }) => {
+      .then(({ metar }: { metar: Array<{ icaoId?: string; stationId?: string; rawOb?: string }> }) => {
         const cats: Record<string, string> = {}
         for (const m of metar ?? []) {
-          const id = (m.icaoId ?? m.stationId ?? '').toUpperCase()
-          const cat = m.fltCat ?? m.fltcat
+          const id  = (m.icaoId ?? m.stationId ?? '').toUpperCase()
+          const cat = m.rawOb ? getFlightCat(m.rawOb) : null
           if (id && cat && !cats[id]) cats[id] = cat
         }
         setCatData(cats)
@@ -138,13 +143,11 @@ export default function MapPageClient() {
     return () => clearInterval(timer)
   }, [fetchConditions])
 
-  // Sidebar toggle — persist desktop preference
+  // Sidebar toggle — persist preference on all viewports
   const toggleSidebar = useCallback(() => {
     setSidebarOpen(prev => {
       const next = !prev
-      if (!window.matchMedia('(max-width: 900px)').matches) {
-        localStorage.setItem('hp_sidebar', next ? 'open' : 'closed')
-      }
+      localStorage.setItem('hp_sidebar', next ? 'open' : 'closed')
       return next
     })
   }, [])
@@ -216,12 +219,15 @@ export default function MapPageClient() {
     .map(icao => AIRPORTS.find(ap => ap.icao === icao))
     .filter((ap): ap is (typeof AIRPORTS)[number] => !!ap)
 
-  // Dim filtered-out map markers via CSS injection. Targets .airport-marker--{type} classes
-  // defined in LeafletMap.tsx divIcon html — update here if those class names ever change.
-  const dimCSS = ALL_TYPES
-    .filter(t => !activeFilters.has(t))
-    .map(t => `.airport-marker--${t} { opacity: 0.1 !important; pointer-events: none !important; transition: opacity 0.2s ease !important; }`)
-    .join('\n')
+  // Dim filtered-out map markers via CSS injection. MARKER_CLASS_PREFIX must match
+  // the exported constant in LeafletMap.tsx — rename there, rename here.
+  const dimCSS = useMemo(() =>
+    ALL_TYPES
+      .filter(t => !activeFilters.has(t))
+      .map(t => `.${MARKER_CLASS_PREFIX}${t} { opacity: 0.1 !important; pointer-events: none !important; transition: opacity 0.2s ease !important; }`)
+      .join('\n'),
+    [activeFilters]
+  )
 
   return (
     <>

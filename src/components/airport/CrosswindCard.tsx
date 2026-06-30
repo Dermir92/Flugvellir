@@ -9,7 +9,7 @@ interface Props {
   runways: Runway[]
 }
 
-type Source = 'loading' | 'live' | 'manual' | 'vrb' | 'unavailable'
+type Source = 'loading' | 'live' | 'manual' | 'vrb' | 'calm' | 'unavailable'
 
 interface Wind {
   dir: number
@@ -55,7 +55,7 @@ export default function CrosswindCard({ icao, runways }: Props) {
         const w = parseWindFromRaw(raw)
         if (!w) { setLiveWind(wv => ({ ...wv, source: 'unavailable' })); return }
         if (w.dir === 'VRB') { setLiveWind({ dir: 0, speed: w.spd, gust: w.gust, source: 'vrb' }); return }
-        if (w.spd === 0)     { setLiveWind(wv => ({ ...wv, source: 'unavailable' })); return }
+        if (w.spd === 0)     { setLiveWind(wv => ({ ...wv, source: 'calm' })); return }
         setLiveWind({ dir: w.dir as number, speed: w.spd, gust: w.gust, source: 'live' })
       })
       .catch(() => setLiveWind(wv => ({ ...wv, source: 'unavailable' })))
@@ -171,7 +171,7 @@ export default function CrosswindCard({ icao, runways }: Props) {
                 type="text"
                 inputMode="numeric"
                 pattern="[0-9]*"
-                maxLength={2}
+                maxLength={3}
                 value={manSpd}
                 onChange={e => setManSpd(e.target.value.replace(/\D/g, ''))}
                 aria-label="Wind speed in knots"
@@ -188,6 +188,11 @@ export default function CrosswindCard({ icao, runways }: Props) {
         </div>
       )}
 
+      {liveWind.source === 'calm' && !manual && (
+        <div className="xw-vrb-note">
+          Calm wind reported — no crosswind component.
+        </div>
+      )}
       {liveWind.source === 'unavailable' && !manual && (
         <div className="xw-vrb-note">
           No live wind data. Use manual override for planning.
