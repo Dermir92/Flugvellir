@@ -27,7 +27,6 @@ function buildVfrContent(a: Airport): string {
     ? `<div class="vfr-section">
         <div class="vfr-section-title">Radio Procedures</div>
         <p class="vfr-text">${p.traffic}</p>
-        ${p.sample_call ? `<div class="vfr-sample-call"><span class="vfr-sample-lbl">Sample call:</span> ${p.sample_call}</div>` : ''}
        </div>`
     : ''
 
