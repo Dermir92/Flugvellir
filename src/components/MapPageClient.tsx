@@ -260,6 +260,9 @@ export default function MapPageClient() {
               </button>
             </div>
 
+            {/* Tagline */}
+            <p className={s.sbTagline}>The fastest way to brief any Icelandic airport.</p>
+
             {/* Search */}
             <div className={s.sbSearch}>
               <div className={s.sbSearchWrap}>
