@@ -43,11 +43,11 @@ export default function SkilmalarPage() {
           <p>
             Flugvellir (<span className="legal-mono">flugvellir.is</span>) er rekin af{' '}
             <strong>Foxel ehf.</strong>, skráðs félags á Íslandi. Fyrirspurnir vegna þjónustunnar
-            sendist á <a href="mailto:danielthor@foxel.is">danielthor@foxel.is</a>.
+            sendist á <a href="mailto:foxel@foxel.is">foxel@foxel.is</a>.
           </p>
           <p className="legal-en">
             Flugvellir is operated by Foxel ehf., a company registered in Iceland.
-            Enquiries may be directed to <a href="mailto:danielthor@foxel.is">danielthor@foxel.is</a>.
+            Enquiries may be directed to <a href="mailto:foxel@foxel.is">foxel@foxel.is</a>.
           </p>
         </section>
 
@@ -196,7 +196,7 @@ export default function SkilmalarPage() {
           </p>
           <p>
             Frekari upplýsingar, eða beiðni um eyðingu gagna, sendist á{' '}
-            <a href="mailto:danielthor@foxel.is">danielthor@foxel.is</a> í samræmi við
+            <a href="mailto:foxel@foxel.is">foxel@foxel.is</a> í samræmi við
             persónuverndarlög nr. 90/2018 (GDPR-innleiðing á Íslandi).
           </p>
         </section>
