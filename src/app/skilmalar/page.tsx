@@ -16,7 +16,7 @@ export default function SkilmalarPage() {
           </svg>
           Til baka
         </Link>
-        <h1 className="legal-title">Skilmálar og ábyrgðarfrávik</h1>
+        <h1 className="legal-title">Skilmálar / Terms &amp; Disclaimer</h1>
         <p className="legal-meta">Flugvellir · Útgáfa 1.0 · Gildistaka 1. júlí 2026</p>
       </header>
 
@@ -147,20 +147,24 @@ export default function SkilmalarPage() {
               <strong>METAR / TAF</strong> — NOAA Aviation Weather Center
               (<span className="legal-mono">aviationweather.gov</span>), opin gögn samkvæmt
               US Government Open Data Policy.
+              <span className="legal-en">Open data from NOAA Aviation Weather Center under US Government Open Data Policy.</span>
             </li>
             <li>
               <strong>NOTAM</strong> — Isavia AIS ohf., birt á grundvelli opinlegra opinna gagna.
+              <span className="legal-en">Published by Isavia AIS ohf. as open government data.</span>
             </li>
             <li>
               <strong>Flugvallargögn (ARP, brautir, tíðni, þjónusta)</strong> — AIP Ísland,
               Isavia ANS ohf. Gögn eru talin nákvæm en geta verið úrelt milli AIRAC-lota.
               Alltaf ber að sannreyna í gildandi AIP.
+              <span className="legal-en">Aerodrome data (ARP, runways, frequencies, services) sourced from AIP Iceland, Isavia ANS ohf. Data is believed accurate but may be out of date between AIRAC cycles — always verify against the current AIP before flight.</span>
             </li>
             <li>
               <strong>Sólarupprás, -set og birtuljós</strong> — reiknuð stjörnufræðilega af
               opnum hugbúnaðarlykli <span className="legal-mono">suncalc</span> (V. Agafonkin)
               á grundvelli USNO-reiknilíkana. Nákvæmni er ±1–2 mínútur miðað við opinbegar
               töflur Isavia í AIP GEN 2.7.
+              <span className="legal-en">Sunrise, sunset, and civil twilight computed astronomically using the open-source <span className="legal-mono">suncalc</span> library (V. Agafonkin), based on USNO algorithms. Accuracy is ±1–2 minutes vs. official Isavia tables in AIP GEN 2.7.</span>
             </li>
           </ul>
         </section>
