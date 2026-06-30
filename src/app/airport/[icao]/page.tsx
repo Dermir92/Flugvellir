@@ -10,6 +10,7 @@ import CircuitDiagram from '@/components/airport/CircuitDiagram'
 import AlternatesCard from '@/components/airport/AlternatesCard'
 import CrosswindCard from '@/components/airport/CrosswindCard'
 import ForecastCard from '@/components/airport/ForecastCard'
+import SunCard from '@/components/airport/SunCard'
 import type { Airport } from '@/types/airport'
 import type { AltInfo } from '@/components/airport/AlternatesCard'
 
@@ -239,6 +240,9 @@ export default async function AirportPage(props: PageProps<'/airport/[icao]'>) {
 
           {/* Weather status + crosswind — first thing pilots see */}
           <StatusCard airport={a} />
+
+          {/* Daylight times — critical for VFR planning */}
+          <SunCard lat={a.lat} lng={a.lng} />
 
           {/* Pilot notes — core operational content */}
           <VfrSection airport={a} />
