@@ -58,6 +58,8 @@ export default function CircuitDiagram({
   const boxH = 34
   const boxY = boxAbove ? rwyY - boxH - 6 : rwyY + rwyH + 6
 
+  // Hex, not var(--token): these feed SVG presentation attributes (fill=/stroke=),
+  // which don't parse var(). Values mirror --navy, --glacier + diagram-only shades.
   const cRunway = '#0f2a45'
   const cBox = '#7ecff5'
   const cNum = '#1a3a5c'

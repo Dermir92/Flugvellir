@@ -22,7 +22,7 @@ export default function NotFound() {
           Map
         </Link>
         <span className="ap-header-sep">/</span>
-        <span className="ap-hdr-name" style={{ color: '#7099b8' }}>Not found</span>
+        <span className="ap-hdr-name" style={{ color: 'var(--dark-text-dim)' }}>Not found</span>
       </header>
 
       <div style={{
@@ -64,7 +64,7 @@ export default function NotFound() {
           alignItems: 'center',
           gap: '8px',
           background: 'var(--navy)',
-          color: '#fff',
+          color: 'var(--white)',
           padding: '12px 24px',
           borderRadius: '8px',
           fontWeight: 600,

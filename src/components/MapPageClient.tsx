@@ -9,16 +9,16 @@ import s from './MapPageClient.module.css'
 
 const LeafletMap = dynamic(() => import('./LeafletMap'), {
   ssr: false,
-  loading: () => <div className="map-container" style={{ background: '#0e1420' }} />,
+  loading: () => <div className="map-container" style={{ background: 'var(--map-loading-bg)' }} />,
 })
 
 // Must match MARKER_CLASS_PREFIX exported from LeafletMap.tsx — update both together
 const MARKER_CLASS_PREFIX = 'airport-marker--'
 
 const TYPE_COLORS: Record<string, string> = {
-  international: '#e05545',
-  regional:      '#7ecff5',
-  small:         '#2a9050',
+  international: 'var(--volcanic)',
+  regional:      'var(--glacier)',
+  small:         'var(--moss)',
 }
 
 const CAT_CLASS: Record<string, string> = {
@@ -429,20 +429,20 @@ export default function MapPageClient() {
                   display: 'flex', alignItems: 'flex-start', gap: '7px',
                   background: 'rgba(184,80,40,0.18)', border: '1px solid rgba(224,100,60,0.4)',
                   borderRadius: '5px', padding: '8px 10px', marginBottom: '4px',
-                  fontSize: '11px', color: '#e89060', lineHeight: '1.45', fontWeight: 500
+                  fontSize: '11px', color: 'var(--warn-glow)', lineHeight: '1.45', fontWeight: 500
                 }}>
                   <span style={{ flexShrink: 0, fontWeight: 700 }}>⚠</span>
                   <span>
                     AIRAC {AIRAC_META.cycle} has expired. Data may be out of date.{' '}
                     <a href={AIRAC_META.source_url} target="_blank" rel="noopener noreferrer"
-                      style={{ color: '#f0b070', textDecoration: 'underline' }}>Verify with current eAIP.</a>
+                      style={{ color: 'var(--warn-link)', textDecoration: 'underline' }}>Verify with current eAIP.</a>
                   </span>
                 </div>
               )}
               <div className={s.sbFooterAirac}>
                 <span className="airac-pulse" aria-hidden="true" />
                 {t('airac')} {AIRAC_META.cycle}
-                <span style={{ color: '#3a6888' }}>·</span>
+                <span style={{ color: 'var(--text-muted)' }}>·</span>
                 {t('effective')} {AIRAC_META.effective}
               </div>
               <div className={s.sbFooterLinks}>
@@ -454,9 +454,9 @@ export default function MapPageClient() {
               </div>
               <div className={s.sbFooterCredit}>
                 <a href="https://foxel.is" target="_blank" rel="noopener noreferrer">Foxel</a>
-                <span style={{ color: '#3a4a58' }}> · </span>
+                <span style={{ color: 'var(--dark-sep)' }}> · </span>
                 <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">© OpenStreetMap</a>
-                <span style={{ color: '#3a4a58' }}> · </span>
+                <span style={{ color: 'var(--dark-sep)' }}> · </span>
                 <a href="/skilmalar">Skilmálar</a>
               </div>
             </footer>

@@ -8,7 +8,7 @@ import { AIRAC_META } from '@/data/airports'
 const VFR_CALL_PRIORITY = ['TWR', 'AFIS', 'MF', 'CTAF', 'APP']
 
 const HAZARD_ICON: Record<string, string> = { bird: '🐦', volcanic: '🌋', military: '⚠', terrain: '⛰' }
-const HAZARD_COLOR: Record<string, string> = { bird: '#a8d8a8', volcanic: '#f0a060', military: '#f0c84a', terrain: '#e08060' }
+const HAZARD_COLOR: Record<string, string> = { bird: 'var(--hazard-bird)', volcanic: 'var(--hazard-volcanic)', military: 'var(--gold)', terrain: 'var(--hazard-terrain)' }
 
 function VfrContent({ airport }: { airport: Airport }) {
   const a = airport
@@ -233,7 +233,7 @@ export function VfrSection({ airport }: { airport: Airport }) {
           display: 'flex', alignItems: 'flex-start', gap: '10px',
           background: 'transparent', border: '1px solid rgba(200,140,80,0.5)',
           borderRadius: '6px', padding: '11px 14px', marginBottom: '10px',
-          fontSize: '12.5px', color: '#c8905a', lineHeight: '1.5', fontWeight: 600
+          fontSize: '12.5px', color: 'var(--caution-soft)', lineHeight: '1.5', fontWeight: 600
         }}>
           <span style={{ fontSize: '13px', flexShrink: 0, marginTop: '1px' }}>⚠</span>
           <span>Highland airfield — density altitude, rapidly changing weather, and limited rescue services. Confirm conditions before departure.</span>
@@ -241,7 +241,7 @@ export function VfrSection({ airport }: { airport: Airport }) {
       )}
       {hasHazards && (
         <div style={{ padding: '14px 18px 0', marginBottom: '0' }}>
-          <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.08em', color: '#7099b8', textTransform: 'uppercase', marginBottom: '8px' }}>Hazards</div>
+          <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.08em', color: 'var(--dark-text-dim)', textTransform: 'uppercase', marginBottom: '8px' }}>Hazards</div>
           {airport.hazards!.map((h, i) => (
             <div key={i} style={{
               display: 'flex', gap: '10px', alignItems: 'flex-start',
@@ -250,8 +250,8 @@ export function VfrSection({ airport }: { airport: Airport }) {
             }}>
               <span style={{ fontSize: '14px', flexShrink: 0, marginTop: '1px' }}>{HAZARD_ICON[h.type] ?? '⚠'}</span>
               <div>
-                <div style={{ fontSize: '12px', color: HAZARD_COLOR[h.type] ?? '#c8e0f0', fontWeight: 500, lineHeight: 1.4 }}>{h.description}</div>
-                {h.season && <div style={{ fontSize: '11px', color: '#7099b8', marginTop: '3px' }}>{h.season}</div>}
+                <div style={{ fontSize: '12px', color: HAZARD_COLOR[h.type] ?? 'var(--hazard-default)', fontWeight: 500, lineHeight: 1.4 }}>{h.description}</div>
+                {h.season && <div style={{ fontSize: '11px', color: 'var(--dark-text-dim)', marginTop: '3px' }}>{h.season}</div>}
               </div>
             </div>
           ))}

@@ -24,7 +24,7 @@ export default function AirportError({
           Map
         </Link>
         <span className="ap-header-sep">/</span>
-        <span className="ap-hdr-name" style={{ color: '#7099b8' }}>Something went wrong</span>
+        <span className="ap-hdr-name" style={{ color: 'var(--dark-text-dim)' }}>Something went wrong</span>
       </header>
 
       <div style={{
@@ -63,7 +63,7 @@ export default function AirportError({
               alignItems: 'center',
               gap: '8px',
               background: 'var(--navy)',
-              color: '#fff',
+              color: 'var(--white)',
               padding: '12px 24px',
               borderRadius: '8px',
               fontWeight: 600,

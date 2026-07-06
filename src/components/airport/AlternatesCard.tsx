@@ -31,11 +31,11 @@ function getFlightCat(raw: string): Cat {
 }
 
 const CAT_STYLE: Record<Cat, React.CSSProperties> = {
-  VFR:  { background: '#00c47a', color: '#003d22' },  /* 5.43:1 AA */
-  MVFR: { background: '#b8b000', color: '#2d2d00' },  /* 6.22:1 AA */
-  IFR:  { background: '#b83020', color: '#fff' },      /* 6.03:1 AA */
-  LIFR: { background: '#c00030', color: '#fff' },      /* 6.39:1 AA */
-  none: { background: 'rgba(100,140,180,0.25)', color: '#7099b8' },
+  VFR:  { background: 'var(--cat-vfr-bright)', color: 'var(--cat-vfr-ink)' },  /* 5.43:1 AA */
+  MVFR: { background: 'var(--cat-mvfr)', color: 'var(--cat-mvfr-ink)' },       /* 6.22:1 AA */
+  IFR:  { background: 'var(--cat-ifr)', color: 'var(--white)' },               /* 6.03:1 AA */
+  LIFR: { background: 'var(--cat-lifr)', color: 'var(--white)' },              /* 6.39:1 AA */
+  none: { background: 'rgba(100,140,180,0.25)', color: 'var(--dark-text-dim)' },
 }
 
 export default function AlternatesCard({ alternates }: { alternates: AltInfo[] }) {
@@ -100,14 +100,14 @@ export default function AlternatesCard({ alternates }: { alternates: AltInfo[] }
                 <span style={{
                   fontSize: 13,
                   fontWeight: 700,
-                  color: '#0f2a45',
+                  color: 'var(--navy)',
                   marginRight: 7,
                 }}>
                   {alt.icao}
                 </span>
                 <span style={{
                   fontSize: 12,
-                  color: '#4a7a9a',
+                  color: 'var(--steel)',
                   whiteSpace: 'nowrap',
                   overflow: 'hidden',
                   textOverflow: 'ellipsis',
@@ -120,21 +120,21 @@ export default function AlternatesCard({ alternates }: { alternates: AltInfo[] }
               <div style={{
                 fontSize: 12,
                 fontWeight: 600,
-                color: '#7099b8',
+                color: 'var(--dark-text-dim)',
                 whiteSpace: 'nowrap',
               }}>
                 {alt.distNm} NM
               </div>
 
               {/* Navigation indicator */}
-              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true" style={{ flexShrink: 0, color: '#9ab8cc' }}>
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true" style={{ flexShrink: 0, color: 'var(--steel-light)' }}>
                 <path d="M3 1.5l4 3.5-4 3.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </Link>
           )
         })}
       </div>
-      <div style={{ fontSize: 10, color: '#9ab8cc', marginTop: 8 }}>
+      <div style={{ fontSize: 10, color: 'var(--steel-light)', marginTop: 8 }}>
         Live conditions · click to open
       </div>
     </div>

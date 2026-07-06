@@ -10,6 +10,8 @@ export const MARKER_CLASS_PREFIX = 'airport-marker--'
 const MAP_CENTER: [number, number] = [64.9, -18.5]
 const MAP_ZOOM = 6
 
+// Hex, not var(--token): these are interpolated into SVG presentation attributes
+// (fill=/stroke=), which don't parse var(). Values mirror --volcanic, --glacier, --white.
 const MARKER_CONFIGS = {
   international: { size: 30, color: '#e05545', stroke: '#7ecff5' },
   regional:      { size: 22, color: '#7ecff5', stroke: '#7ecff5' },

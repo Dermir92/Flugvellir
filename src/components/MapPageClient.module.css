@@ -40,7 +40,7 @@
   font-family: var(--font-display);
   font-size: 17px;
   font-weight: 800;
-  color: #fff;
+  color: var(--white);
   letter-spacing: 0.02em;
   user-select: none;
 }
@@ -55,7 +55,7 @@
   padding: 4px 8px;
   font-size: 11px;
   font-weight: 700;
-  color: #7ecff5;
+  color: var(--glacier);
   cursor: pointer;
   letter-spacing: 0.06em;
   transition: background 0.15s, color 0.15s;
@@ -64,13 +64,13 @@
 
 .langBtn:hover {
   background: rgba(30, 90, 138, 0.42);
-  color: #a8e0ff;
+  color: var(--glacier-bright);
 }
 
 .sbTagline {
   padding: 0 14px 10px;
   font-size: 11.5px;
-  color: #7a9eb8;
+  color: var(--dark-text-soft);
   line-height: 1.4;
   margin: 0;
   flex-shrink: 0;
@@ -93,13 +93,13 @@
   padding: 8px 30px 8px 11px;
   font-size: 13px;
   font-family: var(--font-body);
-  color: #fff;
+  color: var(--white);
   outline: none;
   transition: border-color 0.15s, background 0.15s;
 }
 
 /* solid equivalent of glacier@38% over #0a1e30 — placeholder is not required content */
-.sbInput::placeholder { color: #4a7898; }
+.sbInput::placeholder { color: var(--dark-placeholder); }
 
 .sbInput:focus {
   border-color: rgba(126, 207, 245, 0.45);
@@ -115,7 +115,7 @@
   transform: translateY(-50%);
   width: 13px;
   height: 13px;
-  color: #7099b8;
+  color: var(--dark-text-dim);
   pointer-events: none;
 }
 
@@ -146,7 +146,7 @@
   background: rgba(20, 60, 100, 0.25);
   font-size: 10.5px;
   font-weight: 500;
-  color: #7099b8;           /* 5.97:1 against #0a1e30 — passes AA */
+  color: var(--dark-text-dim);           /* 5.97:1 against #0a1e30 — passes AA */
   cursor: pointer;
   transition: background 0.15s, border-color 0.15s, color 0.15s;
   white-space: nowrap;
@@ -156,13 +156,13 @@
 
 .filterPill:hover {
   background: rgba(30, 90, 138, 0.35);
-  color: #a0c8e0;
+  color: var(--dark-text-hover);
 }
 
 .filterPillActive {
   border-color: rgba(126, 207, 245, 0.35);
   background: rgba(30, 90, 138, 0.35);
-  color: #c0dff0;
+  color: var(--dark-text-active);
 }
 
 .filterDot {
@@ -193,7 +193,7 @@
   font-weight: 700;
   letter-spacing: 0.09em;
   text-transform: uppercase;
-  color: #5a8aaa;           /* 5.10:1 against #0a1e30 — passes AA */
+  color: var(--dark-label);           /* 5.10:1 against #0a1e30 — passes AA */
   flex-shrink: 0;
 }
 
@@ -229,14 +229,14 @@
   font-weight: 700;
   font-family: var(--font-display);
   letter-spacing: 0.06em;
-  color: #7ecff5;           /* glacier — 9.04:1, primary accent */
+  color: var(--glacier);           /* glacier — 9.04:1, primary accent */
   width: 38px;
   flex-shrink: 0;
 }
 
 .condName {
   font-size: 11px;
-  color: #8ab4cc;           /* 6.96:1 against #0a1e30 — passes AA */
+  color: var(--dark-text-mid);           /* 6.96:1 against #0a1e30 — passes AA */
   flex: 1;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -264,12 +264,12 @@
 }
 
 /* VFR/MVFR/IFR/LIFR — do not change these */
-.catVfr  { background: #38b060; color: #0a1e30; }
-.catMvfr { background: #b8b000; color: #2d2d00; }
-.catIfr  { background: #b83020; color: #fff; }
-.catLifr { background: #c00030; color: #fff; }
+.catVfr  { background: var(--cat-vfr); color: var(--lava); }
+.catMvfr { background: var(--cat-mvfr); color: var(--cat-mvfr-ink); }
+.catIfr  { background: var(--cat-ifr); color: var(--white); }
+.catLifr { background: var(--cat-lifr); color: var(--white); }
 /* — badge: solid enough bg so the chip registers against the dark sidebar */
-.catNone { background: rgba(50, 90, 130, 0.65); color: #a0cce8; }
+.catNone { background: rgba(50, 90, 130, 0.65); color: var(--glacier-light); }
 
 /* --- Favorites --- */
 .favRow {
@@ -301,7 +301,7 @@
   font-weight: 700;
   font-family: var(--font-display);
   letter-spacing: 0.06em;
-  color: #7ecff5;
+  color: var(--glacier);
   width: 38px;
   flex-shrink: 0;
 }
@@ -311,7 +311,7 @@
   border: none;
   padding: 2px 4px;
   font-size: 12px;
-  color: #3a5a78;
+  color: var(--dark-icon-dim);
   cursor: pointer;
   line-height: 1;
   flex-shrink: 0;
@@ -320,9 +320,9 @@
   margin-left: auto;
 }
 
-.starBtn:hover { color: #f0c84a; }
+.starBtn:hover { color: var(--gold); }
 
-.starBtnActive { color: #f0c84a !important; }
+.starBtnActive { color: var(--gold) !important; }
 
 /* --- Recent airports --- */
 .recentRow {
@@ -340,14 +340,14 @@
   font-weight: 700;
   font-family: var(--font-display);
   letter-spacing: 0.06em;
-  color: #7099b8;           /* 5.97:1 against #0a1e30 — passes AA */
+  color: var(--dark-text-dim);           /* 5.97:1 against #0a1e30 — passes AA */
   width: 38px;
   flex-shrink: 0;
 }
 
 .recentName {
   font-size: 11px;
-  color: #7099b8;           /* 5.97:1 against #0a1e30 — passes AA */
+  color: var(--dark-text-dim);           /* 5.97:1 against #0a1e30 — passes AA */
   flex: 1;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -371,7 +371,7 @@
   gap: 6px;
   font-size: 10.5px;
   font-weight: 600;
-  color: #4aaa78;           /* 6.53:1 against #0a1e30 — passes AA */
+  color: var(--moss-soft);           /* 6.53:1 against #0a1e30 — passes AA */
   font-variant-numeric: tabular-nums;
 }
 
@@ -383,25 +383,25 @@
 }
 
 .sbFooterLinks a {
-  color: #8ab4cc;           /* 6.96:1 against #0a1e30 — matches condName */
+  color: var(--dark-text-mid);           /* 6.96:1 against #0a1e30 — matches condName */
   text-decoration: none;
   transition: color 0.12s;
 }
 
-.sbFooterLinks a:hover { color: #a0cce8; }
+.sbFooterLinks a:hover { color: var(--glacier-light); }
 
 .sbFooterCredit {
   font-size: 10px;
-  color: #6a8aa8;           /* 5.25:1 against #0a1e30 — passes AA */
+  color: var(--dark-footer);           /* 5.25:1 against #0a1e30 — passes AA */
 }
 
 .sbFooterCredit a {
-  color: #6a8aa8;
+  color: var(--dark-footer);
   text-decoration: none;
   transition: color 0.12s;
 }
 
-.sbFooterCredit a:hover { color: #a0cce8; }
+.sbFooterCredit a:hover { color: var(--glacier-light); }
 
 /* ============================================================
    MAP AREA EXTRAS
@@ -420,7 +420,7 @@
   border: 1px solid rgba(126, 207, 245, 0.15);
   border-left: none;
   border-radius: 0 6px 6px 0;
-  color: #7099b8;
+  color: var(--dark-text-dim);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -432,7 +432,7 @@
 }
 
 .collapseBtn:hover {
-  color: #a0cce8;
+  color: var(--glacier-light);
   background: var(--navy-mid);
 }
 
