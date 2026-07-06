@@ -3,8 +3,8 @@ export interface Runway {
   length_m: number
   width_m: number
   surface: string
-  pcn?: string
-  notes?: string
+  pcn?: string | null
+  notes?: string | null
 }
 
 export interface Frequency {
@@ -23,14 +23,21 @@ export interface NavAid {
 export interface Hours {
   service: string
   schedule: string
-  notes?: string
+  notes?: string | null
 }
 
 export interface Fuel {
   avgas: boolean
   jet_a1: boolean
-  supplier?: string
-  notes?: string
+  supplier?: string | null
+  notes?: string | null
+  hours?: string
+}
+
+export interface FireCat {
+  standard: string
+  reduced?: string
+  note?: string
 }
 
 export interface Services {
@@ -39,7 +46,7 @@ export interface Services {
   ppr_contact?: string
   customs: boolean
   deicing: boolean
-  fire_cat?: string
+  fire_cat?: string | FireCat | null
   slots?: string
   handling?: string
 }
@@ -55,22 +62,35 @@ export interface AirspaceInfo {
   name: string
 }
 
+export interface TandGRow {
+  period: string
+  days: string
+  hours: string
+}
+
+export interface TandGStructured {
+  intro?: string
+  rows: TandGRow[]
+  notes?: string[]
+}
+
 export interface PilotNotes {
   circuit_note?: string
   circuit_alt_ft?: number | null
   circuit_dir?: string | null
-  t_and_g?: string
+  t_and_g?: string | TandGStructured
   entry?: string
   traffic?: string
   sample_call?: string
   tips?: string[]
+  departure?: string[]
 }
 
 export type AirportType = 'international' | 'regional' | 'small'
 
 export interface Airport {
   icao: string
-  iata?: string
+  iata?: string | null
   name: string
   name_is: string
   type: AirportType
@@ -101,5 +121,6 @@ export interface AiracMeta {
   cycle: string
   effective: string
   next: string
+  next_iso: string
   source_url: string
 }

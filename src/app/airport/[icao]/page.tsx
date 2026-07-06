@@ -11,8 +11,14 @@ import AlternatesCard from '@/components/airport/AlternatesCard'
 import CrosswindCard from '@/components/airport/CrosswindCard'
 import ForecastCard from '@/components/airport/ForecastCard'
 import SunCard from '@/components/airport/SunCard'
-import type { Airport } from '@/types/airport'
+import type { Airport, FireCat } from '@/types/airport'
 import type { AltInfo } from '@/components/airport/AlternatesCard'
+
+function fireCatLabel(fc: string | FireCat | null | undefined): string {
+  if (!fc) return 'Fire CAT —'
+  if (typeof fc === 'string') return `Fire CAT ${fc}`
+  return fc.reduced ? `Fire CAT ${fc.standard}/${fc.reduced}` : `Fire CAT ${fc.standard}`
+}
 
 function getAlternates(from: Airport, all: Airport[], count = 3): AltInfo[] {
   const R = 6371
@@ -185,7 +191,7 @@ export default async function AirportPage(props: PageProps<'/airport/[icao]'>) {
                   {[
                     ['Customs',   a.services.customs],
                     ['De-icing',  a.services.deicing],
-                    [a.services.fire_cat ? `Fire CAT ${a.services.fire_cat}` : 'Fire CAT —', !!a.services.fire_cat],
+                    [fireCatLabel(a.services.fire_cat), !!a.services.fire_cat],
                   ].map(([label, val]) => (
                     <span key={String(label)} className={`ap-sb-svc-chip ap-sb-svc-chip--${val ? 'yes' : 'no'}`}>
                       {label}

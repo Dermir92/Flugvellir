@@ -1,7 +1,8 @@
-﻿﻿// Flugvellir, Icelandic Airport Data
+﻿// Flugvellir, Icelandic Airport Data
 // Source: Isavia eAIP AIRAC A06/2026, effective 11 JUN 2026
 // Verified against: https://eaip.isavia.is/A_06-2026_2026_06_11/
 // NOTE: Always verify with current NOTAMs and official AIP before flight.
+import { AIRAC_META } from './airac-meta.js'
 
 const AIRPORTS = [
 
@@ -58,8 +59,7 @@ const AIRPORTS = [
     ],
     hours: {
       service: "ATC",
-      schedule: "H24",
-      notes: null
+      schedule: "H24"
     },
     fuel: {
       avgas: false,
@@ -70,7 +70,7 @@ const AIRPORTS = [
       ppr: false,
       customs: true,
       deicing: true,
-      fire_cat: "8",
+      fire_cat: { standard: "8", reduced: "7", note: "CAT 8 during 05:00–19:00 UTC, CAT 7 during 19:00–05:00 UTC" },
       slots: "Required for commercial operations, contact Isavia Slot Office",
       handling: "Full ground handling available"
     },
@@ -78,13 +78,21 @@ const AIRPORTS = [
       "Strong and gusty surface winds common, particularly from WSW.",
       "Military activity on north apron, NOTAMs frequently issued for restricted areas.",
       "CAT II/III ops on RWY 19 require special approval and airline equipment certification.",
-      "VOR/TACAN KFV 112.800 is a primary holding/routing fix for the region.",
-      "Fire CAT 8 during 0500–1900, CAT 7 during 1900–0500."
+      "VOR/TACAN KFV 112.800 is a primary holding/routing fix for the region."
     ],
     pilot_notes: {
       circuit_alt_ft: 1200,
       circuit_note: "Right-hand for RWY 10 and 19, unless directed otherwise by ATC. Circuit altitude 1,200 ft MSL. To join via overhead: 1,700 ft MSL.",
-      t_and_g: "Touch & go and low approaches for training flights are prohibited during the following periods. Winter (19 Sep–15 May): 06:00–09:00 and 14:30–17:30. Summer (16 May–18 Sep): 06:00–11:00, 14:30–18:00, and 23:30–00:30. ATC may restrict training flights at any time without notice.",
+      t_and_g: {
+        intro: "Touch & go and low approaches for training flights prohibited during:",
+        rows: [
+          { period: "Winter (19 Sep–15 May)", days: "Daily", hours: "06:00–09:00, 14:30–17:30" },
+          { period: "Summer (16 May–18 Sep)", days: "Daily", hours: "06:00–11:00, 14:30–18:00, 23:30–00:30" }
+        ],
+        notes: [
+          "ATC may restrict training flights at any time without notice."
+        ]
+      },
       entry: "Contact Keflavík Tower on 118.300 for clearance before entering the CTR. The CTR extends to 3,000 ft AMSL. Obtain ATIS on 128.300 before calling. Private and training aircraft must be pre-registered in the VEOVO database, arrange through a ground handling agent before arrival.",
       sample_call: "Keflavík Tower, TF-ABC, Cessna 172, [position], information [Alpha], VFR, request clearance to enter CTR.",
       tips: [
@@ -124,7 +132,7 @@ const AIRPORTS = [
         width_m: 45,
         surface: "Asphalt",
         pcn: "35/F/A/X/T",
-        notes: "ILS CAT I on RWY 19 (IRK 109.9); LOC/DME on RWY 13 (IRE 109.1)"
+        notes: "ILS CAT I on RWY 19 (IRK 109.9)"
       },
       {
         id: "13/31",
@@ -132,7 +140,7 @@ const AIRPORTS = [
         width_m: 45,
         surface: "Asphalt",
         pcn: "25/F/A/X/T",
-        notes: "Crosswind runway. Vegetation penetrates obstacle surfaces SE of runway."
+        notes: "LOC/DME approach RWY 13 (IRE 109.1); NDB RK 355. Vegetation penetrates obstacle surfaces SE of runway."
       }
     ],
     frequencies: [
@@ -156,13 +164,14 @@ const AIRPORTS = [
     fuel: {
       avgas: true,
       jet_a1: true,
-      supplier: "Icelandair ehf / Iceland Aero Agents, AVGAS 200 L/min, Jet A-1 800 L/min"
+      supplier: "Icelandair ehf / Iceland Aero Agents, AVGAS 200 L/min, Jet A-1 800 L/min",
+      hours: "Mon–Fri 07:00–18:30"
     },
     services: {
       ppr: false,
       customs: true,
       deicing: true,
-      fire_cat: "6",
+      fire_cat: { standard: "6", note: "CAT 7 available with 30 min notice" },
       slots: "Not required for GA",
       handling: "Multiple handlers available"
     },
@@ -170,13 +179,32 @@ const AIRPORTS = [
       "City-centre location, visual approaches to RWY 01/19 can be spectacular in VMC, demanding in reduced visibility.",
       "RWY 19 ILS CAT I; LOC-only approach available for RWY 13.",
       "Close proximity to BIKF, always confirm correct airport when filing in Reykjavík area.",
-      "Noise abatement procedures apply, avoid residential areas on departure.",
-      "CAT VI standard; CAT VII available with 30 min notice."
+      "Noise abatement procedures apply, avoid residential areas on departure."
     ],
     pilot_notes: {
       circuit_alt_ft: 1000,
       circuit_note: "Left-hand for RWY 01 and 31; right-hand for RWY 13 and 19. Circuit altitude 1,000 ft MSL. Climb on runway heading to at least runway end before turning crosswind.",
-      t_and_g: "Single-engine aircraft only, engine under 220 hp. Multi-engine touch & go prohibited. Simulated engine failures on takeoff/landing prohibited. Permitted times, Winter (16 Sep–15 Apr): Mon–Fri 10:00–17:00, weekends & public holidays 11:00–16:00. Summer (16 Apr–15 Sep): Mon–Fri 10:00–17:00 only, not permitted on weekends in summer, and not on any special public holidays. Minimum ceiling 2,000 ft MSL. Maximum 3 aircraft in circuit simultaneously. ATC may restrict at any time without notice. Instruction flights have priority.",
+      departure: [
+        "RWY 01: Maintain runway heading to 1,000 ft MSL before turning right.",
+        "RWY 13: Multi-engine VFR aircraft must maintain runway heading to 1,000 ft MSL before turning.",
+        "RWY 31: Maintain runway heading to 800 ft MSL before turning right."
+      ],
+      t_and_g: {
+        intro: "Permitted during:",
+        rows: [
+          { period: "Winter (16 Sep–15 Apr)", days: "Mon–Fri", hours: "10:00–17:00" },
+          { period: "Winter (16 Sep–15 Apr)", days: "Weekends & public holidays", hours: "11:00–16:00" },
+          { period: "Summer (16 Apr–15 Sep)", days: "Mon–Fri", hours: "10:00–17:00" },
+          { period: "Summer (16 Apr–15 Sep)", days: "Weekends", hours: "Not permitted" },
+          { period: "All seasons", days: "Major public holidays (stórhátíðardagar)", hours: "Not permitted" }
+        ],
+        notes: [
+          "Single-engine aircraft only, engine under 220 hp. Multi-engine touch & go prohibited.",
+          "Simulated engine failures on takeoff/landing are prohibited.",
+          "Minimum ceiling 2,000 ft MSL. Maximum 3 aircraft in circuit simultaneously.",
+          "ATC may restrict at any time without notice. Instruction flights have priority."
+        ]
+      },
       entry: "Obtain ATIS on 128.100 before calling. Contact Reykjavík Tower on 118.000 before entering the CTR, no later than 3 NM from CTR boundary. Follow published VFR routes (BIRK AD 8 charts). Report at inner VFR reporting points. Initial call must include callsign, position, intentions, and ATIS identifier.",
       sample_call: "Reykjavík Tower, TF-ABC, Cessna 172, [position], information [Alpha], VFR inbound, request landing.",
       tips: [
@@ -823,7 +851,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 434 1210", ppr_contact: "Böðvar Magnússon (Isavia District 1)", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 434 1210", ppr_contact: "Böðvar Magnússon (Isavia District 1)", customs: false, deicing: false, fire_cat: null },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz, \"Búðardalur umferð\", and report position.",
@@ -852,7 +880,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 478 8288", ppr_contact: "Sveitastjórnarskrifstofa Djúpavogs (Isavia District 4)", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 478 8288", ppr_contact: "Sveitastjórnarskrifstofa Djúpavogs (Isavia District 4)", customs: false, deicing: false, fire_cat: null },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.400 MHz, \"Djúpivogur umferð\", and report position.",
@@ -883,7 +911,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 862 1766", ppr_contact: "Gunnar Sigurjónsson (Isavia District 4)", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 862 1766", ppr_contact: "Gunnar Sigurjónsson (Isavia District 4)", customs: false, deicing: false, fire_cat: null },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.400 MHz, \"Fagurhólsmýri umferð\", and report position.",
@@ -912,7 +940,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 893 0331", ppr_contact: "Þröstur Jónsson (Flugklúbbur Flúða / Isavia)", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 893 0331", ppr_contact: "Þröstur Jónsson (Flugklúbbur Flúða / Isavia)", customs: false, deicing: false, fire_cat: null },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz, \"Flúðir umferð\", and report position.",
@@ -941,7 +969,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 864 7072", ppr_contact: "Guðmundur J. Jónasson (Isavia District 3)", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 864 7072", ppr_contact: "Guðmundur J. Jónasson (Isavia District 3)", customs: false, deicing: false, fire_cat: null },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz, \"Grímsstaðir umferð\", and report position.",
@@ -969,7 +997,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 892 0268", ppr_contact: "Sigurður Sigurbergsson (eigandi / owner)", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 892 0268", ppr_contact: "Sigurður Sigurbergsson (eigandi / owner)", customs: false, deicing: false, fire_cat: null },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz, \"Grundarfjörður umferð\", and report position.",
@@ -999,7 +1027,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 840 7026", ppr_contact: "Matthías Sveinbjörnsson (Flugmálafélag Íslands / Isavia District 1)", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 840 7026", ppr_contact: "Matthías Sveinbjörnsson (Flugmálafélag Íslands / Isavia District 1)", customs: false, deicing: false, fire_cat: null },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.400 MHz, \"Hella umferð\", and report position.",
@@ -1032,7 +1060,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 864 7072", ppr_contact: "Guðmundur J. Jónasson (Isavia District 3)", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 864 7072", ppr_contact: "Guðmundur J. Jónasson (Isavia District 3)", customs: false, deicing: false, fire_cat: null },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz, \"Herðubreiðarlindir umferð\", and report position.",
@@ -1060,7 +1088,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 424 5660", ppr_contact: "Umdæmisstjóri District 2 (Isavia)", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 424 5660", ppr_contact: "Umdæmisstjóri District 2 (Isavia)", customs: false, deicing: false, fire_cat: null },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.600 MHz, \"Hólmavík umferð\", and report position.",
@@ -1089,7 +1117,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 892 1550", ppr_contact: "Bergþór Kristleifsson (Isavia District 1)", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 892 1550", ppr_contact: "Bergþór Kristleifsson (Isavia District 1)", customs: false, deicing: false, fire_cat: null },
     remarks: [],
     pilot_notes: {
       circuit_alt_ft: null,
@@ -1122,7 +1150,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 424 5387", ppr_contact: "Helgi Bjarnason (Isavia District 1)", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 424 5387", ppr_contact: "Helgi Bjarnason (Isavia District 1)", customs: false, deicing: false, fire_cat: null },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz, \"Hveravellir umferð\", and report position.",
@@ -1151,7 +1179,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 893 6762", ppr_contact: "Ásbjörn Pálsson (Isavia District 1)", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 893 6762", ppr_contact: "Ásbjörn Pálsson (Isavia District 1)", customs: false, deicing: false, fire_cat: null },
     remarks: [],
     pilot_notes: {
       circuit_alt_ft: null,
@@ -1183,7 +1211,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 424 5387", ppr_contact: "Helgi Bjarnason (Isavia District 1)", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 424 5387", ppr_contact: "Helgi Bjarnason (Isavia District 1)", customs: false, deicing: false, fire_cat: null },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz, \"Kerlingarfjöll umferð\", and report position.",
@@ -1213,7 +1241,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 424 5387", ppr_contact: "Helgi Bjarnason (Isavia District 1)", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 424 5387", ppr_contact: "Helgi Bjarnason (Isavia District 1)", customs: false, deicing: false, fire_cat: null },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.400 MHz, \"Kirkjubæjarklaustur umferð\", and report position.",
@@ -1241,7 +1269,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 860 5634", ppr_contact: "Umdæmisstjóri District 3 (Isavia)", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 860 5634", ppr_contact: "Umdæmisstjóri District 3 (Isavia)", customs: false, deicing: false, fire_cat: null },
     remarks: [],
     charts_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
   },
@@ -1260,7 +1288,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "None", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 463 1313", ppr_contact: "Melgerðismelar (glider aerodrome, Isavia District 3)", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 463 1313", ppr_contact: "Melgerðismelar (glider aerodrome, Isavia District 3)", customs: false, deicing: false, fire_cat: null },
     remarks: [],
     pilot_notes: {
       circuit_note: "Glider circuit east of runway. Model aircraft circuit west of runway, be aware of separation. Confirm circuit altitude in current AIP charts.",
@@ -1290,7 +1318,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 892 0008", ppr_contact: "Múlakot (einkavöllur / private)", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 892 0008", ppr_contact: "Múlakot (einkavöllur / private)", customs: false, deicing: false, fire_cat: null },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.400 MHz, \"Múlakot umferð\", and report position.",
@@ -1318,7 +1346,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 424 5639", ppr_contact: "Umdæmisstjóri District 4 (Isavia)", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 424 5639", ppr_contact: "Umdæmisstjóri District 4 (Isavia)", customs: false, deicing: false, fire_cat: null },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz, \"Norðfjörður umferð\", and report position.",
@@ -1348,7 +1376,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 424 5387", ppr_contact: "Helgi Bjarnason (Isavia District 1)", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 424 5387", ppr_contact: "Helgi Bjarnason (Isavia District 1)", customs: false, deicing: false, fire_cat: null },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz, \"Nýidalur umferð\", and report position.",
@@ -1376,7 +1404,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 465 1269", ppr_contact: "Umdæmisstjóri District 3 (Isavia)", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 465 1269", ppr_contact: "Umdæmisstjóri District 3 (Isavia)", customs: false, deicing: false, fire_cat: null },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz, \"Raufarhöfn umferð\", and report position.",
@@ -1404,7 +1432,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 424 5660", ppr_contact: "Umdæmisstjóri District 2 (Isavia)", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 424 5660", ppr_contact: "Umdæmisstjóri District 2 (Isavia)", customs: false, deicing: false, fire_cat: null },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz, \"Reykhólar umferð\", and report position.",
@@ -1434,7 +1462,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: true, jet_a1: false, supplier: "AVGAS 100LL" },
-    services: { ppr: true, ppr_phone: "+354 860 5634", ppr_contact: "Umdæmisstjóri District 3 (Isavia)", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 860 5634", ppr_contact: "Umdæmisstjóri District 3 (Isavia)", customs: false, deicing: false, fire_cat: null },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz, \"Reykjahlíð umferð\", and report position.",
@@ -1463,7 +1491,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 424 5660", ppr_contact: "Umdæmisstjóri District 2 (Isavia)", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 424 5660", ppr_contact: "Umdæmisstjóri District 2 (Isavia)", customs: false, deicing: false, fire_cat: null },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz, \"Reykjanes umferð\", and report position.",
@@ -1492,7 +1520,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: true, supplier: "Jet A-1 available" },
-    services: { ppr: true, ppr_phone: "+354 894 3611", ppr_contact: "Guðjón Hrannar Björnsson (Isavia District 1)", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 894 3611", ppr_contact: "Guðjón Hrannar Björnsson (Isavia District 1)", customs: false, deicing: false, fire_cat: null },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz, \"Rif umferð\", and report position.",
@@ -1520,7 +1548,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "None", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 697 8730", ppr_contact: "Svifflugfélag Íslands (Isavia)", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 697 8730", ppr_contact: "Svifflugfélag Íslands (Isavia)", customs: false, deicing: false, fire_cat: null },
     remarks: [],
     pilot_notes: {
       circuit_note: "Power aircraft circuit north of runway 13/31 at 1,300 ft MSL (700 ft AGL). Glider circuit south of runway.",
@@ -1555,7 +1583,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 699 1414", ppr_contact: "Ómar Ragnarsson (eigandi / private)", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 699 1414", ppr_contact: "Ómar Ragnarsson (eigandi / private)", customs: false, deicing: false, fire_cat: null },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz, \"Sauðárflugvöllur umferð\", and report position.",
@@ -1586,7 +1614,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: true, jet_a1: false, supplier: "AVGAS 100LL" },
-    services: { ppr: true, ppr_phone: "+354 856 5513", ppr_contact: "Guðjón Kjartansson (Flugklúbbur Selfoss)", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 856 5513", ppr_contact: "Guðjón Kjartansson (Flugklúbbur Selfoss)", customs: false, deicing: false, fire_cat: null },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz, \"Selfoss umferð\", and report position.",
@@ -1619,7 +1647,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 464 9100", ppr_contact: "Fjallabyggð sveitarfélag (municipality)", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 464 9100", ppr_contact: "Fjallabyggð sveitarfélag (municipality)", customs: false, deicing: false, fire_cat: null },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz, \"Siglufjörður umferð\", and report position.",
@@ -1649,7 +1677,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: true, jet_a1: true, supplier: "Check NOTAMs" },
-    services: { ppr: true, ppr_phone: "+354 478 2406", ppr_contact: "Jón Grétar Sigurðsson (Atlantsflug ehf.)", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 478 2406", ppr_contact: "Jón Grétar Sigurðsson (Atlantsflug ehf.)", customs: false, deicing: false, fire_cat: null },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.400 MHz, \"Skaftafell umferð\", and report position.",
@@ -1680,7 +1708,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 424 5387", ppr_contact: "Helgi Bjarnason (Isavia District 1)", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 424 5387", ppr_contact: "Helgi Bjarnason (Isavia District 1)", customs: false, deicing: false, fire_cat: null },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.400 MHz, \"Skálavatn umferð\", and report position.",
@@ -1709,7 +1737,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 424 5387", ppr_contact: "Helgi Bjarnason (Isavia District 1)", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 424 5387", ppr_contact: "Helgi Bjarnason (Isavia District 1)", customs: false, deicing: false, fire_cat: null },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.400 MHz, \"Skógasandur umferð\", and report position.",
@@ -1737,7 +1765,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: true, jet_a1: false, supplier: "AVGAS 100LL, limited supply, confirm availability before departure" },
-    services: { ppr: false, ppr_phone: "+354 694 4676", ppr_contact: "Snorri Kristleifsson (Isavia District 1)", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: false, ppr_phone: "+354 694 4676", ppr_contact: "Snorri Kristleifsson (Isavia District 1)", customs: false, deicing: false, fire_cat: null },
     remarks: [],
     pilot_notes: {
       entry: "The airfield is open to all traffic that can use it, subject to applicable rules. Pilots use the airfield at their own risk.",
@@ -1767,7 +1795,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 894 3611", ppr_contact: "Guðjón Hrannar Björnsson (Isavia District 1)", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 894 3611", ppr_contact: "Guðjón Hrannar Björnsson (Isavia District 1)", customs: false, deicing: false, fire_cat: null },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz, \"Stykkishólmur umferð\", and report position.",
@@ -1803,7 +1831,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: true, jet_a1: false, supplier: "AVGAS 100LL" },
-    services: { ppr: true, ppr_phone: "+354 858 4286", ppr_contact: "Sigurjón Valsson (Flugklúbbur Mosfellsbæjar)", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 858 4286", ppr_contact: "Sigurjón Valsson (Flugklúbbur Mosfellsbæjar)", customs: false, deicing: false, fire_cat: null },
     remarks: [],
     pilot_notes: {
       circuit_note: "Circuit at 700 ft, north of the airfield only.",
@@ -1838,7 +1866,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 487 1243", ppr_contact: "Reynir Ragnarsson (Isavia District 1)", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 487 1243", ppr_contact: "Reynir Ragnarsson (Isavia District 1)", customs: false, deicing: false, fire_cat: null },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.400 MHz, \"Vík umferð\", and report position.",
@@ -1866,7 +1894,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 424 4090", ppr_contact: "AFIS BIIS / Umdæmisstjóri District 2 (Isavia)", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 424 4090", ppr_contact: "AFIS BIIS / Umdæmisstjóri District 2 (Isavia)", customs: false, deicing: false, fire_cat: null },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.100 MHz, \"Þingeyri umferð\", and report position.",
@@ -1896,7 +1924,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "MF", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 424 5387", ppr_contact: "Helgi Bjarnason (Isavia District 1)", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 424 5387", ppr_contact: "Helgi Bjarnason (Isavia District 1)", customs: false, deicing: false, fire_cat: null },
     remarks: [],
     pilot_notes: {
       traffic: "All traffic in the vicinity, below 2,000 ft, is encouraged to make blind calls on 118.400 MHz, \"Þórsmörk umferð\", and report position.",
@@ -1925,7 +1953,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "AFIS", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 424 4085", ppr_contact: "Bíldudalur AFIS / Umdæmisstjóri District 2 (Isavia)", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 424 4085", ppr_contact: "Bíldudalur AFIS / Umdæmisstjóri District 2 (Isavia)", customs: false, deicing: false, fire_cat: null },
     remarks: [],
     pilot_notes: {
       entry: "Contact Bíldudalur AFIS on 119.100 before arrival.",
@@ -1950,7 +1978,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "AFIS", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 424 4086", ppr_contact: "Gjögur AFIS / Umdæmisstjóri District 2 (Isavia)", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 424 4086", ppr_contact: "Gjögur AFIS / Umdæmisstjóri District 2 (Isavia)", customs: false, deicing: false, fire_cat: null },
     remarks: [],
     pilot_notes: {
       tips: [
@@ -1979,7 +2007,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "AFIS", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 424 4070", ppr_contact: "Grímsey AFIS (Isavia District 3)", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 424 4070", ppr_contact: "Grímsey AFIS (Isavia District 3)", customs: false, deicing: false, fire_cat: null },
     remarks: [],
     pilot_notes: {
       tips: [
@@ -1999,7 +2027,7 @@ const AIRPORTS = [
   {
     icao: "BIKR", iata: null,
     name: "Sauðárkrókur Airport", name_is: "Sauðárkrókur",
-    type: "medium", city: "Sauðárkrókur", region: "Norðurland vestra",
+    type: "small", city: "Sauðárkrókur", region: "Norðurland vestra",
     elevation_ft: 9, elevation_m: 3,
     lat: 65.7317, lng: -19.5728,
     lat_dms: "65°43'54\"N", lng_dms: "019°34'22\"W",
@@ -2013,7 +2041,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "AFIS", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 424 4072", ppr_contact: "Sauðárkrókur AFIS (Isavia District 3)", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 424 4072", ppr_contact: "Sauðárkrókur AFIS (Isavia District 3)", customs: false, deicing: false, fire_cat: null },
     remarks: [],
     pilot_notes: {
       tips: [
@@ -2046,7 +2074,7 @@ const AIRPORTS = [
     nav: [],
     hours: { service: "AFIS", schedule: "By arrangement", notes: "Check NOTAMs." },
     fuel: { avgas: false, jet_a1: false, supplier: null },
-    services: { ppr: true, ppr_phone: "+354 424 4071", ppr_contact: "Þórshöfn AFIS (Isavia District 3)", customs: false, deicing: false, fire_cat: null, handling: false },
+    services: { ppr: true, ppr_phone: "+354 424 4071", ppr_contact: "Þórshöfn AFIS (Isavia District 3)", customs: false, deicing: false, fire_cat: null },
     remarks: [],
     pilot_notes: {
       tips: [
@@ -2070,14 +2098,6 @@ const AIRPORT_TYPES = {
   international: { label: "International", label_is: "Alþjóðlegur", color: "#c8503c" },
   regional:      { label: "Regional",      label_is: "Svæðisbundinn", color: "#5a9db4" },
   small:         { label: "Airfield",      label_is: "Flugbraut",    color: "#7a9e6a" }
-};
-
-// AIRAC cycle metadata
-const AIRAC_META = {
-  cycle: "A06/2026",
-  effective: "11 JUN 2026",
-  next: "06 AUG 2026",
-  source_url: "https://eaip.isavia.is/A_06-2026_2026_06_11/"
 };
 
 export { AIRPORTS, AIRPORT_TYPES, AIRAC_META };
