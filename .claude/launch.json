@@ -4,8 +4,8 @@
     {
       "name": "flugvellir-next",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev", "--", "--port", "3003"],
-      "port": 3003
+      "runtimeArgs": ["run", "dev"],
+      "port": 3000
     }
   ]
 }
