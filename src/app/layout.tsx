@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Barlow_Condensed, Inter } from 'next/font/google'
+import { Analytics } from '@vercel/analytics/next'
 import SwRegister from '@/components/SwRegister'
 import './globals.css'
 
@@ -34,6 +35,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="antialiased">
         {children}
         <SwRegister />
+        <Analytics />
       </body>
     </html>
   )
