@@ -245,7 +245,7 @@
 }
 
 .condCat {
-  font-size: 9.5px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.05em;
   padding: 2px 5px;
@@ -271,22 +271,69 @@
 /* — badge: solid enough bg so the chip registers against the dark sidebar */
 .catNone { background: rgba(50, 90, 130, 0.65); color: #a0cce8; }
 
+/* --- Favorites --- */
+.favRow {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background: transparent;
+  transition: background 0.1s;
+}
+
+.favRow:has(:hover), .favRow:has(:focus-visible) { background: rgba(126, 207, 245, 0.07); }
+
+.rowNavBtn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 0 5px 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--font-body);
+  min-width: 0;
+}
+
+.favIcao {
+  font-size: 11px;
+  font-weight: 700;
+  font-family: var(--font-display);
+  letter-spacing: 0.06em;
+  color: #7ecff5;
+  width: 38px;
+  flex-shrink: 0;
+}
+
+.starBtn {
+  background: none;
+  border: none;
+  padding: 2px 4px;
+  font-size: 12px;
+  color: #3a5a78;
+  cursor: pointer;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: color 0.15s;
+  font-family: inherit;
+  margin-left: auto;
+}
+
+.starBtn:hover { color: #f0c84a; }
+
+.starBtnActive { color: #f0c84a !important; }
+
 /* --- Recent airports --- */
 .recentRow {
   display: flex;
   align-items: center;
   width: 100%;
-  padding: 5px 12px;
   background: transparent;
-  border: none;
-  cursor: pointer;
-  text-align: left;
-  gap: 8px;
   transition: background 0.1s;
-  font-family: var(--font-body);
 }
 
-.recentRow:hover { background: rgba(126, 207, 245, 0.07); }
+.recentRow:has(:hover), .recentRow:has(:focus-visible) { background: rgba(126, 207, 245, 0.07); }
 
 .recentIcao {
   font-size: 11px;

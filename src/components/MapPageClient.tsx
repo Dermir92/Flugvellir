@@ -44,11 +44,13 @@ const TRANSLATIONS = {
     regional:      'Regional',
     airfield:      'Airfield',
     conditions:    'Current Conditions',
+    favorites:     'Favorites',
     recent:        'Recent',
     placeholder:   'BIKF, Akureyri…',
     search_label:  'Search airports',
     airac:         'AIRAC',
     effective:     'Effective',
+    link_nearest:  'Nearest',
     link_eaip:     'eAIP',
     link_weather:  'Weather',
     link_notam:    'NOTAMs',
@@ -62,11 +64,13 @@ const TRANSLATIONS = {
     regional:      'Svæðisbundinn',
     airfield:      'Flugbraut',
     conditions:    'Ástand núna',
+    favorites:     'Uppáhalds',
     recent:        'Nýlegar',
     placeholder:   'BIKF, Akureyri…',
     search_label:  'Leita að flugvöllum',
     airac:         'AIRAC',
     effective:     'Í gildi frá',
+    link_nearest:  'Næstu',
     link_eaip:     'eAIP',
     link_weather:  'Veður',
     link_notam:    'NOTAMs',
@@ -91,8 +95,11 @@ export default function MapPageClient() {
   const [catData, setCatData]             = useState<Record<string, string>>({})
   const [catLoading, setCatLoading]       = useState(true)
   const [recentIcaos, setRecentIcaos]     = useState<string[]>([])
+  const [favIcaos, setFavIcaos]           = useState<Set<string>>(new Set())
 
   const t = (k: keyof (typeof TRANSLATIONS)['en']) => TRANSLATIONS[lang][k]
+
+  const isAiracStale = new Date() >= new Date(AIRAC_META.next_iso)
 
   // Initialise from localStorage (runs client-side only)
   useEffect(() => {
@@ -107,6 +114,14 @@ export default function MapPageClient() {
       const saved = JSON.parse(localStorage.getItem('hp_recents') ?? '[]')
       if (Array.isArray(saved)) setRecentIcaos((saved as string[]).slice(0, 5))
     } catch {}
+
+    try {
+      const saved = JSON.parse(localStorage.getItem('hp_favorites') ?? '[]')
+      if (Array.isArray(saved)) setFavIcaos(new Set(saved as string[]))
+    } catch {}
+
+    const savedLang = localStorage.getItem('hp_lang')
+    if (savedLang === 'en' || savedLang === 'is') setLang(savedLang)
 
     try {
       const saved = JSON.parse(localStorage.getItem('hp_filters') ?? 'null')
@@ -166,6 +181,16 @@ export default function MapPageClient() {
     })
   }, [])
 
+  const toggleFav = useCallback((icao: string) => {
+    setFavIcaos(prev => {
+      const next = new Set(prev)
+      if (next.has(icao)) next.delete(icao)
+      else next.add(icao)
+      localStorage.setItem('hp_favorites', JSON.stringify([...next]))
+      return next
+    })
+  }, [])
+
   // Navigate + update recent airports
   const navigate = useCallback((icao: string) => {
     setRecentIcaos(prev => {
@@ -219,6 +244,11 @@ export default function MapPageClient() {
     .map(icao => AIRPORTS.find(ap => ap.icao === icao))
     .filter((ap): ap is (typeof AIRPORTS)[number] => !!ap)
 
+  // Favorited airport data objects
+  const favAirports = [...favIcaos]
+    .map(icao => AIRPORTS.find(ap => ap.icao === icao))
+    .filter((ap): ap is (typeof AIRPORTS)[number] => !!ap)
+
   // Dim filtered-out map markers via CSS injection. MARKER_CLASS_PREFIX must match
   // the exported constant in LeafletMap.tsx — rename there, rename here.
   const dimCSS = useMemo(() =>
@@ -249,7 +279,7 @@ export default function MapPageClient() {
                 className={s.langBtn}
                 aria-label={t('switch_lang')}
                 title={t('switch_lang')}
-                onClick={() => setLang(l => l === 'en' ? 'is' : 'en')}
+                onClick={() => setLang(l => { const next = l === 'en' ? 'is' : 'en'; localStorage.setItem('hp_lang', next); return next })}
               >
                 <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true">
                   <circle cx="6" cy="6" r="5" stroke="currentColor" strokeWidth="1.2"/>
@@ -272,6 +302,11 @@ export default function MapPageClient() {
                   className={s.sbInput}
                   placeholder={t('placeholder')}
                   aria-label={t('search_label')}
+                  role="combobox"
+                  aria-expanded={results.length > 0}
+                  aria-controls="airport-search-listbox"
+                  aria-activedescendant={activeIdx >= 0 ? `airport-option-${activeIdx}` : undefined}
+                  aria-autocomplete="list"
                   autoComplete="off"
                   spellCheck={false}
                   value={query}
@@ -284,12 +319,18 @@ export default function MapPageClient() {
                   <line x1="10.5" y1="10.5" x2="14" y2="14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
                 </svg>
                 {results.length > 0 && (
-                  <div className={`search-results is-visible ${s.sbDropdown}`} role="listbox">
+                  <div
+                    id="airport-search-listbox"
+                    className={`search-results is-visible ${s.sbDropdown}`}
+                    role="listbox"
+                  >
                     {results.map((ap, i) => (
                       <button
                         key={ap.icao}
+                        id={`airport-option-${i}`}
                         className={`search-result-item${i === activeIdx ? ' is-active' : ''}`}
                         role="option"
+                        aria-selected={i === activeIdx}
                         onMouseDown={() => navigate(ap.icao)}
                       >
                         <span className="search-result-icao">{ap.icao}</span>
@@ -339,21 +380,65 @@ export default function MapPageClient() {
               </div>
             </div>
 
+            {/* Favorites */}
+            {favAirports.length > 0 && (
+              <div className={s.sbSection}>
+                <div className={s.sbSectionLabel}>{t('favorites')}</div>
+                {favAirports.map(ap => (
+                  <div key={ap.icao} className={s.favRow}>
+                    <button className={s.rowNavBtn} onClick={() => navigate(ap.icao)}>
+                      <span className={s.favIcao}>{ap.icao}</span>
+                      <span className={s.recentName}>{lang === 'is' ? ap.name_is : ap.name}</span>
+                    </button>
+                    <button
+                      className={`${s.starBtn} ${s.starBtnActive}`}
+                      onClick={() => toggleFav(ap.icao)}
+                      aria-label="Remove from favorites"
+                      title="Remove from favorites"
+                    >★</button>
+                  </div>
+                ))}
+              </div>
+            )}
+
             {/* Recent airports */}
             {recentAirports.length > 0 && (
               <div className={s.sbSection}>
                 <div className={s.sbSectionLabel}>{t('recent')}</div>
                 {recentAirports.map(ap => (
-                  <button key={ap.icao} className={s.recentRow} onClick={() => navigate(ap.icao)}>
-                    <span className={s.recentIcao}>{ap.icao}</span>
-                    <span className={s.recentName}>{lang === 'is' ? ap.name_is : ap.name}</span>
-                  </button>
+                  <div key={ap.icao} className={s.recentRow}>
+                    <button className={s.rowNavBtn} onClick={() => navigate(ap.icao)}>
+                      <span className={s.recentIcao}>{ap.icao}</span>
+                      <span className={s.recentName}>{lang === 'is' ? ap.name_is : ap.name}</span>
+                    </button>
+                    <button
+                      className={`${s.starBtn} ${favIcaos.has(ap.icao) ? s.starBtnActive : ''}`}
+                      onClick={() => toggleFav(ap.icao)}
+                      aria-label={favIcaos.has(ap.icao) ? 'Remove from favorites' : 'Add to favorites'}
+                      title={favIcaos.has(ap.icao) ? 'Remove from favorites' : 'Add to favorites'}
+                    >★</button>
+                  </div>
                 ))}
               </div>
             )}
 
             {/* Footer */}
             <footer className={s.sbFooter}>
+              {isAiracStale && (
+                <div style={{
+                  display: 'flex', alignItems: 'flex-start', gap: '7px',
+                  background: 'rgba(184,80,40,0.18)', border: '1px solid rgba(224,100,60,0.4)',
+                  borderRadius: '5px', padding: '8px 10px', marginBottom: '4px',
+                  fontSize: '11px', color: '#e89060', lineHeight: '1.45', fontWeight: 500
+                }}>
+                  <span style={{ flexShrink: 0, fontWeight: 700 }}>⚠</span>
+                  <span>
+                    AIRAC {AIRAC_META.cycle} has expired. Data may be out of date.{' '}
+                    <a href={AIRAC_META.source_url} target="_blank" rel="noopener noreferrer"
+                      style={{ color: '#f0b070', textDecoration: 'underline' }}>Verify with current eAIP.</a>
+                  </span>
+                </div>
+              )}
               <div className={s.sbFooterAirac}>
                 <span className="airac-pulse" aria-hidden="true" />
                 {t('airac')} {AIRAC_META.cycle}
@@ -361,6 +446,7 @@ export default function MapPageClient() {
                 {t('effective')} {AIRAC_META.effective}
               </div>
               <div className={s.sbFooterLinks}>
+                <a href="/nearest">{t('link_nearest')}</a>
                 <a href={AIRAC_META.source_url} target="_blank" rel="noopener noreferrer">{t('link_eaip')}</a>
                 <a href="https://www.vedur.is/vedur/flugvedur/" target="_blank" rel="noopener noreferrer">{t('link_weather')}</a>
                 <a href="https://www.avians.is/en/c-preflight-information/notam" target="_blank" rel="noopener noreferrer">{t('link_notam')}</a>
