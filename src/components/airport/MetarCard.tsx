@@ -60,10 +60,13 @@ function parseWx(raw: string) {
 export default function MetarCard({ icao }: { icao: string }) {
   const [html, setHtml] = useState<string | null>(null)
   const [status, setStatus] = useState<'loading' | 'done' | 'none' | 'error'>('loading')
+  const [cachedAt, setCachedAt] = useState<number | null>(null)
 
   useEffect(() => {
     fetch(`/api/metar/${icao}`)
       .then(async r => {
+        const ts = r.headers.get('X-SW-Cached-At')
+        if (ts) setCachedAt(Number(ts))
         if (!r.ok) throw new Error('HTTP ' + r.status)
         const { metar: metars, taf: tafs }: { metar: MetarData[], taf: TafData[] } = await r.json()
         const metar = metars[0] ?? null
@@ -113,7 +116,13 @@ export default function MetarCard({ icao }: { icao: string }) {
     <div className="ap-card">
       <div className="ap-card-title">
         METAR / TAF
-        <span className="notam-src">aviationweather.gov</span>
+        {cachedAt ? (
+          <span className="metar-offline-badge">
+            ⚠ Offline · cached {Math.round((Date.now() - cachedAt) / 60000)} min ago
+          </span>
+        ) : (
+          <span className="notam-src">aviationweather.gov</span>
+        )}
       </div>
       {status === 'loading' && (
         <div className="metar-loading"><span className="notam-spinner" /> Loading METAR…</div>

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Barlow_Condensed, Inter } from 'next/font/google'
+import SwRegister from '@/components/SwRegister'
 import './globals.css'
 
 const barlowCondensed = Barlow_Condensed({
@@ -19,6 +20,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: 'Flugvellir — Íslenzkir flugvellir á einum stað',
   description: 'Interactive map of Icelandic airports and airfields with AIP data. Made for pilots and aviation enthusiasts.',
+  manifest: '/manifest.json',
 }
 
 export const viewport = {
@@ -29,7 +31,10 @@ export const viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${barlowCondensed.variable} ${inter.variable}`}>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        {children}
+        <SwRegister />
+      </body>
     </html>
   )
 }
