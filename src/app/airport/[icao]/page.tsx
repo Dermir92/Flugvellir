@@ -11,6 +11,7 @@ import AlternatesCard from '@/components/airport/AlternatesCard'
 import CrosswindCard from '@/components/airport/CrosswindCard'
 import ForecastCard from '@/components/airport/ForecastCard'
 import SunCard from '@/components/airport/SunCard'
+import TrainingOperationsChecker from '@/components/airport/TrainingOperationsChecker'
 import type { Airport, FireCat } from '@/types/airport'
 import type { AltInfo } from '@/components/airport/AlternatesCard'
 
@@ -252,6 +253,16 @@ export default async function AirportPage(props: PageProps<'/airport/[icao]'>) {
 
           {/* Pilot notes — core operational content */}
           <VfrSection airport={a} />
+
+          {/* Published training restrictions for the two controlled training airports */}
+          {(a.icao === 'BIKF' || a.icao === 'BIRK') && (
+            <TrainingOperationsChecker
+              icao={a.icao}
+              airacCycle={AIRAC_META.cycle}
+              airacEffective={AIRAC_META.effective}
+              sourceRoot={AIRAC_META.source_url}
+            />
+          )}
 
           {/* Runways */}
           {a.runways?.length > 0 && (
