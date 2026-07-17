@@ -2270,6 +2270,174 @@ body.vfr-modal-open { overflow: hidden; }
 .ap-content .runways-grid { padding: 4px 28px 20px; }
 .ap-content .remark-list  { padding: 4px 28px 20px; }
 
+/* === TRAINING OPERATIONS CHECK === */
+.training-check {
+  background: rgba(30, 90, 138, 0.025);
+}
+
+.training-check-body {
+  padding: 4px 28px 24px;
+}
+
+.training-check-intro h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 18px;
+  color: var(--text-primary);
+}
+
+.training-check-intro p {
+  margin: 5px 0 0;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.training-choice {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.training-choice-btn {
+  padding: 8px 14px;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-sm);
+  background: var(--card-bg);
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 650;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+}
+
+.training-choice-btn:hover {
+  border-color: rgba(90, 184, 232, 0.55);
+  color: var(--text-primary);
+}
+
+.training-choice-btn--active {
+  border-color: var(--glacier);
+  background: rgba(90, 184, 232, 0.12);
+  color: var(--glacier-dark);
+}
+
+.training-form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(150px, 1fr));
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.training-field {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.training-field > span {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--text-label);
+}
+
+.training-field input,
+.training-field select {
+  width: 100%;
+  min-width: 0;
+  height: 38px;
+  padding: 7px 10px;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-sm);
+  outline: none;
+  background: var(--card-bg);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 13px;
+}
+
+.training-field input:focus,
+.training-field select:focus {
+  border-color: var(--glacier);
+  box-shadow: 0 0 0 2px rgba(90, 184, 232, 0.12);
+}
+
+.training-result {
+  margin-top: 18px;
+  padding: 15px 17px;
+  border: 1px solid var(--card-border);
+  border-left-width: 4px;
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.training-result--blocked {
+  border-color: rgba(190, 65, 45, 0.3);
+  border-left-color: var(--volcanic);
+  background: rgba(190, 65, 45, 0.055);
+}
+
+.training-result--caution {
+  border-color: rgba(215, 154, 28, 0.32);
+  border-left-color: var(--gold-deep);
+  background: rgba(255, 195, 55, 0.075);
+}
+
+.training-result--incomplete,
+.training-result--neutral {
+  border-left-color: var(--glacier);
+  background: rgba(90, 184, 232, 0.055);
+}
+
+.training-result-kicker {
+  margin-bottom: 3px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--text-label);
+}
+
+.training-result--blocked .training-result-kicker { color: var(--volcanic); }
+.training-result--caution .training-result-kicker { color: var(--gold-deep); }
+
+.training-result-title {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.training-result > p {
+  margin: 5px 0 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+.training-result-list {
+  display: grid;
+  gap: 6px;
+  margin: 12px 0 0;
+  padding-left: 18px;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--text-secondary);
+}
+
+.training-result-list--reasons {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.training-source {
+  margin: 10px 0 0;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.training-source a { font-weight: 650; }
+
 /* === INLINE VFR / PILOT NOTES === */
 .ap-card--pilot-notes {
   border-color: rgba(126,207,245,0.3);
@@ -2355,6 +2523,7 @@ body.vfr-modal-open { overflow: hidden; }
 
   .ap-content .runways-grid { padding: 4px 20px 20px; }
   .ap-content .remark-list  { padding: 4px 20px 20px; }
+  .training-check-body { padding: 4px 20px 20px; }
   .ap-content .ap-card-title { padding: 16px 20px 12px; }
   .ap-content .vfr-inline-body .vfr-section { padding: 14px 20px; }
   .ap-content .vfr-inline-body .vfr-disclaimer { padding: 12px 20px; }
@@ -2390,9 +2559,12 @@ body.vfr-modal-open { overflow: hidden; }
   .ap-content .ap-card-title { padding: 14px 16px 10px; }
   .ap-content .runways-grid  { padding: 4px 16px 16px; }
   .ap-content .remark-list   { padding: 4px 16px 16px; }
+  .training-check-body { padding: 4px 16px 18px; }
   .ap-content .vfr-inline-body .vfr-section { padding: 12px 16px; }
   .ap-content .vfr-inline-body .vfr-disclaimer { padding: 10px 16px; }
   .ap-section-label { padding: 14px 16px 8px; }
+
+  .training-form-grid { grid-template-columns: 1fr; }
 
   .freq-item { padding: 13px 16px; }
   .notam-item-head { padding: 14px 16px; }
