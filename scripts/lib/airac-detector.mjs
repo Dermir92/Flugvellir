@@ -342,9 +342,11 @@ export function renderMarkdownReport(comparison, options = {}) {
   const lines = [
     `# AIRAC change report: ${comparison.from.cycle} to ${comparison.to.cycle}`,
     '',
+    '**Generated review-only report. Not operational guidance.**',
+    '',
     `Generated: ${comparison.generatedAt}`,
     '',
-    '> Review aid only. Official AIP, NOTAM and briefing sources remain authoritative.',
+    '> This report is a change-detection aid for maintainers. Official AIP, NOTAM and briefing sources remain authoritative.',
     '',
     '## Editions',
     '',
