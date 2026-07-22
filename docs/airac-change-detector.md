@@ -6,6 +6,8 @@ This is the first safe version of Flugvellir's AIRAC change detector. It is a re
 
 The detector reads the public eAIP issue index at `https://eaip.isavia.is/`. It parses the "Currently Effective Issue" section separately from "Next Issues", so a future AIRAC edition is never treated as the current operational edition just because it has already been published.
 
+For automatic daily review reports, an AIRAC edition is not eligible just because its URL is accessible or it appears in the eAIP issue list. The automation also checks the official publication date from the index and only treats the edition as available when that publication date is on or before the current UTC date. If the publication date is missing, malformed or ambiguous, the automation fails instead of guessing.
+
 For comparison reports it:
 
 1. Reads the ICAO list from `src/data/airports.js`.
@@ -69,7 +71,9 @@ The workflow `.github/workflows/check-airac.yml` checks the official eAIP once p
 
 When nothing new is found, the workflow exits successfully without committing, pushing or opening a pull request.
 
-When a published future AIRAC edition is found and `main` does not already contain a tracked comparison report for that target cycle, the workflow compares it with the immediately preceding published AIRAC edition. For example, if A06 to A07 already exists and A08 is newly available, the automation chooses A07 to A08 instead of skipping directly from A06 to A08.
+When an officially published future AIRAC edition is found and `main` does not already contain a tracked comparison report for that target cycle, the workflow compares it with the immediately preceding officially published AIRAC edition. For example, if A06 to A07 already exists and A08 has reached its publication date, the automation chooses A07 to A08 instead of skipping directly from A06 to A08.
+
+Future effective editions remain eligible for review reports after their official publication date, but they are still not treated as currently effective before their effective date.
 
 The generated report is written under `docs/airac-reports/` and is labelled as generated, unofficial, review-only and not operational guidance. The workflow uses a predictable branch name such as `automation/airac-A08-2026` and opens or updates one draft pull request into `main`. It never marks the pull request ready for review, approves it or merges it.
 

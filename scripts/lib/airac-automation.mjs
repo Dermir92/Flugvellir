@@ -47,16 +47,17 @@ export async function listTrackedReportPaths(reportDir = AUTOMATION_REPORT_DIR) 
 export function selectNextAiracComparison(discovery, options = {}) {
   const existingReportPaths = new Set(options.existingReportPaths ?? [])
   const existingOpenTargetCycles = new Set((options.existingOpenTargetCycles ?? []).map(normalizeCycle))
+  const currentUtcDateIso = utcDateOnly(options.currentUtcDate ?? new Date())
   validateDiscovery(discovery)
 
-  const orderedPublished = discovery.issues
-    .filter((issue) => issue.sourceUrl)
+  const orderedEligible = discovery.issues
+    .filter((issue) => isAiracEditionEligibleForAutomation(issue, currentUtcDateIso))
     .sort((left, right) => left.effectiveDateIso.localeCompare(right.effectiveDateIso))
 
-  const futureTargets = orderedPublished.filter((issue) => issue.future)
+  const futureTargets = orderedEligible.filter((issue) => issue.future)
   for (const target of futureTargets) {
-    const targetIndex = orderedPublished.findIndex((issue) => normalizeCycle(issue.cycle) === normalizeCycle(target.cycle))
-    const previous = orderedPublished[targetIndex - 1]
+    const targetIndex = orderedEligible.findIndex((issue) => normalizeCycle(issue.cycle) === normalizeCycle(target.cycle))
+    const previous = orderedEligible[targetIndex - 1]
     if (!previous) {
       throw new Error(`Cannot compare ${target.cycle}: no immediately preceding published AIRAC edition was found.`)
     }
@@ -78,10 +79,24 @@ export function selectNextAiracComparison(discovery, options = {}) {
 
   return {
     action: 'none',
-    reason: 'No published future AIRAC edition needs a new tracked comparison report.',
+    reason: 'No officially published future AIRAC edition needs a new tracked comparison report.',
     current: discovery.current,
     publishedFutureCycles: futureTargets.map((issue) => issue.cycle),
   }
+}
+
+export function isAiracEditionEligibleForAutomation(issue, currentUtcDate = new Date()) {
+  const currentUtcDateIso = utcDateOnly(currentUtcDate)
+  const publicationDateIso = requireValidIsoDate(issue.publicationDateIso, issue, 'publicationDateIso')
+  return Boolean(issue.sourceUrl) && publicationDateIso <= currentUtcDateIso
+}
+
+export function utcDateOnly(value = new Date()) {
+  const date = value instanceof Date ? value : new Date(value)
+  if (Number.isNaN(date.getTime())) {
+    throw new Error(`AIRAC automation current UTC date is invalid: ${value}`)
+  }
+  return date.toISOString().slice(0, 10)
 }
 
 export async function buildAutomationPlan(options = {}) {
@@ -230,7 +245,26 @@ function validateDiscovery(discovery) {
         throw new Error(`AIRAC discovery is incomplete: ${issue.cycle ?? '(unknown)'} is missing ${field}.`)
       }
     }
+    requireValidIsoDate(issue.publicationDateIso, issue, 'publicationDateIso')
+    requireValidIsoDate(issue.effectiveDateIso, issue, 'effectiveDateIso')
   }
+}
+
+function requireValidIsoDate(value, issue, field) {
+  if (!value) {
+    throw new Error(`AIRAC discovery is incomplete: ${issue?.cycle ?? '(unknown)'} is missing ${field}.`)
+  }
+
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+    throw new Error(`AIRAC discovery has malformed ${field} for ${issue?.cycle ?? '(unknown)'}: ${value}`)
+  }
+
+  const date = new Date(`${value}T00:00:00.000Z`)
+  if (Number.isNaN(date.getTime()) || date.toISOString().slice(0, 10) !== value) {
+    throw new Error(`AIRAC discovery has ambiguous ${field} for ${issue?.cycle ?? '(unknown)'}: ${value}`)
+  }
+
+  return value
 }
 
 function normalizeCycle(cycle) {
