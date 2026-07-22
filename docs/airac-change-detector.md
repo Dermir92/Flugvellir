@@ -51,11 +51,45 @@ npm run test:airac
 
 Generated reports are written to `airac-output/`, which is ignored by git.
 
+Preview what the daily automation would do without writing a report, pushing a branch or opening a pull request:
+
+```bash
+npm run airac:automation:dry-run
+```
+
 ## What it does not update
 
-The detector does not modify `src/data/airports.js`, `src/data/airac-meta.js`, operational rules, the touch-and-go checker, generated website data or production content. It does not publish data to the live website and it does not open pull requests automatically.
+The detector does not modify `src/data/airports.js`, `src/data/airac-meta.js`, operational rules, the touch-and-go checker, generated website data or production content. It does not publish data to the live website. The daily GitHub workflow can open a draft review pull request containing only generated review material.
 
 The report is intentionally a human-review document. A maintainer still has to decide whether each detected difference affects Flugvellir's simplified airport records.
+
+## Daily GitHub automation
+
+The workflow `.github/workflows/check-airac.yml` checks the official eAIP once per day at 06:17 UTC. It can also be run manually from the GitHub Actions tab with `workflow_dispatch`.
+
+When nothing new is found, the workflow exits successfully without committing, pushing or opening a pull request.
+
+When a published future AIRAC edition is found and `main` does not already contain a tracked comparison report for that target cycle, the workflow compares it with the immediately preceding published AIRAC edition. For example, if A06 to A07 already exists and A08 is newly available, the automation chooses A07 to A08 instead of skipping directly from A06 to A08.
+
+The generated report is written under `docs/airac-reports/` and is labelled as generated, unofficial, review-only and not operational guidance. The workflow uses a predictable branch name such as `automation/airac-A08-2026` and opens or updates one draft pull request into `main`. It never marks the pull request ready for review, approves it or merges it.
+
+Duplicate pull requests are prevented in two ways:
+
+1. The tracked report filename records which consecutive AIRAC comparison has already been merged.
+2. The automation branch name is based on the target AIRAC cycle, so repeated runs update the same draft branch instead of creating another pull request.
+
+The workflow also compares regenerated reports while ignoring retrieval timestamp-only differences. This means repeated daily runs should not create new commits when the eAIP content is unchanged.
+
+Before changing an existing automation branch, the workflow checks whether that branch already has an open pull request into `main`. If the open pull request is not a draft, the workflow fails safely before pushing anything. If an open draft pull request already has the same generated report, the workflow exits successfully. If an old automation branch exists but no open pull request is reviewing it, the workflow may create a new draft pull request from that branch instead of assuming the work is already being reviewed.
+
+Manual review must check:
+
+- every changed aerodrome section in the generated report;
+- whether the change affects Flugvellir's simplified airport data;
+- runway designators, declared distances, frequencies, ATS hours, fuel and services, procedures, obstacles, warnings and chart references;
+- official AIP, NOTAM, meteorological, briefing and ATC sources before making any operational decision.
+
+To disable scheduled checks, edit `.github/workflows/check-airac.yml` and remove or comment out the `schedule` block. Manual `workflow_dispatch` can be left in place if you still want to run checks on demand.
 
 ## Safety limitations
 
