@@ -1,0 +1,140 @@
+name: Check AIRAC editions
+
+on:
+  schedule:
+    # Runs once per day at 06:17 UTC.
+    - cron: '17 6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: airac-daily-automation
+  cancel-in-progress: false
+
+jobs:
+  check-airac:
+    name: Check official eAIP for new AIRAC reports
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GITHUB_TOKEN: ${{ github.token }}
+      AIRAC_PLAN: .airac-automation-plan.json
+    steps:
+      - name: Checkout main without third-party actions
+        shell: bash
+        run: |
+          set -euo pipefail
+          git init .
+          git config --global --add safe.directory "$PWD"
+          git remote add origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git fetch --depth=1 origin main
+          git checkout -B main FETCH_HEAD
+
+      - name: Configure automation git identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Generate AIRAC automation plan and report
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/airac-automation.mjs --generate --plan-output "${AIRAC_PLAN}" --json
+
+      - name: Read automation plan
+        id: plan
+        shell: bash
+        run: |
+          set -euo pipefail
+          node <<'NODE' >> "${GITHUB_OUTPUT}"
+          const fs = require('node:fs')
+          const plan = JSON.parse(fs.readFileSync(process.env.AIRAC_PLAN, 'utf8'))
+          const outputs = {
+            action: plan.action || 'none',
+            branch: plan.branchName || '',
+            report: plan.reportPath || '',
+            title: plan.prTitle || '',
+          }
+          for (const [key, value] of Object.entries(outputs)) {
+            console.log(`${key}=${value}`)
+          }
+          NODE
+
+      - name: Stop when no new AIRAC report is needed
+        if: steps.plan.outputs.action == 'none'
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "No new published future AIRAC edition needs a tracked comparison report."
+
+      - name: Check whether an existing PR branch already has the same report
+        if: steps.plan.outputs.action != 'none'
+        id: existing
+        shell: bash
+        run: |
+          set -euo pipefail
+          branch="${{ steps.plan.outputs.branch }}"
+          report="${{ steps.plan.outputs.report }}"
+          echo "same_report=false" >> "${GITHUB_OUTPUT}"
+          if git ls-remote --exit-code --heads origin "${branch}" >/dev/null 2>&1; then
+            git fetch --depth=1 origin "${branch}"
+            if git show "origin/${branch}:${report}" > /tmp/existing-airac-report.md 2>/dev/null; then
+              if node scripts/airac-automation.mjs --reports-equivalent /tmp/existing-airac-report.md "${report}"; then
+                echo "same_report=true" >> "${GITHUB_OUTPUT}"
+                echo "Existing draft branch already has the same AIRAC report content."
+              fi
+            fi
+          fi
+
+      - name: Stop when existing draft branch already has the same report
+        if: steps.plan.outputs.action != 'none' && steps.existing.outputs.same_report == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "No tracked AIRAC content changed beyond retrieval timestamps."
+
+      - name: Commit generated AIRAC report
+        if: steps.plan.outputs.action != 'none' && steps.existing.outputs.same_report != 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          branch="${{ steps.plan.outputs.branch }}"
+          report="${{ steps.plan.outputs.report }}"
+          title="${{ steps.plan.outputs.title }}"
+          git checkout -B "${branch}"
+          git add "${report}"
+          if git diff --cached --quiet; then
+            echo "No tracked report changes to commit."
+            exit 0
+          fi
+          git commit -m "${title}"
+          git push --force-with-lease origin "${branch}"
+
+      - name: Create or update draft pull request
+        if: steps.plan.outputs.action != 'none' && steps.existing.outputs.same_report != 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          branch="${{ steps.plan.outputs.branch }}"
+          title="${{ steps.plan.outputs.title }}"
+          body_file="$(mktemp)"
+          node scripts/airac-automation.mjs --pr-body-from-plan "${AIRAC_PLAN}" > "${body_file}"
+
+          existing_json="$(gh pr list --base main --head "${branch}" --state open --json number,isDraft,url --limit 1)"
+          existing_number="$(node -e "const prs = JSON.parse(process.argv[1]); console.log(prs[0]?.number ?? '')" "${existing_json}")"
+          existing_is_draft="$(node -e "const prs = JSON.parse(process.argv[1]); console.log(prs[0]?.isDraft ?? '')" "${existing_json}")"
+
+          if [ -n "${existing_number}" ]; then
+            if [ "${existing_is_draft}" != "true" ]; then
+              echo "Refusing to update PR #${existing_number} because it is not a draft."
+              exit 1
+            fi
+            gh pr edit "${existing_number}" --title "${title}" --body-file "${body_file}"
+          else
+            gh pr create --draft --base main --head "${branch}" --title "${title}" --body-file "${body_file}"
+          fi
