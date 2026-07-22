@@ -12,7 +12,8 @@
     "validate": "node scripts/validate-airports.mjs",
     "airac:discover": "node scripts/airac-discover.mjs",
     "airac:compare": "node scripts/airac-compare.mjs",
-    "test:airac": "node --test scripts/test-airac-detector.mjs"
+    "test:airac": "node --test scripts/test-airac-detector.mjs",
+    "test:training": "node --test src/lib/trainingRestrictions.test.ts"
   },
   "dependencies": {
     "@types/leaflet": "^1.9.21",
