@@ -3,6 +3,7 @@ import test from 'node:test'
 
 import { parseAiracIssueIndex } from './lib/airac-detector.mjs'
 import {
+  evaluateAutomationPrSafetyState,
   reportsEquivalentIgnoringRetrievalTime,
   selectNextAiracComparison,
 } from './lib/airac-automation.mjs'
@@ -114,4 +115,55 @@ test('automation selects the correct consecutive comparison after an existing re
   assert.equal(plan.from.cycle, 'A08/2026')
   assert.equal(plan.to.cycle, 'A09/2026')
   assert.equal(plan.reportPath, 'docs/airac-reports/A08-2026-to-A09-2026.md')
+})
+
+test('automation blocks before push when an existing open PR is not a draft', () => {
+  const decision = evaluateAutomationPrSafetyState({
+    hasOpenPr: true,
+    openPrIsDraft: false,
+    branchExists: true,
+    sameReport: false,
+  })
+
+  assert.equal(decision.action, 'fail-non-draft-pr')
+  assert.equal(decision.mayPush, false)
+  assert.equal(decision.shouldCreateOrUpdatePr, false)
+})
+
+test('automation recreates a draft PR when a branch exists but no open PR reviews it', () => {
+  const decision = evaluateAutomationPrSafetyState({
+    hasOpenPr: false,
+    branchExists: true,
+    sameReport: true,
+  })
+
+  assert.equal(decision.action, 'create-draft-pr-from-existing-branch')
+  assert.equal(decision.mayPush, false)
+  assert.equal(decision.shouldCreateOrUpdatePr, true)
+})
+
+test('automation leaves an unchanged report with an open draft PR as a no-op', () => {
+  const decision = evaluateAutomationPrSafetyState({
+    hasOpenPr: true,
+    openPrIsDraft: true,
+    branchExists: true,
+    sameReport: true,
+  })
+
+  assert.equal(decision.action, 'noop-open-draft-same-report')
+  assert.equal(decision.mayPush, false)
+  assert.equal(decision.shouldCreateOrUpdatePr, false)
+})
+
+test('automation updates only an open draft PR when the report changed', () => {
+  const decision = evaluateAutomationPrSafetyState({
+    hasOpenPr: true,
+    openPrIsDraft: true,
+    branchExists: true,
+    sameReport: false,
+  })
+
+  assert.equal(decision.action, 'update-open-draft-pr')
+  assert.equal(decision.mayPush, true)
+  assert.equal(decision.shouldCreateOrUpdatePr, true)
 })

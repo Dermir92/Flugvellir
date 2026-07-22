@@ -72,7 +72,32 @@ jobs:
           set -euo pipefail
           echo "No new published future AIRAC edition needs a tracked comparison report."
 
-      - name: Check whether an existing PR branch already has the same report
+      - name: Inspect open automation pull request before branch changes
+        if: steps.plan.outputs.action != 'none'
+        id: pr
+        shell: bash
+        run: |
+          set -euo pipefail
+          branch="${{ steps.plan.outputs.branch }}"
+          echo "has_open_pr=false" >> "${GITHUB_OUTPUT}"
+          echo "number=" >> "${GITHUB_OUTPUT}"
+          echo "is_draft=false" >> "${GITHUB_OUTPUT}"
+
+          existing_json="$(gh pr list --base main --head "${branch}" --state open --json number,isDraft,url --limit 1)"
+          existing_number="$(node -e "const prs = JSON.parse(process.argv[1]); console.log(prs[0]?.number ?? '')" "${existing_json}")"
+          existing_is_draft="$(node -e "const prs = JSON.parse(process.argv[1]); console.log(prs[0]?.isDraft ?? 'false')" "${existing_json}")"
+
+          if [ -n "${existing_number}" ]; then
+            echo "has_open_pr=true" >> "${GITHUB_OUTPUT}"
+            echo "number=${existing_number}" >> "${GITHUB_OUTPUT}"
+            echo "is_draft=${existing_is_draft}" >> "${GITHUB_OUTPUT}"
+            if [ "${existing_is_draft}" != "true" ]; then
+              echo "Refusing to update automation branch ${branch}; open PR #${existing_number} is not a draft."
+              exit 1
+            fi
+          fi
+
+      - name: Check whether the automation branch already has the same report
         if: steps.plan.outputs.action != 'none'
         id: existing
         shell: bash
@@ -80,23 +105,25 @@ jobs:
           set -euo pipefail
           branch="${{ steps.plan.outputs.branch }}"
           report="${{ steps.plan.outputs.report }}"
+          echo "branch_exists=false" >> "${GITHUB_OUTPUT}"
           echo "same_report=false" >> "${GITHUB_OUTPUT}"
           if git ls-remote --exit-code --heads origin "${branch}" >/dev/null 2>&1; then
+            echo "branch_exists=true" >> "${GITHUB_OUTPUT}"
             git fetch --depth=1 origin "${branch}"
             if git show "origin/${branch}:${report}" > /tmp/existing-airac-report.md 2>/dev/null; then
               if node scripts/airac-automation.mjs --reports-equivalent /tmp/existing-airac-report.md "${report}"; then
                 echo "same_report=true" >> "${GITHUB_OUTPUT}"
-                echo "Existing draft branch already has the same AIRAC report content."
+                echo "Automation branch already has the same AIRAC report content."
               fi
             fi
           fi
 
-      - name: Stop when existing draft branch already has the same report
-        if: steps.plan.outputs.action != 'none' && steps.existing.outputs.same_report == 'true'
+      - name: Stop when open draft PR already has the same report
+        if: steps.plan.outputs.action != 'none' && steps.pr.outputs.has_open_pr == 'true' && steps.pr.outputs.is_draft == 'true' && steps.existing.outputs.same_report == 'true'
         shell: bash
         run: |
           set -euo pipefail
-          echo "No tracked AIRAC content changed beyond retrieval timestamps."
+          echo "Open draft PR #${{ steps.pr.outputs.number }} already has this AIRAC report content."
 
       - name: Commit generated AIRAC report
         if: steps.plan.outputs.action != 'none' && steps.existing.outputs.same_report != 'true'
@@ -116,7 +143,7 @@ jobs:
           git push --force-with-lease origin "${branch}"
 
       - name: Create or update draft pull request
-        if: steps.plan.outputs.action != 'none' && steps.existing.outputs.same_report != 'true'
+        if: steps.plan.outputs.action != 'none' && !(steps.pr.outputs.has_open_pr == 'true' && steps.pr.outputs.is_draft == 'true' && steps.existing.outputs.same_report == 'true')
         shell: bash
         run: |
           set -euo pipefail
@@ -125,15 +152,9 @@ jobs:
           body_file="$(mktemp)"
           node scripts/airac-automation.mjs --pr-body-from-plan "${AIRAC_PLAN}" > "${body_file}"
 
-          existing_json="$(gh pr list --base main --head "${branch}" --state open --json number,isDraft,url --limit 1)"
-          existing_number="$(node -e "const prs = JSON.parse(process.argv[1]); console.log(prs[0]?.number ?? '')" "${existing_json}")"
-          existing_is_draft="$(node -e "const prs = JSON.parse(process.argv[1]); console.log(prs[0]?.isDraft ?? '')" "${existing_json}")"
+          existing_number="${{ steps.pr.outputs.number }}"
 
           if [ -n "${existing_number}" ]; then
-            if [ "${existing_is_draft}" != "true" ]; then
-              echo "Refusing to update PR #${existing_number} because it is not a draft."
-              exit 1
-            fi
             gh pr edit "${existing_number}" --title "${title}" --body-file "${body_file}"
           else
             gh pr create --draft --base main --head "${branch}" --title "${title}" --body-file "${body_file}"

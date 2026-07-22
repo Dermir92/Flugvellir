@@ -138,6 +138,58 @@ export function reportsEquivalentIgnoringRetrievalTime(left, right) {
   return stableReportText(left) === stableReportText(right)
 }
 
+export function evaluateAutomationPrSafetyState(state) {
+  const {
+    hasOpenPr = false,
+    openPrIsDraft = false,
+    branchExists = false,
+    sameReport = false,
+  } = state
+
+  if (hasOpenPr && !openPrIsDraft) {
+    return {
+      action: 'fail-non-draft-pr',
+      mayPush: false,
+      shouldCreateOrUpdatePr: false,
+      reason: 'An open automation PR exists but is not a draft; refusing to modify its branch.',
+    }
+  }
+
+  if (hasOpenPr && openPrIsDraft && sameReport) {
+    return {
+      action: 'noop-open-draft-same-report',
+      mayPush: false,
+      shouldCreateOrUpdatePr: false,
+      reason: 'An open draft automation PR already has the same report content.',
+    }
+  }
+
+  if (hasOpenPr && openPrIsDraft) {
+    return {
+      action: 'update-open-draft-pr',
+      mayPush: true,
+      shouldCreateOrUpdatePr: true,
+      reason: 'An open draft automation PR exists and the report changed.',
+    }
+  }
+
+  if (branchExists && sameReport) {
+    return {
+      action: 'create-draft-pr-from-existing-branch',
+      mayPush: false,
+      shouldCreateOrUpdatePr: true,
+      reason: 'The automation branch already has the report but no open PR is reviewing it.',
+    }
+  }
+
+  return {
+    action: 'push-and-create-draft-pr',
+    mayPush: true,
+    shouldCreateOrUpdatePr: true,
+    reason: 'No open automation PR is reviewing the generated report.',
+  }
+}
+
 export async function reportsEquivalentFiles(leftPath, rightPath) {
   const [left, right] = await Promise.all([
     readFile(leftPath, 'utf8'),

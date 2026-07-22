@@ -80,6 +80,8 @@ Duplicate pull requests are prevented in two ways:
 
 The workflow also compares regenerated reports while ignoring retrieval timestamp-only differences. This means repeated daily runs should not create new commits when the eAIP content is unchanged.
 
+Before changing an existing automation branch, the workflow checks whether that branch already has an open pull request into `main`. If the open pull request is not a draft, the workflow fails safely before pushing anything. If an open draft pull request already has the same generated report, the workflow exits successfully. If an old automation branch exists but no open pull request is reviewing it, the workflow may create a new draft pull request from that branch instead of assuming the work is already being reviewed.
+
 Manual review must check:
 
 - every changed aerodrome section in the generated report;
