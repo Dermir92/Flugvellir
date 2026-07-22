@@ -30,8 +30,22 @@ function discovery({ includeA08 = false, includeA09 = false } = {}) {
   `, baseUrl)
 }
 
+function discoveryWithIssue(overrides) {
+  const issues = discovery()
+  const issue = {
+    ...issues.future[0],
+    ...overrides,
+  }
+  return {
+    ...issues,
+    future: [issue],
+    issues: [issues.current, issue],
+  }
+}
+
 test('automation does nothing when no new AIRAC report is needed', () => {
   const plan = selectNextAiracComparison(discovery(), {
+    currentUtcDate: '2026-07-22T00:00:00Z',
     existingReportPaths: ['docs/airac-reports/A06-2026-to-A07-2026.md'],
   })
 
@@ -39,7 +53,9 @@ test('automation does nothing when no new AIRAC report is needed', () => {
 })
 
 test('automation selects one new published future edition', () => {
-  const plan = selectNextAiracComparison(discovery())
+  const plan = selectNextAiracComparison(discovery(), {
+    currentUtcDate: '2026-07-22T00:00:00Z',
+  })
 
   assert.equal(plan.action, 'create-or-update-pr')
   assert.equal(plan.from.cycle, 'A06/2026')
@@ -49,8 +65,11 @@ test('automation selects one new published future edition', () => {
 })
 
 test('automation handles multiple published future editions without skipping a cycle', () => {
-  const first = selectNextAiracComparison(discovery({ includeA08: true }))
+  const first = selectNextAiracComparison(discovery({ includeA08: true }), {
+    currentUtcDate: '2026-07-24T00:00:00Z',
+  })
   const second = selectNextAiracComparison(discovery({ includeA08: true }), {
+    currentUtcDate: '2026-07-24T00:00:00Z',
     existingReportPaths: ['docs/airac-reports/A06-2026-to-A07-2026.md'],
   })
 
@@ -63,6 +82,7 @@ test('automation handles multiple published future editions without skipping a c
 
 test('automation updates an existing draft PR branch instead of planning a duplicate', () => {
   const plan = selectNextAiracComparison(discovery(), {
+    currentUtcDate: '2026-07-22T00:00:00Z',
     existingOpenTargetCycles: ['07/2026'],
   })
 
@@ -96,7 +116,9 @@ test('automation fails clearly on malformed eAIP discovery markup', () => {
 
 test('automation never treats future AIRAC as currently effective', () => {
   const issues = discovery({ includeA08: true })
-  const plan = selectNextAiracComparison(issues)
+  const plan = selectNextAiracComparison(issues, {
+    currentUtcDate: '2026-07-22T00:00:00Z',
+  })
 
   assert.equal(issues.current.cycle, 'A06/2026')
   assert.equal(issues.future.map((issue) => issue.cycle).includes('A07/2026'), true)
@@ -106,6 +128,7 @@ test('automation never treats future AIRAC as currently effective', () => {
 
 test('automation selects the correct consecutive comparison after an existing report', () => {
   const plan = selectNextAiracComparison(discovery({ includeA08: true, includeA09: true }), {
+    currentUtcDate: '2026-08-21T00:00:00Z',
     existingReportPaths: [
       'docs/airac-reports/A06-2026-to-A07-2026.md',
       'docs/airac-reports/A07-2026-to-A08-2026.md',
@@ -115,6 +138,79 @@ test('automation selects the correct consecutive comparison after an existing re
   assert.equal(plan.from.cycle, 'A08/2026')
   assert.equal(plan.to.cycle, 'A09/2026')
   assert.equal(plan.reportPath, 'docs/airac-reports/A08-2026-to-A09-2026.md')
+})
+
+test('automation ignores an accessible edition before its official publication date', () => {
+  const plan = selectNextAiracComparison(discovery({ includeA08: true }), {
+    currentUtcDate: '2026-07-22T00:00:00Z',
+    existingReportPaths: ['docs/airac-reports/A06-2026-to-A07-2026.md'],
+  })
+
+  assert.equal(plan.action, 'none')
+  assert.deepEqual(plan.publishedFutureCycles, ['A07/2026'])
+  assert.equal(plan.publishedFutureCycles.includes('A08/2026'), false)
+})
+
+test('automation treats an edition as eligible on its UTC publication date', () => {
+  const plan = selectNextAiracComparison(discovery({ includeA08: true }), {
+    currentUtcDate: '2026-07-24T00:00:00Z',
+    existingReportPaths: ['docs/airac-reports/A06-2026-to-A07-2026.md'],
+  })
+
+  assert.equal(plan.from.cycle, 'A07/2026')
+  assert.equal(plan.to.cycle, 'A08/2026')
+  assert.equal(plan.reportPath, 'docs/airac-reports/A07-2026-to-A08-2026.md')
+})
+
+test('automation keeps a published future-effective edition eligible but not effective', () => {
+  const issues = discovery()
+  const plan = selectNextAiracComparison(issues, {
+    currentUtcDate: '2026-06-26T00:00:00Z',
+  })
+
+  assert.equal(issues.current.cycle, 'A06/2026')
+  assert.equal(plan.to.cycle, 'A07/2026')
+  assert.equal(plan.to.future, true)
+  assert.equal(plan.to.currentlyEffective, false)
+})
+
+test('automation fails safely when publication date is missing or malformed', () => {
+  assert.throws(() => {
+    selectNextAiracComparison(discoveryWithIssue({ publicationDateIso: null }), {
+      currentUtcDate: '2026-07-22T00:00:00Z',
+    })
+  }, /missing publicationDateIso/)
+
+  assert.throws(() => {
+    selectNextAiracComparison(discoveryWithIssue({ publicationDateIso: '2026-07' }), {
+      currentUtcDate: '2026-07-22T00:00:00Z',
+    })
+  }, /malformed publicationDateIso/)
+
+  assert.throws(() => {
+    selectNextAiracComparison(discoveryWithIssue({ publicationDateIso: '2026-02-31' }), {
+      currentUtcDate: '2026-07-22T00:00:00Z',
+    })
+  }, /ambiguous publicationDateIso/)
+})
+
+test('automation selects the earliest eligible consecutive comparison with multiple future editions', () => {
+  const first = selectNextAiracComparison(discovery({ includeA08: true, includeA09: true }), {
+    currentUtcDate: '2026-08-21T00:00:00Z',
+    existingReportPaths: ['docs/airac-reports/A06-2026-to-A07-2026.md'],
+  })
+  const second = selectNextAiracComparison(discovery({ includeA08: true, includeA09: true }), {
+    currentUtcDate: '2026-08-21T00:00:00Z',
+    existingReportPaths: [
+      'docs/airac-reports/A06-2026-to-A07-2026.md',
+      'docs/airac-reports/A07-2026-to-A08-2026.md',
+    ],
+  })
+
+  assert.equal(first.from.cycle, 'A07/2026')
+  assert.equal(first.to.cycle, 'A08/2026')
+  assert.equal(second.from.cycle, 'A08/2026')
+  assert.equal(second.to.cycle, 'A09/2026')
 })
 
 test('automation blocks before push when an existing open PR is not a draft', () => {
