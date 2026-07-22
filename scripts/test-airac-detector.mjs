@@ -72,6 +72,24 @@ test('normalization ignores generated ids, scripts, chrome, and whitespace', () 
   assert.deepEqual(second.lines, first.lines)
 })
 
+test('normalization keeps effective AIRAC amendment text and excludes deleted text', async () => {
+  const normalized = normalizeAerodromeHtml(await fixture('amendment-markup-a07.html')).text
+
+  assert.match(normalized, /BIHN runway designators \| 17 \/ 35/)
+  assert.doesNotMatch(normalized, /18\s+17/)
+  assert.doesNotMatch(normalized, /36\s+35/)
+  assert.match(normalized, /BIHN magnetic variation \| 7° W/)
+  assert.doesNotMatch(normalized, /9°\s+7° W/)
+  assert.match(normalized, /BINF runway designators \| 07 \/ 25/)
+  assert.doesNotMatch(normalized, /08\s+07/)
+  assert.doesNotMatch(normalized, /26\s+25/)
+  assert.match(normalized, /Request service with a minimum 2 hour notice/)
+  assert.doesNotMatch(normalized, /1\s+2 hour notice/)
+  assert.match(normalized, /BIHU fire category \| NIL/)
+  assert.doesNotMatch(normalized, /NIL CAT III/)
+  assert.match(normalized, /Ordinary text \| Must remain untouched/)
+})
+
 test('fixture comparison reports known BIHN, BIHU, and BIRK material changes', async () => {
   const issues = parseAiracIssueIndex(await fixture('index.html'), fixtureBaseUrl)
   const icaos = ['BIHN', 'BIHU', 'BIRK']

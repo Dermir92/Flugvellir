@@ -240,7 +240,7 @@ function encodeURIPath(value) {
 }
 
 export function normalizeAerodromeHtml(html) {
-  let text = html
+  let text = removeDeletedAiracMarkup(html)
     .replace(/\r?\n/g, ' ')
     .replace(/<head\b[\s\S]*?<\/head>/gi, ' ')
     .replace(/<script\b[\s\S]*?<\/script>/gi, ' ')
@@ -268,6 +268,65 @@ export function normalizeAerodromeHtml(html) {
   return {
     lines: dedupeAdjacent(lines),
     text: dedupeAdjacent(lines).join('\n'),
+  }
+}
+
+function removeDeletedAiracMarkup(html) {
+  return removeElementsByClass(html, (classNames) => classNames.includes('deletedAIRAC'))
+}
+
+function removeElementsByClass(html, shouldRemove) {
+  const tagPattern = /<\/?([a-zA-Z][\w:-]*)\b[^>]*>/g
+  const voidTags = new Set(['area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'link', 'meta', 'param', 'source', 'track', 'wbr'])
+  const dropStack = []
+  let result = ''
+  let cursor = 0
+  let match
+
+  while ((match = tagPattern.exec(html)) !== null) {
+    const token = match[0]
+    const tagName = match[1].toLowerCase()
+    const isClosing = /^<\//.test(token)
+    const isSelfClosing = /\/\s*>$/.test(token) || voidTags.has(tagName)
+
+    if (dropStack.length === 0) {
+      result += html.slice(cursor, match.index)
+
+      if (!isClosing && shouldRemove(classNamesFromTag(token))) {
+        if (!isSelfClosing) dropStack.push(tagName)
+        cursor = tagPattern.lastIndex
+        continue
+      }
+
+      result += token
+      cursor = tagPattern.lastIndex
+      continue
+    }
+
+    if (!isClosing && !isSelfClosing) {
+      dropStack.push(tagName)
+    } else if (isClosing) {
+      popDroppedTag(dropStack, tagName)
+      if (dropStack.length === 0) cursor = tagPattern.lastIndex
+    }
+  }
+
+  if (dropStack.length === 0) result += html.slice(cursor)
+  return result
+}
+
+function classNamesFromTag(tag) {
+  const match = /\bclass\s*=\s*(["'])(.*?)\1/i.exec(tag)
+  if (!match) return []
+  return match[2].split(/\s+/).filter(Boolean)
+}
+
+function popDroppedTag(dropStack, tagName) {
+  for (let index = dropStack.length - 1; index >= 0; index--) {
+    if (dropStack[index] === tagName) {
+      dropStack.splice(index)
+      return
+    }
   }
 }
 
