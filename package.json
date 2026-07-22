@@ -13,6 +13,7 @@
     "airac:discover": "node scripts/airac-discover.mjs",
     "airac:compare": "node scripts/airac-compare.mjs",
     "airac:automation:dry-run": "node scripts/airac-automation.mjs --dry-run",
+    "test:airac-meta": "node --test scripts/test-airac-meta.mjs",
     "test:airac": "node --test scripts/test-airac-detector.mjs",
     "test:airac-automation": "node --test scripts/test-airac-automation.mjs",
     "test:training": "node --test src/lib/trainingRestrictions.test.ts"

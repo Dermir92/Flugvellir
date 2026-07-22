@@ -65,6 +65,8 @@ The report is intentionally a human-review document. A maintainer still has to d
 
 The currently displayed AIRAC status on the live site is maintained separately in `src/data/airac-meta.js`. It must not be advanced automatically just because a future AIRAC edition has been published or a comparison report has been generated.
 
+`npm run validate` checks that this displayed metadata uses a valid AIRAC cycle, real ISO effective dates, and a `source_url` whose AIRAC folder matches the declared cycle and effective date.
+
 ## Daily GitHub automation
 
 The workflow `.github/workflows/check-airac.yml` checks the official eAIP once per day at 06:17 UTC. It can also be run manually from the GitHub Actions tab with `workflow_dispatch`.

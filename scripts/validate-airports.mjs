@@ -3,6 +3,7 @@
 import { z } from 'zod'
 import { AIRPORTS } from '../src/data/airports.js'
 import { AIRAC_META } from '../src/data/airac-meta.js'
+import { validateAiracMeta } from './lib/airac-meta-validation.mjs'
 
 // ── Sub-schemas ────────────────────────────────────────────────────────────
 
@@ -123,40 +124,16 @@ const Airport = z.object({
   charts_url: z.string().optional(),
 })
 
-const IsoDate = z.string()
-  .regex(/^\d{4}-\d{2}-\d{2}$/, 'Must be an ISO date in YYYY-MM-DD format')
-  .refine((value) => {
-    const date = new Date(`${value}T00:00:00.000Z`)
-    return !Number.isNaN(date.getTime()) && date.toISOString().slice(0, 10) === value
-  }, 'Must be a real UTC calendar date')
-
-const AiracMeta = z.object({
-  cycle: z.string().regex(/^A\d{2}\/\d{4}$/, 'Must look like A07/2026'),
-  effective: IsoDate,
-  next: z.string().min(1),
-  next_iso: IsoDate,
-  source_url: z.string().url(),
-}).superRefine((meta, ctx) => {
-  if (meta.next_iso <= meta.effective) {
-    ctx.addIssue({
-      code: z.ZodIssueCode.custom,
-      path: ['next_iso'],
-      message: 'Must be after the current AIRAC effective date',
-    })
-  }
-})
-
 // ── Validation ─────────────────────────────────────────────────────────────
 
 let errorCount = 0
 
-const metaResult = AiracMeta.safeParse(AIRAC_META)
-if (!metaResult.success) {
+const metaIssues = validateAiracMeta(AIRAC_META)
+if (metaIssues.length > 0) {
   errorCount++
   console.error('\n  ❌  AIRAC_META')
-  for (const issue of metaResult.error.issues) {
-    const issuePath = issue.path.length ? issue.path.join('.') : '(root)'
-    console.error(`       ${issuePath}: ${issue.message}`)
+  for (const issue of metaIssues) {
+    console.error(`       ${issue.path}: ${issue.message}`)
   }
 }
 
