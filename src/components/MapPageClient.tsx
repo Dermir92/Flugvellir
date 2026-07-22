@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic'
 import { useRouter } from 'next/navigation'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { AIRPORTS, AIRAC_META } from '@/data/airports'
+import { airacStatusLabelsIs } from '@/lib/airacMeta'
 import { getFlightCat } from '@/lib/metar'
 import s from './MapPageClient.module.css'
 
@@ -54,7 +55,7 @@ const TRANSLATIONS = {
     link_eaip:     'eAIP',
     link_weather:  'Weather',
     link_notam:    'NOTAMs',
-    link_guides:   'Pilot Guides',
+    link_guides:   'Flight Manual',
     open_sidebar:  'Open sidebar',
     close_sidebar: 'Close sidebar',
     switch_lang:   'Switch to Icelandic',
@@ -74,7 +75,7 @@ const TRANSLATIONS = {
     link_eaip:     'eAIP',
     link_weather:  'Veður',
     link_notam:    'NOTAMs',
-    link_guides:   'Leiðbeiningar',
+    link_guides:   'Flugmannahandbók',
     open_sidebar:  'Opna hliðarspjald',
     close_sidebar: 'Loka hliðarspjaldi',
     switch_lang:   'Switch to English',
@@ -100,6 +101,7 @@ export default function MapPageClient() {
   const t = (k: keyof (typeof TRANSLATIONS)['en']) => TRANSLATIONS[lang][k]
 
   const isAiracStale = new Date() >= new Date(AIRAC_META.next_iso)
+  const airacStatus = airacStatusLabelsIs(AIRAC_META)
 
   // Initialise from localStorage (runs client-side only)
   useEffect(() => {
@@ -433,29 +435,28 @@ export default function MapPageClient() {
                 }}>
                   <span style={{ flexShrink: 0, fontWeight: 700 }}>⚠</span>
                   <span>
-                    AIRAC {AIRAC_META.cycle} has expired. Data may be out of date.{' '}
+                    {airacStatus.cycle} er runnið úr gildi. Gögn gætu verið úrelt.{' '}
                     <a href={AIRAC_META.source_url} target="_blank" rel="noopener noreferrer"
-                      style={{ color: 'var(--warn-link)', textDecoration: 'underline' }}>Verify with current eAIP.</a>
+                      style={{ color: 'var(--warn-link)', textDecoration: 'underline' }}>Berðu saman við gildandi eAIP.</a>
                   </span>
                 </div>
               )}
               <div className={s.sbFooterAirac}>
                 <span className="airac-pulse" aria-hidden="true" />
-                {t('airac')} {AIRAC_META.cycle}
-                <span style={{ color: 'var(--text-muted)' }}>·</span>
-                {t('effective')} {AIRAC_META.effective}
+                <span>{airacStatus.cycle}</span>
+                <span>{airacStatus.effective}</span>
               </div>
               <div className={s.sbFooterLinks}>
                 <a href="/nearest">{t('link_nearest')}</a>
-                <a href={AIRAC_META.source_url} target="_blank" rel="noopener noreferrer">{t('link_eaip')}</a>
-                <a href="https://www.vedur.is/vedur/flugvedur/" target="_blank" rel="noopener noreferrer">{t('link_weather')}</a>
-                <a href="https://www.avians.is/en/c-preflight-information/notam" target="_blank" rel="noopener noreferrer">{t('link_notam')}</a>
-                <a href="https://island.is/leidbeiningarefni-fyrir-einkaflug" target="_blank" rel="noopener noreferrer">{t('link_guides')}</a>
+                <a href={AIRAC_META.source_url} target="_blank" rel="noopener noreferrer">eAIP</a>
+                <a href="https://www.vedur.is/vedur/flugvedur/" target="_blank" rel="noopener noreferrer">Veður</a>
+                <a href="https://www.avians.is/en/c-preflight-information/notam" target="_blank" rel="noopener noreferrer">NOTAM</a>
+                <a href="https://island.is/leidbeiningarefni-fyrir-einkaflug" target="_blank" rel="noopener noreferrer">Flugmannahandbók</a>
               </div>
               <div className={s.sbFooterCredit}>
                 <a href="https://foxel.is" target="_blank" rel="noopener noreferrer">Foxel</a>
                 <span style={{ color: 'var(--dark-sep)' }}> · </span>
-                <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">© OpenStreetMap</a>
+                <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">© OpenStreetMap contributors</a>
                 <span style={{ color: 'var(--dark-sep)' }}> · </span>
                 <a href="/skilmalar">Skilmálar</a>
               </div>

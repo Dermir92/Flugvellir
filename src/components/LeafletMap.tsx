@@ -62,7 +62,7 @@ export default function LeafletMap({ onAirportClick }: Props) {
       mapRef.current = map
 
       L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
-        attribution: 'Map data: © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, SRTM | Style: © <a href="https://opentopomap.org">OpenTopoMap</a> (CC-BY-SA)',
+        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>, SRTM | Style: © <a href="https://opentopomap.org">OpenTopoMap</a> (CC-BY-SA)',
         subdomains: 'abc',
         maxZoom: 13,
       }).addTo(map)

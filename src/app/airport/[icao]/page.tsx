@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { AIRPORTS, AIRAC_META } from '@/data/airports'
+import { formatAiracEffectiveDateIs } from '@/lib/airacMeta'
 import MetarCard from '@/components/airport/MetarCard'
 import NotamCard from '@/components/airport/NotamCard'
 import StatusCard from '@/components/airport/StatusCard'
@@ -72,6 +73,7 @@ export default async function AirportPage(props: PageProps<'/airport/[icao]'>) {
                  : a.hours?.service.toLowerCase() === 'afis' ? 'afis' : 'other'
   const alternates = getAlternates(a, AIRPORTS)
   const hasFuel = a.fuel?.avgas || a.fuel?.jet_a1
+  const airacEffective = formatAiracEffectiveDateIs(AIRAC_META.effective)
 
   return (
     <div className="airport-page">
@@ -234,7 +236,7 @@ export default async function AirportPage(props: PageProps<'/airport/[icao]'>) {
                 </a>
                 <div className="ap-sb-airac">
                   <span className="airac-pulse" aria-hidden="true" />
-                  AIRAC {AIRAC_META.cycle} · {AIRAC_META.effective}
+                  AIRAC {AIRAC_META.cycle} · {airacEffective}
                 </div>
               </div>
             )}
@@ -259,7 +261,7 @@ export default async function AirportPage(props: PageProps<'/airport/[icao]'>) {
             <TrainingOperationsChecker
               icao={a.icao}
               airacCycle={AIRAC_META.cycle}
-              airacEffective={AIRAC_META.effective}
+              airacEffective={airacEffective}
               sourceRoot={AIRAC_META.source_url}
             />
           )}
@@ -339,7 +341,7 @@ export default async function AirportPage(props: PageProps<'/airport/[icao]'>) {
         <div className="ap-footer-inner">
           <span className="ap-airac">
             <span className="airac-pulse" aria-hidden="true" />
-            AIRAC {AIRAC_META.cycle} · {AIRAC_META.effective}
+            AIRAC {AIRAC_META.cycle} · {airacEffective}
           </span>
           <span className="ap-footer-note">
             <a href={AIRAC_META.source_url} target="_blank" rel="noopener noreferrer">Isavia eAIP</a>
