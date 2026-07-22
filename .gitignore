@@ -13,6 +13,9 @@
 # testing
 /coverage
 
+# generated local AIRAC reports and downloads
+/airac-output
+
 # next.js
 /.next/
 /out/

@@ -8,7 +8,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "validate": "node scripts/validate-airports.mjs"
+    "typecheck": "tsc --noEmit",
+    "validate": "node scripts/validate-airports.mjs",
+    "airac:discover": "node scripts/airac-discover.mjs",
+    "airac:compare": "node scripts/airac-compare.mjs",
+    "test:airac": "node --test scripts/test-airac-detector.mjs"
   },
   "dependencies": {
     "@types/leaflet": "^1.9.21",
