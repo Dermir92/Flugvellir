@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import type { Airport, FireCat, TandGStructured } from '@/types/airport'
 import { AIRAC_META } from '@/data/airports'
-import { formatAiracEffectiveDateIs } from '@/lib/airacMeta'
+import { formatAiracEffectiveDateEn } from '@/lib/airacMeta'
 
 // VFR pilots call TWR first, then AFIS at non-ATC fields, then MF/CTAF at uncontrolled
 const VFR_CALL_PRIORITY = ['TWR', 'AFIS', 'MF', 'CTAF', 'APP']
@@ -214,7 +214,7 @@ function VfrContent({ airport }: { airport: Airport }) {
 export function VfrSection({ airport }: { airport: Airport }) {
   const hasHazards = (airport.hazards?.length ?? 0) > 0
   if (!airport.pilot_notes && !hasHazards && !airport.highland) return null
-  const airacEffective = formatAiracEffectiveDateIs(AIRAC_META.effective)
+  const airacEffective = formatAiracEffectiveDateEn(AIRAC_META.effective)
   return (
     <div className="ap-card ap-card--pilot-notes">
       <div className="ap-card-title">

@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic'
 import { useRouter } from 'next/navigation'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { AIRPORTS, AIRAC_META } from '@/data/airports'
-import { airacStatusLabelsIs } from '@/lib/airacMeta'
+import { airacStatusLabels } from '@/lib/airacMeta'
 import { getFlightCat } from '@/lib/metar'
 import s from './MapPageClient.module.css'
 
@@ -54,7 +54,7 @@ const TRANSLATIONS = {
     link_nearest:  'Nearest',
     link_eaip:     'eAIP',
     link_weather:  'Weather',
-    link_notam:    'NOTAMs',
+    link_notam:    'NOTAM',
     link_guides:   'Flight Manual',
     open_sidebar:  'Open sidebar',
     close_sidebar: 'Close sidebar',
@@ -74,7 +74,7 @@ const TRANSLATIONS = {
     link_nearest:  'Næstu',
     link_eaip:     'eAIP',
     link_weather:  'Veður',
-    link_notam:    'NOTAMs',
+    link_notam:    'NOTAM',
     link_guides:   'Flugmannahandbók',
     open_sidebar:  'Opna hliðarspjald',
     close_sidebar: 'Loka hliðarspjaldi',
@@ -101,7 +101,7 @@ export default function MapPageClient() {
   const t = (k: keyof (typeof TRANSLATIONS)['en']) => TRANSLATIONS[lang][k]
 
   const isAiracStale = new Date() >= new Date(AIRAC_META.next_iso)
-  const airacStatus = airacStatusLabelsIs(AIRAC_META)
+  const airacStatus = airacStatusLabels(AIRAC_META, lang)
 
   // Initialise from localStorage (runs client-side only)
   useEffect(() => {
@@ -435,9 +435,13 @@ export default function MapPageClient() {
                 }}>
                   <span style={{ flexShrink: 0, fontWeight: 700 }}>⚠</span>
                   <span>
-                    {airacStatus.cycle} er runnið úr gildi. Gögn gætu verið úrelt.{' '}
+                    {lang === 'is'
+                      ? `${airacStatus.cycle} er runnið úr gildi. Gögn gætu verið úrelt.`
+                      : `${airacStatus.cycle} has expired. Data may be out of date.`}{' '}
                     <a href={AIRAC_META.source_url} target="_blank" rel="noopener noreferrer"
-                      style={{ color: 'var(--warn-link)', textDecoration: 'underline' }}>Berðu saman við gildandi eAIP.</a>
+                      style={{ color: 'var(--warn-link)', textDecoration: 'underline' }}>
+                      {lang === 'is' ? 'Berðu saman við gildandi eAIP.' : 'Verify with current eAIP.'}
+                    </a>
                   </span>
                 </div>
               )}
@@ -448,10 +452,10 @@ export default function MapPageClient() {
               </div>
               <div className={s.sbFooterLinks}>
                 <a href="/nearest">{t('link_nearest')}</a>
-                <a href={AIRAC_META.source_url} target="_blank" rel="noopener noreferrer">eAIP</a>
-                <a href="https://www.vedur.is/vedur/flugvedur/" target="_blank" rel="noopener noreferrer">Veður</a>
-                <a href="https://www.avians.is/en/c-preflight-information/notam" target="_blank" rel="noopener noreferrer">NOTAM</a>
-                <a href="https://island.is/leidbeiningarefni-fyrir-einkaflug" target="_blank" rel="noopener noreferrer">Flugmannahandbók</a>
+                <a href={AIRAC_META.source_url} target="_blank" rel="noopener noreferrer">{t('link_eaip')}</a>
+                <a href="https://www.vedur.is/vedur/flugvedur/" target="_blank" rel="noopener noreferrer">{t('link_weather')}</a>
+                <a href="https://www.avians.is/en/c-preflight-information/notam" target="_blank" rel="noopener noreferrer">{t('link_notam')}</a>
+                <a href="https://island.is/leidbeiningarefni-fyrir-einkaflug" target="_blank" rel="noopener noreferrer">{t('link_guides')}</a>
               </div>
               <div className={s.sbFooterCredit}>
                 <a href="https://foxel.is" target="_blank" rel="noopener noreferrer">Foxel</a>

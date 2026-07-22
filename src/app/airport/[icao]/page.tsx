@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { AIRPORTS, AIRAC_META } from '@/data/airports'
-import { formatAiracEffectiveDateIs } from '@/lib/airacMeta'
+import { formatAiracEffectiveDateEn } from '@/lib/airacMeta'
 import MetarCard from '@/components/airport/MetarCard'
 import NotamCard from '@/components/airport/NotamCard'
 import StatusCard from '@/components/airport/StatusCard'
@@ -73,7 +73,7 @@ export default async function AirportPage(props: PageProps<'/airport/[icao]'>) {
                  : a.hours?.service.toLowerCase() === 'afis' ? 'afis' : 'other'
   const alternates = getAlternates(a, AIRPORTS)
   const hasFuel = a.fuel?.avgas || a.fuel?.jet_a1
-  const airacEffective = formatAiracEffectiveDateIs(AIRAC_META.effective)
+  const airacEffective = formatAiracEffectiveDateEn(AIRAC_META.effective)
 
   return (
     <div className="airport-page">
