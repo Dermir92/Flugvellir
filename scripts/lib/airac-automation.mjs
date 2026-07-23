@@ -111,7 +111,8 @@ export async function buildAutomationPlan(options = {}) {
 }
 
 export async function generateAutomationReport(plan, options = {}) {
-  if (!plan || plan.action === 'none') return null
+  validateAutomationPlan(plan)
+  if (plan.action === 'none') return plan
 
   const icaos = options.icaos ?? getFlugvellirIcaos()
   const fetcher = options.fetcher
@@ -215,7 +216,83 @@ export async function reportsEquivalentFiles(leftPath, rightPath) {
 
 export async function writePlan(plan, planOutputPath) {
   if (!planOutputPath) return
+  validateAutomationPlan(plan)
   await writeFile(planOutputPath, `${JSON.stringify(plan, null, 2)}\n`, 'utf8')
+}
+
+export async function readAutomationPlan(planPath) {
+  let text
+  try {
+    text = await readFile(planPath, 'utf8')
+  } catch (error) {
+    if (error.code === 'ENOENT') {
+      throw new Error(`AIRAC automation plan is missing: ${planPath}`)
+    }
+    throw error
+  }
+
+  if (!text.trim()) {
+    throw new Error(`AIRAC automation plan is empty: ${planPath}`)
+  }
+
+  let plan
+  try {
+    plan = JSON.parse(text)
+  } catch (error) {
+    throw new Error(`AIRAC automation plan is not valid JSON: ${error.message}`)
+  }
+
+  validateAutomationPlan(plan)
+  return plan
+}
+
+export function automationPlanGithubOutputs(plan) {
+  validateAutomationPlan(plan)
+  return {
+    action: plan.action,
+    branch: plan.branchName ?? '',
+    report: plan.reportPath ?? '',
+    title: plan.prTitle ?? '',
+  }
+}
+
+export function formatGithubOutputs(outputs) {
+  return Object.entries(outputs)
+    .map(([key, value]) => `${key}=${String(value)}`)
+    .join('\n')
+}
+
+export function validateAutomationPlan(plan) {
+  if (!plan || typeof plan !== 'object' || Array.isArray(plan)) {
+    throw new Error('AIRAC automation plan is invalid: expected a JSON object.')
+  }
+
+  if (typeof plan.action !== 'string') {
+    throw new Error('AIRAC automation plan is invalid: action must be a string.')
+  }
+
+  if (plan.action === 'none') {
+    if (typeof plan.reason !== 'string' || plan.reason.trim() === '') {
+      throw new Error('AIRAC automation no-action plan is invalid: reason is required.')
+    }
+    return
+  }
+
+  if (!['create-or-update-pr', 'update-existing-pr'].includes(plan.action)) {
+    throw new Error(`AIRAC automation plan is invalid: unsupported action "${plan.action}".`)
+  }
+
+  for (const field of ['branchName', 'reportPath', 'prTitle', 'prBody']) {
+    if (typeof plan[field] !== 'string' || plan[field].trim() === '') {
+      throw new Error(`AIRAC automation actionable plan is invalid: ${field} is required.`)
+    }
+  }
+
+  for (const field of ['from', 'to']) {
+    if (!plan[field] || typeof plan[field] !== 'object') {
+      throw new Error(`AIRAC automation actionable plan is invalid: ${field} edition is required.`)
+    }
+  }
 }
 
 function stableReportText(markdown) {

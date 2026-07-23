@@ -1,10 +1,12 @@
-import { readFile } from 'node:fs/promises'
 import { fileURLToPath } from 'node:url'
 import path from 'node:path'
 
 import {
+  automationPlanGithubOutputs,
   buildAutomationPlan,
+  formatGithubOutputs,
   generateAutomationReport,
+  readAutomationPlan,
   reportsEquivalentFiles,
   writePlan,
 } from './lib/airac-automation.mjs'
@@ -19,6 +21,7 @@ function parseArgs(argv) {
     planOutput: null,
     reportsEquivalent: null,
     prBodyFromPlan: null,
+    githubOutputFromPlan: null,
   }
 
   for (let index = 0; index < argv.length; index++) {
@@ -30,6 +33,7 @@ function parseArgs(argv) {
     else if (arg === '--plan-output') args.planOutput = argv[++index]
     else if (arg === '--reports-equivalent') args.reportsEquivalent = [argv[++index], argv[++index]]
     else if (arg === '--pr-body-from-plan') args.prBodyFromPlan = argv[++index]
+    else if (arg === '--github-output-from-plan') args.githubOutputFromPlan = argv[++index]
     else if (arg === '--help') args.help = true
     else throw new Error(`Unknown argument: ${arg}`)
   }
@@ -46,6 +50,7 @@ Examples:
   npm run airac:automation:dry-run
   node scripts/airac-automation.mjs --generate --plan-output .airac-plan.json
   node scripts/airac-automation.mjs --reports-equivalent old.md new.md
+  node scripts/airac-automation.mjs --github-output-from-plan .airac-plan.json
 `)
 }
 
@@ -74,8 +79,14 @@ async function main() {
   }
 
   if (args.prBodyFromPlan) {
-    const plan = JSON.parse(await readFile(args.prBodyFromPlan, 'utf8'))
+    const plan = await readAutomationPlan(args.prBodyFromPlan)
     console.log(plan.prBody ?? '')
+    return
+  }
+
+  if (args.githubOutputFromPlan) {
+    const plan = await readAutomationPlan(args.githubOutputFromPlan)
+    console.log(formatGithubOutputs(automationPlanGithubOutputs(plan)))
     return
   }
 
