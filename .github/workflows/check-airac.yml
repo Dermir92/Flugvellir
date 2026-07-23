@@ -51,19 +51,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          node <<'NODE' >> "${GITHUB_OUTPUT}"
-          const fs = require('node:fs')
-          const plan = JSON.parse(fs.readFileSync(process.env.AIRAC_PLAN, 'utf8'))
-          const outputs = {
-            action: plan.action || 'none',
-            branch: plan.branchName || '',
-            report: plan.reportPath || '',
-            title: plan.prTitle || '',
-          }
-          for (const [key, value] of Object.entries(outputs)) {
-            console.log(`${key}=${value}`)
-          }
-          NODE
+          node scripts/airac-automation.mjs --github-output-from-plan "${AIRAC_PLAN}" >> "${GITHUB_OUTPUT}"
 
       - name: Stop when no new AIRAC report is needed
         if: steps.plan.outputs.action == 'none'

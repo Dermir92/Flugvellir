@@ -1,11 +1,19 @@
 import assert from 'node:assert/strict'
+import { mkdtemp, rm, writeFile } from 'node:fs/promises'
+import os from 'node:os'
+import path from 'node:path'
 import test from 'node:test'
 
 import { parseAiracIssueIndex } from './lib/airac-detector.mjs'
 import {
+  automationPlanGithubOutputs,
   evaluateAutomationPrSafetyState,
+  formatGithubOutputs,
+  generateAutomationReport,
+  readAutomationPlan,
   reportsEquivalentIgnoringRetrievalTime,
   selectNextAiracComparison,
+  writePlan,
 } from './lib/airac-automation.mjs'
 
 const baseUrl = 'https://example.test/eaip/'
@@ -43,6 +51,25 @@ function discoveryWithIssue(overrides) {
   }
 }
 
+function actionablePlan(overrides = {}) {
+  const plan = selectNextAiracComparison(discovery(), {
+    currentUtcDate: '2026-07-22T00:00:00Z',
+  })
+  return {
+    ...plan,
+    ...overrides,
+  }
+}
+
+async function withTempDir(fn) {
+  const dir = await mkdtemp(path.join(os.tmpdir(), 'airac-automation-test-'))
+  try {
+    return await fn(dir)
+  } finally {
+    await rm(dir, { recursive: true, force: true })
+  }
+}
+
 test('automation does nothing when no new AIRAC report is needed', () => {
   const plan = selectNextAiracComparison(discovery(), {
     currentUtcDate: '2026-07-22T00:00:00Z',
@@ -50,6 +77,76 @@ test('automation does nothing when no new AIRAC report is needed', () => {
   })
 
   assert.equal(plan.action, 'none')
+})
+
+test('automation keeps a valid no-action plan when generate mode has no report to write', async () => {
+  const plan = selectNextAiracComparison(discovery(), {
+    currentUtcDate: '2026-07-22T00:00:00Z',
+    existingReportPaths: ['docs/airac-reports/A06-2026-to-A07-2026.md'],
+  })
+
+  const generated = await generateAutomationReport(plan)
+
+  assert.equal(generated.action, 'none')
+  assert.equal(generated.reason, plan.reason)
+})
+
+test('automation reads valid actionable plan outputs for the workflow', async () => {
+  await withTempDir(async (dir) => {
+    const file = path.join(dir, 'plan.json')
+    const plan = actionablePlan()
+    await writePlan(plan, file)
+
+    const readPlan = await readAutomationPlan(file)
+    const outputs = automationPlanGithubOutputs(readPlan)
+
+    assert.deepEqual(outputs, {
+      action: 'create-or-update-pr',
+      branch: 'automation/airac-A07-2026',
+      report: 'docs/airac-reports/A06-2026-to-A07-2026.md',
+      title: 'AIRAC 07/2026: review detected aerodrome changes',
+    })
+    assert.equal(formatGithubOutputs(outputs).includes('action=create-or-update-pr'), true)
+  })
+})
+
+test('automation rejects a null plan instead of treating it as no action', async () => {
+  await withTempDir(async (dir) => {
+    const file = path.join(dir, 'plan.json')
+    await writeFile(file, 'null\n', 'utf8')
+
+    await assert.rejects(
+      () => readAutomationPlan(file),
+      /expected a JSON object/
+    )
+  })
+})
+
+test('automation rejects missing plan output with a clear diagnostic', async () => {
+  await withTempDir(async (dir) => {
+    await assert.rejects(
+      () => readAutomationPlan(path.join(dir, 'missing-plan.json')),
+      /AIRAC automation plan is missing/
+    )
+  })
+})
+
+test('automation rejects malformed plan output with a clear diagnostic', async () => {
+  await withTempDir(async (dir) => {
+    const invalidJson = path.join(dir, 'invalid-json.json')
+    const invalidShape = path.join(dir, 'invalid-shape.json')
+    await writeFile(invalidJson, '{', 'utf8')
+    await writeFile(invalidShape, '{"action":"create-or-update-pr"}\n', 'utf8')
+
+    await assert.rejects(
+      () => readAutomationPlan(invalidJson),
+      /not valid JSON/
+    )
+    await assert.rejects(
+      () => readAutomationPlan(invalidShape),
+      /branchName is required/
+    )
+  })
 })
 
 test('automation selects one new published future edition', () => {
