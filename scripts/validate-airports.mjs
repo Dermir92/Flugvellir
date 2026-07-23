@@ -2,6 +2,8 @@
 // src/types/airport.ts. Run via `npm run validate` or automatically as prebuild.
 import { z } from 'zod'
 import { AIRPORTS } from '../src/data/airports.js'
+import { AIRAC_META } from '../src/data/airac-meta.js'
+import { validateAiracMeta } from './lib/airac-meta-validation.mjs'
 
 // ── Sub-schemas ────────────────────────────────────────────────────────────
 
@@ -126,6 +128,15 @@ const Airport = z.object({
 
 let errorCount = 0
 
+const metaIssues = validateAiracMeta(AIRAC_META)
+if (metaIssues.length > 0) {
+  errorCount++
+  console.error('\n  ❌  AIRAC_META')
+  for (const issue of metaIssues) {
+    console.error(`       ${issue.path}: ${issue.message}`)
+  }
+}
+
 for (const ap of AIRPORTS) {
   const result = Airport.safeParse(ap)
   if (!result.success) {
@@ -140,8 +151,8 @@ for (const ap of AIRPORTS) {
 }
 
 if (errorCount > 0) {
-  console.error(`\n  ${errorCount} airport(s) failed schema validation. Fix before building.\n`)
+  console.error(`\n  ${errorCount} data validation error(s). Fix before building.\n`)
   process.exit(1)
 }
 
-console.log(`  ✓  All ${AIRPORTS.length} airports passed schema validation.`)
+console.log(`  ✓  AIRAC metadata and all ${AIRPORTS.length} airports passed schema validation.`)

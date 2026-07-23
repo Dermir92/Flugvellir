@@ -5,7 +5,7 @@
 .sidebar {
   display: flex;
   flex-direction: column;
-  width: 240px;
+  width: 270px;
   flex-shrink: 0;
   background: var(--lava);       /* #0a1e30 — explicit, --panel-bg is undefined */
   border-right: 1px solid rgba(126, 207, 245, 0.1);
@@ -18,7 +18,7 @@
 .sidebarOpen   { /* desktop: visible by default */ }
 
 .sbInner {
-  width: 240px;
+  width: 270px;
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
@@ -239,8 +239,10 @@
   color: var(--dark-text-mid);           /* 6.96:1 against #0a1e30 — passes AA */
   flex: 1;
   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-height: 1.25;
   min-width: 0;
 }
 
@@ -350,36 +352,46 @@
   color: var(--dark-text-dim);           /* 5.97:1 against #0a1e30 — passes AA */
   flex: 1;
   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-height: 1.25;
   min-width: 0;
 }
 
 /* --- Sidebar footer --- */
 .sbFooter {
   flex-shrink: 0;
-  padding: 10px 12px 12px;
+  padding: 12px 14px 14px;
   border-top: 1px solid rgba(126, 207, 245, 0.08);
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 8px;
 }
 
 .sbFooterAirac {
   display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 10.5px;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px 9px;
+  font-size: 11px;
   font-weight: 600;
   color: var(--moss-soft);           /* 6.53:1 against #0a1e30 — passes AA */
   font-variant-numeric: tabular-nums;
+  line-height: 1.35;
+}
+
+.sbFooterAirac :global(.airac-pulse) {
+  align-self: center;
+  flex-shrink: 0;
 }
 
 .sbFooterLinks {
   display: flex;
   flex-wrap: wrap;
-  gap: 3px 10px;
-  font-size: 10px;
+  gap: 6px 14px;
+  font-size: 10.5px;
+  line-height: 1.4;
 }
 
 .sbFooterLinks a {
@@ -393,6 +405,7 @@
 .sbFooterCredit {
   font-size: 10px;
   color: var(--dark-footer);           /* 5.25:1 against #0a1e30 — passes AA */
+  line-height: 1.35;
 }
 
 .sbFooterCredit a {

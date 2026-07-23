@@ -65,6 +65,10 @@ The detector does not modify `src/data/airports.js`, `src/data/airac-meta.js`, o
 
 The report is intentionally a human-review document. A maintainer still has to decide whether each detected difference affects Flugvellir's simplified airport records.
 
+The currently displayed AIRAC status on the live site is maintained separately in `src/data/airac-meta.js`. It must not be advanced automatically just because a future AIRAC edition has been published or a comparison report has been generated.
+
+`npm run validate` checks that this displayed metadata uses a valid AIRAC cycle, real ISO effective dates, and a `source_url` whose AIRAC folder matches the declared cycle and effective date.
+
 ## Daily GitHub automation
 
 The workflow `.github/workflows/check-airac.yml` checks the official eAIP once per day at 06:17 UTC. It can also be run manually from the GitHub Actions tab with `workflow_dispatch`.
@@ -90,8 +94,14 @@ Manual review must check:
 
 - every changed aerodrome section in the generated report;
 - whether the change affects Flugvellir's simplified airport data;
+- the target edition's publication date;
+- the target edition's effective date;
+- the report generation date and source URLs;
+- whether `src/data/airac-meta.js` should be updated for the edition currently shown on the live site;
 - runway designators, declared distances, frequencies, ATS hours, fuel and services, procedures, obstacles, warnings and chart references;
 - official AIP, NOTAM, meteorological, briefing and ATC sources before making any operational decision.
+
+These are separate decisions: a publication date means the future AIRAC material may be reviewed, an effective date controls when that edition becomes operationally current, report generation only records when the automation fetched and compared pages, and `src/data/airac-meta.js` controls the AIRAC cycle displayed by the live site. Do not update the displayed AIRAC metadata unless the maintainer explicitly decides the shown current edition should change.
 
 To disable scheduled checks, edit `.github/workflows/check-airac.yml` and remove or comment out the `schedule` block. Manual `workflow_dispatch` can be left in place if you still want to run checks on demand.
 
