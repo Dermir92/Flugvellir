@@ -929,7 +929,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .rwy-tag--asphalt { background: rgba(15,42,69,0.08); color: var(--text-secondary); }
 .rwy-tag--gravel  { background: rgba(80,60,20,0.08); color: var(--gravel); }
 
-.rwy-note { font-size: 13px; color: var(--glacier-dim); line-height: 1.5; font-style: italic; margin-top: 4px; }
+.rwy-note { font-size: 14px; color: var(--text-secondary); line-height: 1.5; font-style: italic; margin-top: 4px; }
 
 /* === FREQUENCIES === */
 .freq-list { display: flex; flex-direction: column; }
@@ -1116,7 +1116,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .remark-item {
   display: flex;
   gap: 12px;
-  font-size: 14.5px;
+  font-size: 15px;
   color: var(--text-secondary);
   line-height: 1.65;
 }
@@ -1666,7 +1666,7 @@ body.vfr-modal-open { overflow: hidden; }
   line-height: 1;
 }
 
-.vfr-card-text { font-size: 13.5px; color: var(--text-secondary); line-height: 1.62; margin: 0; }
+.vfr-card-text { font-size: 15px; color: var(--text-secondary); line-height: 1.62; margin: 0; }
 .vfr-card-text strong { color: var(--text-primary); font-weight: 600; }
 
 .vfr-card-sub { font-size: 11.5px; color: var(--text-muted); margin: 4px 0 0; }
@@ -1676,7 +1676,7 @@ body.vfr-modal-open { overflow: hidden; }
 .vfr-card-list li {
   position: relative;
   padding-left: 14px;
-  font-size: 13.5px;
+  font-size: 15px;
   color: var(--text-secondary);
   line-height: 1.55;
 }
@@ -1818,17 +1818,17 @@ body.vfr-modal-open { overflow: hidden; }
 }
 
 .pn-acc-title {
-  font-size: 11.5px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--text-label);
+  color: var(--text-secondary);
   white-space: nowrap;
 }
 
 .pn-acc-preview {
-  font-size: 12px;
-  color: var(--text-muted);
+  font-size: 13.5px;
+  color: var(--text-label);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -2051,7 +2051,7 @@ a.pn-acc-header-badge:hover { background: rgba(126,207,245,0.22); }
 }
 
 .status-met-val {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
   color: var(--white);
   font-family: var(--font-mono);
@@ -2075,7 +2075,7 @@ a.pn-acc-header-badge:hover { background: rgba(126,207,245,0.22); }
 
 .status-rwy-num {
   font-family: var(--font-display);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
   color: var(--glacier);
   width: 68px;
@@ -2183,7 +2183,7 @@ a.pn-acc-header-badge:hover { background: rgba(126,207,245,0.22); }
   flex-direction: column;
   gap: 2px;
   font-size: 12px;
-  color: var(--dark-text-dim);
+  color: var(--dark-text-muted);
   margin-bottom: 10px;
 }
 .ap-sb-coords { font-family: var(--font-mono); font-size: 11px; }
@@ -2205,7 +2205,7 @@ a.pn-acc-header-badge:hover { background: rgba(126,207,245,0.22); }
 }
 
 .ap-sb-desc {
-  font-size: 12.5px;
+  font-size: 13.5px;
   color: var(--glacier-light);
   line-height: 1.55;
   margin: 0;
@@ -2242,7 +2242,7 @@ a.pn-acc-header-badge:hover { background: rgba(126,207,245,0.22); }
 .ap-sb-freq-role--atis { background: rgba(90,184,232,0.1); color: var(--glacier-light); }
 .ap-sb-freq-hz {
   font-family: var(--font-mono);
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
   color: var(--white);
 }
@@ -2257,7 +2257,7 @@ a.pn-acc-header-badge:hover { background: rgba(126,207,245,0.22); }
   padding: 4px 0;
 }
 .ap-sb-nav-type {
-  font-size: 9px;
+  font-size: 10.5px;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -2267,8 +2267,8 @@ a.pn-acc-header-badge:hover { background: rgba(126,207,245,0.22); }
   border-radius: 2px;
   text-align: center;
 }
-.ap-sb-nav-ident { font-size: 13px; font-weight: 600; color: var(--white); }
-.ap-sb-nav-freq  { font-size: 12px; color: var(--dark-text-dim); font-family: var(--font-mono); }
+.ap-sb-nav-ident { font-size: 14px; font-weight: 600; color: var(--white); }
+.ap-sb-nav-freq  { font-size: 13.5px; color: var(--dark-text-muted); font-family: var(--font-mono); }
 
 /* Hours */
 .ap-sb-svc-badge {
@@ -2284,12 +2284,12 @@ a.pn-acc-header-badge:hover { background: rgba(126,207,245,0.22); }
 .ap-sb-svc-badge--atc   { background: rgba(42,144,80,0.3);   color: var(--moss-light); }
 .ap-sb-svc-badge--afis  { background: rgba(90,184,232,0.2);  color: var(--glacier); }
 .ap-sb-svc-badge--other { background: rgba(255,255,255,0.07); color: var(--glacier-light); }
-.ap-sb-hours-sched { font-size: 13px; color: var(--dark-text); line-height: 1.5; }
-.ap-sb-hours-note  { font-size: 11.5px; color: var(--dark-text-dim); margin-top: 5px; line-height: 1.5; }
+.ap-sb-hours-sched { font-size: 14.5px; color: var(--dark-text); line-height: 1.5; }
+.ap-sb-hours-note  { font-size: 13px; color: var(--dark-text-muted); margin-top: 5px; line-height: 1.5; }
 
 /* Hours live-status (BIVM Phase 2) */
 .ap-sb-hours-top { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 6px; }
-.ap-sb-hours-status { display: inline-flex; align-items: center; gap: 5px; font-size: 11.5px; font-weight: 600; letter-spacing: 0.02em; }
+.ap-sb-hours-status { display: inline-flex; align-items: center; gap: 5px; font-size: 15px; font-weight: 600; letter-spacing: 0.02em; }
 .ap-sb-hours-status--open   { color: #5ecfa0; }
 .ap-sb-hours-status--closed { color: var(--dark-text-muted); }
 .ap-sb-hours-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
@@ -2684,8 +2684,8 @@ a.pn-acc-header-badge:hover { background: rgba(126,207,245,0.22); }
     gap: 10px;
   }
   .ap-sb-icao   { font-size: 20px; margin-bottom: 0; }
-  .ap-sb-name   { font-size: 14px; margin-bottom: 0; flex: 1; min-width: 160px; }
-  .ap-sb-meta   { flex-direction: row; flex-wrap: wrap; gap: 8px; margin-bottom: 0; font-size: 11.5px; width: 100%; }
+  .ap-sb-name   { margin-bottom: 0; flex: 1; min-width: 160px; }
+  .ap-sb-meta   { flex-direction: row; flex-wrap: wrap; gap: 8px; margin-bottom: 0; width: 100%; }
   .ap-sb-badges { display: none; }
 
   .ap-sb-section { border-bottom: none; border-right: 1px solid rgba(255,255,255,0.06); }
