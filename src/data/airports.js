@@ -574,7 +574,33 @@ const AIRPORTS = [
     hours: {
       service: "AFIS",
       schedule: "Summer (May–Aug): Mon–Fri 08:00–19:00, Sat 09:00–17:00, Sun 09:00–18:00. Winter (Sep–Apr): Mon–Fri 08:00–18:00, Sat–Sun 09:00–18:00.",
-      notes: "Extended on request, 1 hr (summer), 2 hr (winter) notice required."
+      notes: "Extended on request, 1 hr (summer), 2 hr (winter) notice required.",
+      schedule_structured: {
+        summer: {
+          months: [4, 5, 6, 7],
+          days: {
+            0: { open: "09:00", close: "18:00" },
+            1: { open: "08:00", close: "19:00" },
+            2: { open: "08:00", close: "19:00" },
+            3: { open: "08:00", close: "19:00" },
+            4: { open: "08:00", close: "19:00" },
+            5: { open: "08:00", close: "19:00" },
+            6: { open: "09:00", close: "17:00" },
+          }
+        },
+        winter: {
+          months: [8, 9, 10, 11, 0, 1, 2, 3],
+          days: {
+            0: { open: "09:00", close: "18:00" },
+            1: { open: "08:00", close: "18:00" },
+            2: { open: "08:00", close: "18:00" },
+            3: { open: "08:00", close: "18:00" },
+            4: { open: "08:00", close: "18:00" },
+            5: { open: "08:00", close: "18:00" },
+            6: { open: "09:00", close: "18:00" },
+          }
+        }
+      }
     },
     fuel: {
       avgas: false,

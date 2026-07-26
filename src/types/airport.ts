@@ -20,10 +20,23 @@ export interface NavAid {
   notes?: string
 }
 
+export interface DayHours {
+  open: string   // 'HH:MM' UTC
+  close: string  // 'HH:MM' UTC
+}
+
+export interface ScheduleSeason {
+  months: number[]             // UTC month indices 0=Jan … 11=Dec
+  days: Record<number, DayHours> // 0=Sun … 6=Sat; omit a day if closed
+}
+
 export interface Hours {
   service: string
   schedule: string
   notes?: string | null
+  // Machine-readable schedule used for live-status computation.
+  // Prose `schedule` is the display source of truth; this is the computation source.
+  schedule_structured?: Record<string, ScheduleSeason>
 }
 
 export interface Fuel {

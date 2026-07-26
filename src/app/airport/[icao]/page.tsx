@@ -13,6 +13,8 @@ import CrosswindCard from '@/components/airport/CrosswindCard'
 import ForecastCard from '@/components/airport/ForecastCard'
 import SunCard from '@/components/airport/SunCard'
 import TrainingOperationsChecker from '@/components/airport/TrainingOperationsChecker'
+import HoursStatus from '@/components/airport/HoursStatus'
+import RemarksAccordion from '@/components/airport/RemarksAccordion'
 import type { Airport, FireCat } from '@/types/airport'
 import type { AltInfo } from '@/components/airport/AlternatesCard'
 
@@ -163,9 +165,7 @@ export default async function AirportPage(props: PageProps<'/airport/[icao]'>) {
             {a.hours && (
               <div className="ap-sb-section">
                 <div className="ap-sb-label">Operating Hours</div>
-                <span className={`ap-sb-svc-badge ap-sb-svc-badge--${svcBadge}`}>{a.hours.service}</span>
-                <div className="ap-sb-hours-sched">{a.hours.schedule}</div>
-                {a.hours.notes && <div className="ap-sb-hours-note">{a.hours.notes}</div>}
+                <HoursStatus hours={a.hours} svcBadge={svcBadge} />
               </div>
             )}
 
@@ -319,14 +319,7 @@ export default async function AirportPage(props: PageProps<'/airport/[icao]'>) {
           {a.remarks?.length ? (
             <div className="ap-section">
               <div className="ap-section-label">Remarks</div>
-              <ul className="remark-list">
-                {a.remarks.map((r, i) => (
-                  <li key={i} className="remark-item">
-                    <span className="remark-dot" aria-hidden="true" />
-                    <span>{r}</span>
-                  </li>
-                ))}
-              </ul>
+              <RemarksAccordion remarks={a.remarks} />
             </div>
           ) : null}
 
