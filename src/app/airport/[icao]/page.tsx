@@ -151,7 +151,7 @@ export default async function AirportPage(props: PageProps<'/airport/[icao]'>) {
                 {a.nav.map(n => {
                   const unit = n.type.startsWith('NDB') ? 'kHz' : 'MHz'
                   return (
-                    <div key={n.ident} className="ap-sb-nav">
+                    <div key={n.type + n.ident} className="ap-sb-nav">
                       <span className="ap-sb-nav-type">{n.type}</span>
                       <span className="ap-sb-nav-ident">{n.ident}</span>
                       <span className="ap-sb-nav-freq">{n.freq} {unit}</span>
