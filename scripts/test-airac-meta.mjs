@@ -5,11 +5,11 @@ import { validateAiracMeta } from './lib/airac-meta-validation.mjs'
 import { AIRAC_META } from '../src/data/airac-meta.js'
 
 const validCurrentMeta = {
-  cycle: 'A06/2026',
-  effective: '2026-06-11',
-  next: '06 AUG 2026',
-  next_iso: '2026-08-06',
-  source_url: 'https://eaip.isavia.is/A_06-2026_2026_06_11/',
+  cycle: 'A07/2026',
+  effective: '2026-08-06',
+  next: '03 SEP 2026',
+  next_iso: '2026-09-03',
+  source_url: 'https://eaip.isavia.is/A_07-2026_2026_08_06/',
 }
 
 test('current AIRAC metadata is internally consistent', () => {
