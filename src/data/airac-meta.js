@@ -3,9 +3,9 @@
 // displayed by the live site. Future published editions are review material
 // until their effective date has arrived and a human update is made.
 export const AIRAC_META = {
-  cycle: "A07/2026",
-  effective: "2026-08-06",
-  next: "03 SEP 2026",
-  next_iso: "2026-09-03",
-  source_url: "https://eaip.isavia.is/A_07-2026_2026_08_06/"
+  cycle: "A09/2026",
+  effective: "2026-10-01",
+  next: "29 OCT 2026",
+  next_iso: "2026-10-29",
+  source_url: "https://eaip.isavia.is/A_09-2026_2026_10_01/"
 }
